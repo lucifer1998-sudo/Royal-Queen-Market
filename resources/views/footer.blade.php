@@ -1,3 +1,9 @@
+<?php
+
+include app_path() . '\include_exr_api.php';
+
+?>
+
 <footer class="container-fluid page-bg-color mt-4">
     <div class="container mt-4">
 
@@ -10,16 +16,16 @@
                             <h6 class="text-warning text-center">BITCOIN EXCHANGE</h6>
                             <div class="row text-white px-4">
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>USD</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $BTC2USD }}</span></div>
 
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>EUR</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $BTC2EUR }}</span></div>
 
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>GBP</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $BTC2GBP }}</span></div>
 
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>JPY</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $BTC2JPY }}</span></div>
 
                             </div>
                         </div>
@@ -29,16 +35,16 @@
                             <h6 class="text-warning text-center">MONERO EXCHANGE</h6>
                             <div class="row text-white px-4">
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>USD</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $XMR2USD }}</span></div>
 
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>EUR</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $XMR2EUR }}</span></div>
 
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>GBP</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $XMR2GBP }}</span></div>
 
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>JPY</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $XMR2JPY }}</span></div>
 
                             </div>
                         </div>
@@ -48,16 +54,16 @@
                             <h6 class="text-warning text-center">ETHERIUM EXCHANGE</h6>
                             <div class="row text-white px-4">
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>USD</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $ETH2USD }}</span></div>
 
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>EUR</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $ETH2EUR }}</span></div>
 
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>GBP</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $ETH2GBP }}</span></div>
 
                                 <div class="col-lg-2 offset-lg-2 col-3"><span>JPY</span></div>
-                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>15482.50</span></div>
+                                <div class="col-lg-4 offset-lg-2 text-end col-9"><span>{{ $ETH2JPY }}</span></div>
 
                             </div>
                         </div>
