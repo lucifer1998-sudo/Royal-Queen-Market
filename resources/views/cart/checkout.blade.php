@@ -1,12 +1,17 @@
 @extends('master.main')
 
+@section('bg')
+        @include('master.navbar')
+        @include('includes.jswarning')
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
             @include('includes.flash.error')
-            <h2 class="mb-3">Checkout ({{ $numberOfItems }})</h2>
+            <h2 class="mb-3 text-white">Checkout ({{ $numberOfItems }})</h2>
 
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped text-white">
                 <thead>
                     <tr>
                         <th>Product</th>
@@ -78,7 +83,7 @@
             </a>
         </div>
         <div class="col-md-8 text-right">
-            <h3 class="text-right d-inline-block mr-2">Total: @include('includes.currency', ['usdValue' => $totalSum])</h3>
+            <h3 class="text-right d-inline-block mr-2 text-white">Total: @include('includes.currency', ['usdValue' => $totalSum])</h3>
         </div>
         {{--<div class="col-md-6 mt-3 justify-content-center text-center">--}}
             {{--<form action="{{ route('profile.cart.make.purchases') }}">--}}

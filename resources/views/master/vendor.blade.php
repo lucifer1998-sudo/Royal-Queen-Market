@@ -2,6 +2,11 @@
 
 @section('title','Vendor - ' . $vendor -> username )
 
+@section('bg')
+        @include('master.navbar')
+        @include('includes.jswarning')
+@endsection
+
 @section('content')
     {{-- Breadcrumbs --}}
     <nav class="main-breadcrumb" aria-label="breadcrumb">

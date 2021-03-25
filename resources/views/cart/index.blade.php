@@ -1,9 +1,14 @@
 @extends('master.main')
 
+@section('bg')
+        @include('master.navbar')
+        @include('includes.jswarning')
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <h2 class="mb-3">Cart ({{ $numberOfItems }})</h2>
+            <h2 class="mb-3 text-white">Cart ({{ $numberOfItems }})</h2>
         </div>
         <div class="col-md-4 text-right">
             <a href="{{ route('profile.cart.clear') }}" class="btn btn-lg btn-danger">
@@ -125,7 +130,7 @@
         <div class="col-md-12 py-2 justify-content-end">
             <div class="row">
                 <div class="col-md-6">
-                    <h4 class="m-0">Total sum: @include('includes.currency', ['usdValue' => $totalSum])</h4>
+                    <h4 class="m-0 text-white">Total sum: @include('includes.currency', ['usdValue' => $totalSum])</h4>
                 </div>
                 <div class="col-md-6 text-right">
                     <a href="{{ route('profile.cart.checkout') }}" class="btn ml-auto btn-lg btn-mblue">

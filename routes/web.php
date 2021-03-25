@@ -2,6 +2,7 @@
 use App\Marketplace\FeaturedProducts;
 use App\Product;
 use App\Category;
+use App\Vendor;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,14 @@ Route::middleware(['auth'])->group(function () {
 	    	->with([
 	    		'products' => $products,
 	    		'categories' => Category::roots()
+	    	]);
+	});
+
+	Route::get('/vendors', function () {
+		$vendors = Vendor::allUsers();
+	    return view('vendors')
+	    	->with([
+	    		'vendors' => $vendors
 	    	]);
 	});
 
