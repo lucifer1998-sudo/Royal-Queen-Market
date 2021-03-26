@@ -1,7 +1,7 @@
 <div class="col-md-6">
     <h3 class="mb-2">Delivery</h3>
     @if($purchase -> shipping)
-        <table class="table">
+        <table class="table text-white">
             <tr>
                 <td>Shipping name:</td>
                 <td>{{ $purchase -> shipping -> name }}</td>
