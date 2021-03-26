@@ -1,7 +1,7 @@
 <div class="col-md-12">
     {{-- Feedback --}}
     @if($purchase -> isDelivered() && $purchase -> isBuyer() && !$purchase -> hasFeedback())
-        <tr>
+        <tr class="text-white">
             <td colspan="2" class="">
                 <h4>Leave feedback</h4>
                 <form action="{{ route('profile.purchases.feedback.new', $purchase) }}" method="POST">
@@ -58,7 +58,7 @@
         </tr>
 
     @elseif($purchase -> isDelivered() && $purchase -> hasFeedback())
-        <tr>
+        <tr class="text-white">
             <td colspan="2">
                 <h4>Feedback by buyer</h4>
                 <ul class="list-group">

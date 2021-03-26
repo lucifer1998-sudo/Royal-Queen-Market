@@ -1,7 +1,7 @@
 <div class="col-md-6">
-    <h3 class="mb-4">Payment</h3>
+    <h3 class="mb-4 text-white">Payment</h3>
 
-    <table class="table ">
+    <table class="table text-white">
         <tr>
             <td>To pay:</td>
             <td>

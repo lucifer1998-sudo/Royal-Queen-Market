@@ -1,6 +1,6 @@
 <div class="col-md-6">
-    <h3 class="mb-2">Offer</h3>
-    <table class="table">
+    <h3 class="mb-2 text-white">Offer</h3>
+    <table class="table text-white">
         <tr>
             <td>Purchased amount:</td>
             <td>

@@ -6,7 +6,7 @@
     @include('includes.flash.success')
     @include('includes.flash.error')
 
-    <h1 class="mb-3">Sales</h1>
+    <h1 class="mb-3 text-white">Sales</h1>
 
     <ul class="nav nav-tabs nav-fill mb-3">
         <li class="nav-item">
@@ -36,7 +36,7 @@
         </li>
     </ul>
 
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped text-white">
         <thead>
         <tr>
             <th>Product</th>

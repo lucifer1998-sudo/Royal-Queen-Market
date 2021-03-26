@@ -1,14 +1,14 @@
 {{-- Disputes --}}
 <div class="col-md-12 mt-5 py-2" id="dispute">
     @if($purchase -> isDisputed())
-        <h3 class="mb-1">Dispute</h3>
+        <h3 class="mb-1 text-white">Dispute</h3>
         <hr>
         @if(!$purchase -> dispute -> isResolved() && auth() -> user() -> isAdmin())
-            <h5 class="mb-1">Resolve dispute</h5>
+            <h5 class="mb-1 ">Resolve dispute</h5>
             <form action="{{ route('profile.purchases.disputes.resolve', $purchase) }}" class="form-inline"
                   method="POST">
                 {{ csrf_field() }}
-                <label for="winner" class="mr-2">Dispute winner:</label>
+                <label for="winner" class="mr-2 text-white">Dispute winner:</label>
                 <select name="winner" id="winner" class="form-control mr-2">
                     <option value="{{ $purchase -> buyer -> id }}">{{ $purchase -> buyer -> username }} -
                         buyer
@@ -20,9 +20,9 @@
                 <button type="submit" class="btn btn-outline-primary">Resolve dispute</button>
             </form>
         @elseif($purchase -> dispute -> isResolved())
-            <h5 class="mb-1">Dispute resolved</h5>
+            <h5 class="mb-1 text-white">Dispute resolved</h5>
             <p class="alert alert-success">Winner:
-                <strong>{{ $purchase -> dispute -> winner -> username }}</strong></p>
+                <strong class="">{{ $purchase -> dispute -> winner -> username }}</strong></p>
         @endif
 
 
