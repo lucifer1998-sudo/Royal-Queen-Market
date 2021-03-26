@@ -31,7 +31,7 @@
                 <div class="card-body">
                     {{ $message -> message }}
                 </div>
-                <div class="card-footer text-muted">
+                <div class="card-footer text-muted" style="color: black;">
                     {{ $message -> time_ago }} by <a
                             href="{{ route('vendor.show', $message -> author) }}">{{ $message -> author -> username }} {{ $purchase -> userRole($message -> author) }}</a>
                 </div>
