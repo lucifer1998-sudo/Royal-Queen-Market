@@ -4,7 +4,7 @@
         <h3 class="mb-1 text-white">Dispute</h3>
         <hr>
         @if(!$purchase -> dispute -> isResolved() && auth() -> user() -> isAdmin())
-            <h5 class="mb-1 ">Resolve dispute</h5>
+            <h5 class="mb-1 text-white">Resolve dispute</h5>
             <form action="{{ route('profile.purchases.disputes.resolve', $purchase) }}" class="form-inline"
                   method="POST">
                 {{ csrf_field() }}
