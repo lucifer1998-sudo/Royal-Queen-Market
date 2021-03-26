@@ -4,6 +4,11 @@
     Purchase Resolving - #{{ $purchase -> short_id }}
 @stop
 
+@section('bg')
+        @include('master.navbar')
+        @include('includes.jswarning')
+@endsection
+
 @section('admin-content')
 
     <div class="row">
