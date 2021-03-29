@@ -11,10 +11,10 @@ return [
      * 'stb' => Stub coin
      */
     'coin_list' => [
-        'btc' => \App\Marketplace\Payment\BitcoinPayment::class,
+   //     'btc' => \App\Marketplace\Payment\BitcoinPayment::class,
 //        'btcm' => \App\Marketplace\Payment\BitcoinMutlisig::class, // bitcoin multisig
         'xmr' => \App\Marketplace\Payment\MoneroPayment::class,
-        'stb' => \App\Marketplace\Payment\StubCoin::class,
+ //       'stb' => \App\Marketplace\Payment\StubCoin::class,
 //        'pivx' => \App\Marketplace\Payment\PivxCoin::class,
 //        'ltc' => \App\Marketplace\Payment\LitecoinPayment::class,
 //        'dash' => \App\Marketplace\Payment\DashPayment::class,
@@ -32,7 +32,7 @@ return [
         'username' => env('BITCOIND_USERNAME', 'bitt'),
         'password' => env('BITCOIND_PASSWORD', '2222233333'),
         'port' => env('BITCOIND_PORT', 8332),
-        'minconfirmations' => env('BITCOIND_MINCONFIRMATIONS', 1),
+        'minconfirmations' => env('BITCOIND_MINCONFIRMATIONS', 2),
     ],
 
 
