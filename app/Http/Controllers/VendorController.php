@@ -139,6 +139,7 @@ class VendorController extends Controller
             session() -> flash('errormessage', $e -> getMessage());
         }
         catch (\Exception $e){
+            Log::error($e);
             session() -> flash('errormessage', 'Something went wrong, try again!');
         }
 
