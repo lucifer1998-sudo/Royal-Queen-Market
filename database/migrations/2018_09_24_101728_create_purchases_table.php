@@ -44,6 +44,8 @@ class CreatePurchasesTable extends Migration
 
             $table->timestamps();
 
+            $table-> decimal('discount', 10, 0);
+
             // foreign keys
             $table -> primary('id');
             $table -> foreign('offer_id') -> references('id') -> on('offers') -> onDelete('cascade');
