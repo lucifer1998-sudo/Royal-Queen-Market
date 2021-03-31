@@ -35,29 +35,94 @@ class MakePurchasesRequest extends FormRequest
 
     public function persist()
     {
-        try{
-            DB::beginTransaction();
-            // foreach item in cart
-            foreach (Cart::getCart() -> items() as $productId => $item){
-                // Purchase procedure
-                $item -> purchased();
-                // Persist the purchase
-                $item -> save();
+        $couponCheck = 0;
+        $discount = 0;
+        foreach (Cart::getCart() -> items() as $item) {
+            if (isset($item->discount)) {
+                $couponCheck += 1;
+                $discount = $item->discount;
+                break;
+            } else {
+                break;
             }
-            DB::commit();
-            // Clear cart after commiting
-            Cart::getCart() -> clearCart();
         }
-        catch(RequestException $requestException){
-            DB::rollBack();
-            Log::error($requestException -> getMessage());
-            throw new RequestException($requestException -> getMessage());
+
+        if ($couponCheck > 0) {
+            try{
+                DB::beginTransaction();
+                // foreach item in cart
+                foreach (Cart::getCart() -> items() as $productId => $item){
+                    // Purchase procedure
+                    $item -> purchased($discount);
+                    // Persist the purchase
+                    $item -> save();
+                }
+                DB::commit();
+                // Clear cart after commiting
+                Cart::getCart() -> clearCart();
+            }
+            catch(RequestException $requestException){
+                DB::rollBack();
+                Log::error($requestException -> getMessage());
+                throw new RequestException($requestException -> getMessage());
+            }
+            catch (\Exception $e){
+                \Illuminate\Support\Facades\Log::error($e->getMessage());
+                DB::rollBack();
+                Log::error($e -> getMessage());
+                throw new RequestException('Error happened! Try again later!');
+            } 
+        } else {
+            try{
+                DB::beginTransaction();
+                // foreach item in cart
+                foreach (Cart::getCart() -> items() as $productId => $item){
+                    // Purchase procedure
+                    $item -> purchased(0);
+                    // Persist the purchase
+                    $item -> save();
+                }
+                DB::commit();
+                // Clear cart after commiting
+                Cart::getCart() -> clearCart();
+            }
+            catch(RequestException $requestException){
+                DB::rollBack();
+                Log::error($requestException -> getMessage());
+                throw new RequestException($requestException -> getMessage());
+            }
+            catch (\Exception $e){
+                \Illuminate\Support\Facades\Log::error($e->getMessage());
+                DB::rollBack();
+                Log::error($e -> getMessage());
+                throw new RequestException('Error happened! Try again later!');
+            }
         }
-        catch (\Exception $e){
-            \Illuminate\Support\Facades\Log::error($e->getMessage());
-            DB::rollBack();
-            Log::error($e -> getMessage());
-            throw new RequestException('Error happened! Try again later!');
-        }
+
+        // try{
+        //     #dd(Cart::getCart() -> items());
+        //     DB::beginTransaction();
+        //     // foreach item in cart
+        //     foreach (Cart::getCart() -> items() as $productId => $item){
+        //         // Purchase procedure
+        //         $item -> purchased();
+        //         // Persist the purchase
+        //         $item -> save();
+        //     }
+        //     DB::commit();
+        //     // Clear cart after commiting
+        //     Cart::getCart() -> clearCart();
+        // }
+        // catch(RequestException $requestException){
+        //     DB::rollBack();
+        //     Log::error($requestException -> getMessage());
+        //     throw new RequestException($requestException -> getMessage());
+        // }
+        // catch (\Exception $e){
+        //     \Illuminate\Support\Facades\Log::error($e->getMessage());
+        //     DB::rollBack();
+        //     Log::error($e -> getMessage());
+        //     throw new RequestException('Error happened! Try again later!');
+        // }
     }
 }

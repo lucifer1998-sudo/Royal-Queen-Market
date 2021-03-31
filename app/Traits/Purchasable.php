@@ -26,7 +26,7 @@ trait Purchasable {
      *  Runs purchased procedure
      *  It has been called in DB transaction
      */
-    public function purchased()
+    public function purchased($discount)
     {
         // check if shipping is not deleted in the mean time
         // shipping is deleted between adding to cart and checkout
@@ -43,7 +43,12 @@ trait Purchasable {
         // Prepare purchase
         $this -> encryptMessage();
         // calculate bitcoin to pay in this moment
-        $this -> to_pay = $this -> getPayment() -> usdToCoin($this -> getSumDollars());
+        if ($discount == 0) {
+            $this -> to_pay = $this -> getPayment() -> usdToCoin($this -> getSumDollars());
+        } else {
+            $this -> to_pay = $this -> getPayment() -> usdToCoin($this -> getSumDollarsDiscount($discount));
+        }
+        
         // Substract the quantity from the product
         $this -> offer -> product -> substractQuantity($this -> quantity);
         $this -> offer -> product -> save();

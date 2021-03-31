@@ -39,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('product/{product}/rules', 'ProductController@showRules') -> name('product.rules');
 	Route::get('product/{product}/feedback', 'ProductController@showFeedback') -> name('product.feedback');
 	Route::get('product/{product}/delivery', 'ProductController@showDelivery') -> name('product.delivery');
+	Route::get('product/{product}/coupon', 'ProductController@showCoupon') -> name('product.coupon');
+	Route::post('product/{product}/coupons', 'ProductController@generateCoupon') -> name('product.coupon.generate');
 	Route::get('product/{product}/vendor', 'ProductController@showVendor') -> name('product.vendor');
 
 	// category routes

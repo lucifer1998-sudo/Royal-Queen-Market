@@ -162,6 +162,11 @@ class Purchase extends Model
         $this -> buyer_id = $user -> id;
     }
 
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+    }
+
     /**
      * Display name of the purchase coin
      *
@@ -233,6 +238,14 @@ class Purchase extends Model
         if($this -> shipping)
             $shipingPrice += $this -> shipping -> price;
         return $this -> offer -> price * $this -> quantity + $shipingPrice;
+    }
+
+    public function getSumDollarsDiscount($discount)
+    {
+        $shipingPrice = 0;
+        if($this -> shipping)
+            $shipingPrice += $this -> shipping -> price;
+        return ($this -> offer -> price * $this -> quantity + $shipingPrice) - $discount;
     }
 
 

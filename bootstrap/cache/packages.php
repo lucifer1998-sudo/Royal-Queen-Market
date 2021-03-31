@@ -6,6 +6,17 @@
       0 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
     ),
   ),
+  'beyondcode/laravel-vouchers' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'BeyondCode\\Vouchers\\VouchersServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Vouchers' => 'BeyondCode\\Vouchers\\Facades\\Vouchers',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 

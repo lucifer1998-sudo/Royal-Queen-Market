@@ -9,11 +9,13 @@ use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 use Illuminate\Support\Facades\Log;
+use BeyondCode\Vouchers\Traits\HasVouchers;
 
 class Product extends Model
 {
     use Uuids;
     use Searchable;
+    use HasVouchers;
     public $incrementing = false;
     protected $keyType = 'string';
     protected $primaryKey = 'id';

@@ -9,6 +9,7 @@ use App\Marketplace\Utility\CurrencyConverter;
 use App\Traits\Adminable;
 use App\Traits\Displayable;
 use App\Traits\Uuids;
+use BeyondCode\Vouchers\Traits\CanRedeemVouchers;
 use App\Traits\Vendorable;
 use Carbon\Carbon;
 use App\Traits\Notifiable;
@@ -29,6 +30,7 @@ class User extends Authenticatable
     use Vendorable;
     use Adminable;
     use Displayable;
+    use CanRedeemVouchers;
 
     /**
      * Permissions of the User

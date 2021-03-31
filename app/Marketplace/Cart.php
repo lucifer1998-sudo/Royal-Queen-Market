@@ -96,6 +96,44 @@ class Cart
         $newCartItem -> setVendor($product -> user -> vendor);
         $newCartItem -> setOffer($product -> bestOffer($quantity));
         $newCartItem -> setShipping($shipping);
+        //$newCartItem -> setDiscount($discount);
+        $newCartItem -> message = $message ?? '';
+        $newCartItem -> quantity = $quantity;
+        $newCartItem -> coin_name = $coin;
+        $newCartItem -> type = $type;
+        /**
+         * Cart table
+         * \App\Product -> id => \App\Purchase
+         */
+        // get cart table from session
+        $itemsTable = session(self::SESSION_NAME);
+        // put as the key of the product
+        $itemsTable[$product -> id] = $newCartItem;
+        // save to table
+        session() -> put(self::SESSION_NAME, $itemsTable);
+
+    }
+
+    public function addToCartCoupon(Product $product, int $quantity, string $coin, ?Shipping $shipping = null, string $message = null, $type = 'normal', float $discount)
+    {
+        // validate shipping
+        if(!$this -> validShipping($shipping, $quantity))
+            throw new RequestException('Quantity must be in range of selected shipping option!');
+        // validate offers
+        if(!$this -> validOffer($product, $quantity))
+            throw new RequestException('There is no offer for this quantity!');
+        // validate coins
+        if(!$product -> supportsCoin($coin))
+            throw new RequestException('Selected coin payment is not supported by this product!');
+
+        // make the purchase
+        $newCartItem = new Purchase;
+        $newCartItem -> id =  \Uuid::generate() -> string; // generate id for address
+        $newCartItem -> setBuyer(auth() -> user());
+        $newCartItem -> setVendor($product -> user -> vendor);
+        $newCartItem -> setOffer($product -> bestOffer($quantity));
+        $newCartItem -> setShipping($shipping);
+        $newCartItem -> setDiscount($discount);
         $newCartItem -> message = $message ?? '';
         $newCartItem -> quantity = $quantity;
         $newCartItem -> coin_name = $coin;
@@ -157,15 +195,19 @@ class Cart
      *
      * @return int
      */
-    public function total()
+    public function total($deduct)
     {
         $totalSum = 0;
+
+        if ($deduct == "" || $deduct == null) {
+            $deduct == 0;
+        }
 
         foreach (session() -> get(self::SESSION_NAME) ?? [] as $productId => $item){
             $totalSum += $item -> value_sum;
         }
 
-        return $totalSum;
+        return $totalSum - $deduct;
     }
 
     /**

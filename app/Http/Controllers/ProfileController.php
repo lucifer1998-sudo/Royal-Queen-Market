@@ -35,6 +35,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Auth;
+use Voucher;
+use BeyondCode\Vouchers\Exceptions\VoucherExpired;
+use BeyondCode\Vouchers\Exceptions\VoucherIsInvalid;
+use BeyondCode\Vouchers\Exceptions\VoucherAlreadyRedeemed;
 
 class ProfileController extends Controller
 {
@@ -259,11 +264,38 @@ class ProfileController extends Controller
      */
     public function cart()
     {
-        return view('cart.index',[
-            'items' => Cart::getCart() -> items(),
-            'numberOfItems' => Cart::getCart()->numberOfItems(),
-            'totalSum' => Cart::getCart() -> total(),
-        ]);
+        $couponCheck = 0;
+        $couponValue = 0;
+        foreach (Cart::getCart() -> items() as $v) {
+            if (isset($v->discount)) {
+                $couponCheck += 1;
+                $couponValue += $v->discount;
+                break;
+            } else {
+                break;
+            }
+        }
+
+        if ($couponCheck > 0) {
+            return view('cart.index',[
+                'items' => Cart::getCart() -> items(),
+                'numberOfItems' => Cart::getCart()->numberOfItems(),
+                'totalSum' => Cart::getCart() -> total($couponValue ),
+            ]);
+        } else {
+            $deduct = 0;
+            return view('cart.index',[
+                'items' => Cart::getCart() -> items(),
+                'numberOfItems' => Cart::getCart()->numberOfItems(),
+                'totalSum' => Cart::getCart() -> total($deduct),
+            ]);
+        }
+    }
+
+
+
+    public function appendCoupon($key) {
+
     }
 
     /**
@@ -275,17 +307,68 @@ class ProfileController extends Controller
      */
     public function addToCart(NewItemRequest $request, Product $product)
     {
-        try{
-            $request -> persist($product);
-            session() -> flash('success', 'You have added/changed an item!');
+        if ($request->submit == "coupon_btn") {
+            #$test = Product::find($product->id)->where('code' == "www"))->vouchers->count()
+            //dd(Product::find($product->id)->vouchers);
+            $count = Product::find($product->id)->vouchers;
+            $y = 0;
+            foreach ($count as $c) {
+                if ($c->code == $request->input("coupon_code")) {
+                    $y += 1;
+                }
+            }
 
-            return redirect() -> route('profile.cart');
-        }
-        catch (RequestException $e){
-            $e -> flashError();
+            if ($y > 0 ) {
+                try{
+                    $user = Auth::user();
+                    // $external = 1;
+                    // $test = $product->offers->map(function ($arr) use ($external) {
+                    //     $arr['price'] = $arr['price'] - $external;
+                    // });
+                    // dd($test);
+                    // dd($product->offers);
+                    $voucher = $user->redeemCode($request->input('coupon_code'));
+                    $deduct = $voucher->data->get('price');
+                    $converted = floatval($deduct);
+                    $request -> couponPersist($product, $converted);
+                    session() -> flash('success', 'You have successfully redeemed a coupon!');
+
+                    return redirect() -> route('profile.cart');
+                }
+                catch(VoucherAlreadyRedeemed $e) {
+                        #dd($e);
+                    $e-> flashError();
+                }catch (RequestException $e){
+                    $e -> flashError();
+                }
+                return redirect() -> back();
+            } else {
+                try{
+                    $user = Auth::user();
+                    $voucher = $user->redeemCode($request->input('coupon_code'));
+                } catch(VoucherIsInvalid $e) {
+                    $e-> flashError();
+                } catch (RequestException $e){
+                $e -> flashError();
+                }
+
+                return redirect() -> back();
+            } 
+
+        } else {
+            try{
+                $request -> persist($product);
+                session() -> flash('success', 'You have added/changed an item!');
+
+                return redirect() -> route('profile.cart');
+            }
+            catch (RequestException $e){
+                $e -> flashError();
+            }
+
+            return redirect() -> back();
         }
 
-        return redirect() -> back();
     }
 
     /**
@@ -322,12 +405,33 @@ class ProfileController extends Controller
      */
     public function checkout()
     {
-        return view('cart.checkout', [
-            'items' => Cart::getCart() -> items(),
-            'totalSum' => Cart::getCart() -> total(),
-            'numberOfItems' => Cart::getCart()->numberOfItems(),
+        $couponCheck = 0;
+        $couponValue = 0;
+        foreach (Cart::getCart() -> items() as $v) {
+            if (isset($v->discount)) {
+                $couponCheck += 1;
+                $couponValue += $v->discount;
+                break;
+            } else {
+                break;
+            }
+        }
 
-        ]);
+        if ($couponCheck > 0) {
+            return view('cart.checkout', [
+                'items' => Cart::getCart() -> items(),
+                'totalSum' => Cart::getCart() -> total($couponValue),
+                'numberOfItems' => Cart::getCart()->numberOfItems(),
+
+            ]);
+        } else {
+            return view('cart.checkout', [
+                'items' => Cart::getCart() -> items(),
+                'totalSum' => Cart::getCart() -> total(0),
+                'numberOfItems' => Cart::getCart()->numberOfItems(),
+
+            ]);
+        }
     }
 
     /**
@@ -338,6 +442,7 @@ class ProfileController extends Controller
      */
     public function makePurchases(MakePurchasesRequest $request)
     {
+        #dd($request);
         try{
             $request -> persist();
         }

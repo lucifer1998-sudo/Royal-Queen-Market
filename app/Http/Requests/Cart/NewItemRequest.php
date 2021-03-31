@@ -48,4 +48,21 @@ class NewItemRequest extends FormRequest
                 -> first();
         Cart::getCart() -> addToCart($product, $this -> amount, $this -> coin, $shipping, $this -> message, $this -> type);
     }
+
+    public function couponPersist(Product $product, $deduct) {
+        //dd(Cart::getCart());
+         $x = $product;
+        //$product->offers[0]->price = $deduct;
+
+        //dd($product);
+        $shipping = null;
+        throw_if($product->user->id == auth()->user()->id, new RequestException('You can\'t put your products in cart!'));
+        // select shipping
+        if($x -> isPhysical())
+            $shipping = $product -> specificProduct() -> shippings()
+                -> where('id', $this -> delivery)
+                -> where('deleted', '=', 0) // is not deleted
+                -> first();
+        Cart::getCart() -> addToCartCoupon($product, $this -> amount, $this -> coin, $shipping, $this -> message, $this -> type, $deduct);
+    }
 }

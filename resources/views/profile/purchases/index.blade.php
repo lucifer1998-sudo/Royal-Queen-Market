@@ -75,7 +75,7 @@
                     @endif
                 </td>
                 <td class="">
-                    <span class="badge badge-mblue">@include('includes.currency', ['usdValue' => $purchase -> value_sum ])</span>
+                    <span class="badge badge-mblue">@include('includes.currency', ['usdValue' => $purchase -> value_sum - $purchase -> discount ])</span>
                 </td>
 
                 <td>

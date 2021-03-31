@@ -96,6 +96,43 @@ class ProductController extends Controller
         ]);
     }
 
+    public function showCoupon(PhysicalProduct $product) {
+        // If user is logged in
+        if (auth()->check())
+            $this->authorize('view', $product->product);
+        elseif ($product->product->active == false)
+            abort(404);
+
+        #dd($product->vouchers());
+        $coupon = Product::find($product->id)->vouchers;
+        //dd($test);
+        #$vouchers = $test->createVouchers(2, [], today()->addDays(7));
+       // $coupon = $product->vouchers();
+        #dd($coupon->code);
+        return view('product.coupon', [
+            'product' => $product->product,
+            'coupon'  => $coupon,
+        ]);
+    }
+
+    public function generateCoupon(PhysicalProduct $product, Request $request) {
+        // If user is logged in
+        if (auth()->check())
+            $this->authorize('view', $product->product);
+        elseif ($product->product->active == false)
+            abort(404);
+
+        $thisProduct = Product::find($product->id);
+        $t = $thisProduct->createVouchers($request->input('qty'), ['price' => $request->input('cValue')], today()->addDays($request->input('duration')));
+
+        $coupon = $thisProduct->vouchers;
+
+        return view('product.coupon', [
+            'product' => $product->product,
+            'coupon'  => $coupon,
+        ]);
+    }
+
     public function showVendor(Product $product) {
         // If user is logged in
         if (!auth()->guest())

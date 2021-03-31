@@ -50,7 +50,7 @@
                 <div class="form-row bg-light">
                     <div class="col-md-2">
                         <a href="{{ route('product.show', $item -> offer -> product) }}">
-                            <h4>{{ $item -> offer -> product -> name }}</h4>
+                            <h4 style="color: black;">{{ $item -> offer -> product -> name }}</h4>
                         </a>
                         by
                         <a class="badge badge-info" href="{{ route('vendor.show', $item -> offer -> product -> user) }}">
@@ -108,13 +108,17 @@
                         <textarea name="message" id="message" rows="3" placeholder="Message will be encrypted with vendor's PGP key. Click on edit to save message!" style="resize: 0" class="form-control form-control-sm">{{ $item -> message }}</textarea><br>
                     </div>
                     <div class="col-md-2 d-flex align-items-center justify-content-around">
-                        <button type="submit" class="btn btn-outline-primary">
+                        <button type="submit" class="btn btn-outline-primary" value="edit" name="submit">
                             <i class="far fa-edit mr-2"></i>
                             Edit
                         </button>
                         <a href="{{ route('profile.cart.remove', $productId) }}" class="btn btn-outline-danger">
                             <i class="fas fa-minus-circle"></i>
                         </a>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-center justify-content-around">
+                        <input type="text" name="coupon_code" class="form-control form-control-sm" placeholder="Coupon Code">
+                        <button type="submit" value="coupon_btn" class="btn btn-outline-primary" name="submit">Add Coupon</button>
                     </div>
                 </div>
 

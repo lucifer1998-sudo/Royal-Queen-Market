@@ -281,8 +281,12 @@
                    href="{{ route('product.delivery', $product) }}#productsmenu">Delivery</a>
             </li>
         @endif
-
-
+        @if(Auth::user()->id == $product->user->id)
+        <li class="nav-item">
+            <a class="nav-link @isroute('product.coupon') active @endisroute"
+                   href="{{ route('product.coupon', $product) }}#productsmenu">Coupons</a>
+        </li>
+        @endif
     </ul>
 
     @yield('product-content')

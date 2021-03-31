@@ -62,5 +62,10 @@ class Offer extends Model
         return CurrencyConverter::convertToLocal($this->price);
     }
 
+    public function setpriceAttribute($value)
+    {
+        $this->attributes['price'] -= $value;
+    }
+
 
 }
