@@ -58,7 +58,7 @@
         @endif
 
     @else
-        <h3 class="mb-1">Initiate Dispute</h3>
+        <h3 class="mb-1 text-white">Initiate Dispute</h3>
         <hr>
         <p class="text-muted">If the described item does not match received item you can initiate dispute against seller. Once dispute is started, it can be resolved in favor of both buyer and vendor</p>
         <form method="POST" action="{{ route('profile.purchases.dispute', $purchase) }}">

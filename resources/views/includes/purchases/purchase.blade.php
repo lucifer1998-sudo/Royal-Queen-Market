@@ -11,7 +11,7 @@
             @include('includes.flash.success')
             @include('includes.flash.error')
             @include('includes.validation')
-            <h3 class="mb-3">@yield('purchase-title') - @include('includes.currency', ['usdValue' => $purchase -> value_sum ])</h3>
+            <h3 class="mb-3 text-white">@yield('purchase-title') - @include('includes.currency', ['usdValue' => $purchase -> value_sum ])</h3>
             <p class="text-muted">Created {{ $purchase -> timeDiff() }} - {{ $purchase -> created_at }}</p>
         </div>
 

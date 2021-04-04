@@ -88,6 +88,17 @@
 
         <div class="card text-center">
             <div class="card-body">
+                <h1>
+                    {{ $online_users }}
+                </h1>
+            </div>
+            <div class="card-footer">
+                Total Online Users
+            </div>
+        </div>
+
+        <div class="card text-center">
+            <div class="card-body">
                 <table class="table table-borderless">
                     @foreach($total_earnings_coin as $coin => $total_sum)
                         <tr>

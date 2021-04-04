@@ -14,6 +14,7 @@
         <title>{{config('app.name')}}</title>
     @endif
     <link href="{{ URL::asset('css/rqm-app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('css/animation-library-min.css') }}" rel="stylesheet" type="text/css">
 
 </head>
 <body class="pb-4" id="main">

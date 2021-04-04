@@ -35,13 +35,15 @@
 
             @if($productsView == 'list')
                 @foreach($products as $product)
+                    <div class="u--bounce">
                     @include('includes.product.card-home', ['product' => $product])
+                    </div>
                 @endforeach
             @else
                 @foreach($products->chunk(3) as $chunks)
                     <div class="row mt-3">
                         @foreach($chunks as $product)
-                            <div class="col-md-4 my-md-0 my-2 col-12">
+                            <div class="col-md-4 my-md-0 my-2 col-12 u--bounce">
                                 @include('includes.product.card', ['product' => $product])
                             </div>
                         @endforeach

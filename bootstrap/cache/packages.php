@@ -49,6 +49,13 @@
       0 => 'GrahamCampbell\\Markdown\\MarkdownServiceProvider',
     ),
   ),
+  'joshrainwater/active-users' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Rainwater\\Active\\ActiveServiceProvider',
+    ),
+  ),
   'laravel/sail' => 
   array (
     'providers' => 

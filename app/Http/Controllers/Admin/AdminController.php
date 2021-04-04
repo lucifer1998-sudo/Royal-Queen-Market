@@ -20,6 +20,7 @@ use App\VendorPurchase;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Rainwater\Active\Active;
 
 class AdminController extends Controller
 {
@@ -65,7 +66,8 @@ class AdminController extends Controller
                 'total_vendors' => Vendor::count(),
                 'avg_product_price' => Offer::averagePrice(),
                 'total_spent' => Purchase::totalSpent(),
-                'total_earnings_coin' => Purchase::totalEarningPerCoin()
+                'total_earnings_coin' => Purchase::totalEarningPerCoin(),
+                'online_users'  => Active::users()->count()
             ]
             );
     }
