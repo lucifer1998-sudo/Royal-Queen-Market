@@ -170,7 +170,7 @@ class User extends Authenticatable
      */
     public function products()
     {
-        return $this -> hasMany(\App\Product::class, 'user_id') -> where('active', true) -> orderByDesc('created_at');
+        return $this -> hasMany(\App\Product::class, 'user_id')  -> orderByDesc('created_at');
     }
 
     /**

@@ -346,6 +346,13 @@ class Product extends Model
         $this -> unsearchable();
     }
 
+    public function activate()
+    {
+        $this -> active = true;
+        $this -> save();
+        $this -> searchable();
+    }
+
     /**
      * Returns if the this product supports coin
      *

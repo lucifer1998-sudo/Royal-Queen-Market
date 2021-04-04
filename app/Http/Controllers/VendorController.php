@@ -513,6 +513,33 @@ class VendorController extends Controller
         return redirect() -> route('profile.vendor');
     }
 
+    public function confirmToggleProduct($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('profile.product.confirmtoggle', [
+            'product' => $product
+        ]);
+    }
+
+    public function toggleProduct($id)
+    {
+        $productToToggle = Product::findOrFail($id);
+        if ($productToToggle -> active == true) {
+            $productToToggle -> deactivate();
+
+            session() -> flash('success', 'You have successfully hidden product!');
+            return redirect() -> route('profile.vendor');
+        } else {
+            $productToToggle -> activate();
+            session() -> flash('success', 'You have successfully activated the product!');
+            return redirect() -> route('profile.vendor');
+        }
+        
+
+        
+    }
+
 
     /**
      * Method for showing all editing forms for the product

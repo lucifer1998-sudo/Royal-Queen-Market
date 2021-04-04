@@ -57,6 +57,11 @@ Route::prefix('profile')->group(function(){
     // Delete product
     Route::get('vendor/product/{id}/delete/confirmation', 'VendorController@confirmProductRemove') -> name('profile.vendor.product.remove.confirm');
     Route::get('vendor/product/{id}/delete', 'VendorController@removeProduct') -> name('profile.vendor.product.remove');
+    // Toggle product visibility
+    Route::get('vendor/product/{id}/toggle/confirmation', 'VendorController@confirmToggleProduct') -> name('profile.vendor.product.toggle.confirm');
+    Route::get('vendor/product/{id}/toggle', 'VendorController@toggleProduct') -> name('profile.vendor.product.toggle');
+
+
 
     // Edit Product
     Route::get('vendor/product/edit/{id}/section/{section?}', 'VendorController@editProduct') -> name('profile.vendor.product.edit');

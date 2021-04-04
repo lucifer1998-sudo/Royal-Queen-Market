@@ -32,7 +32,9 @@
                         <a href="{{ route('profile.vendor.product.remove.confirm', $product -> id) }}" class="btn btn-sm btn-danger">
                             <i class="fa fa-trash"></i>
                         </a>
-
+                        <a href="{{ route('profile.vendor.product.toggle.confirm', $product -> id) }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-eye"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach
