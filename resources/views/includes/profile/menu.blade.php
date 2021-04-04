@@ -45,9 +45,4 @@
     <i class="mr-2 far fa-bell"></i>
     Notifications
     </a>
-
-    <a href="{{ route('profile.bitmessage') }}" class="nav-link @isroute('profile.bitmessage') active @endisroute" data-toggle="pill">
-        <i class="mr-2 far fa-envelope-open"></i>
-        Bitmessage
-    </a>
 </div>
