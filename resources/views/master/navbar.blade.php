@@ -61,7 +61,7 @@
                      -->
                     <div class="col-md-2 col-lg-2  text-end col-3">
                         <button onclick="window.location.href='/profile/index'" class="btn btn-link btn-lg text-white"><i
-                                class="far fa-user-circle"></i></button>
+                                class="far fa-user-circle"> {{ Auth::user()->username }}</i></button>
                     </div>
                     @auth
                     <div class="col-md-2 col-lg-2  text-end col-3">

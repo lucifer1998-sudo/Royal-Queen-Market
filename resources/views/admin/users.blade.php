@@ -16,7 +16,7 @@
     </div>
 
 
-    <div class="row mt-2 text-white" >
+    <div class="row mt-2" >
 
         <div class="col">
             <form action="{{route('admin.users.query')}}" method="post" class="">

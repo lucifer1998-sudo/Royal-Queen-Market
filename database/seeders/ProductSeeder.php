@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
     private $maximumAmoutOfImagesToCreate = 5;
 
     public function __construct() {
-        $this->fakerFactory = Factory::create();
+        $this->fakerFactory = \Faker\Factory::create();
     }
 
     /**
