@@ -23,6 +23,7 @@ class CreateVendorsTable extends Migration
             $table->timestamps();
             $table -> primary('id');
             $table -> foreign('id') -> references('id') -> on('users') -> onDelete('cascade');
+            $table ->boolean('can_use_fe')->default(false);
         });
     }
 
