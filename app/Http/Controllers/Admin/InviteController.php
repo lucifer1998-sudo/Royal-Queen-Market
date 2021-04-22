@@ -21,7 +21,9 @@ class InviteController extends Controller
         $user = User::where('username', $request->vendor_username)->first();
 
         if(empty($user)) {
-            return redirect()->back()->withErrors('No user found!');
+            return redirect()->back()->with([
+                'outside_vendor' => $request->vendor_username
+            ]);
         }
 
         $code = $request->vendor_username . "-" . Str::random(6);

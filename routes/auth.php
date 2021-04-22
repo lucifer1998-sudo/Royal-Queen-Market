@@ -6,6 +6,8 @@ Route::middleware(['guest'])->group(function () {
     Route::post('signin','Auth\LoginController@postSignIn')->name('signin.post');
 
     Route::get('signup/{refid?}','Auth\RegisterController@showSignUp')->name('signup');
+    Route::get('registration/{code}','Auth\RegisterWithInviteController@create')->name('register.with.invite');
+    Route::post('registration/{code}','Auth\RegisterWithInviteController@store')->name('register.with.invite.post');
 
     Route::post('signup','Auth\RegisterController@signUpPost')->name('signup.post');
 

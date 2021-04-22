@@ -68,3 +68,4 @@ Route::post('tickets/remove','Admin\AdminController@removeTickets')->name('admin
 // Invites
 Route::get('invite/create','Admin\InviteController@create')->name('admin.invite.create');
 Route::post('invite/create','Admin\InviteController@store')->name('admin.invite.store');
+Route::post('invite/create/outside','Admin\InviteOutsideController@store')->name('admin.invite.outside.store');

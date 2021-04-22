@@ -31,14 +31,14 @@
                 </div>
                 <h1 class="h3 text-warning mt-4 text-center">SIGN UP</h1>
                 <p class="text-warning text-center">GET YOUR ACCOUNT IN MINUTES</p>
-                <form action="{{route('auth.signup.post')}}" method="post" class="needs-validation">
+                <form action="{{route('auth.register.with.invite.post', ['code' => $code])}}" method="post" class="needs-validation">
                     @csrf
                     <div class="row">
                         <div class="col-md-10 offset-md-1 mb-4">
                             <div class="input-group mb-3">
                                 <span class="input-group-text text-warning" id="basic-addon1"><i
                                         class="far fa-user-circle"></i></span>
-                                <input type="text" class="form-control @if($errors->has('username')) is-invalid @endif" placeholder="Username" name="username" id="username">
+                                <input type="text" class="form-control @if($errors->has('username')) is-invalid @endif" placeholder="Username" value="{{$username}}" name="username" id="username" readonly>
                                 @if($errors->has('username'))
                                     <p class="text-danger">{{$errors->first('username')}}</p>
                                 @endif
@@ -69,10 +69,10 @@
                     <div class="form-group">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">Referral Code</div>
+                                <div class="input-group-text">Invite Code</div>
                             </div>
-                            <input type="text" name="refid" value="{{$refid}}" class="form-control"
-                                   @if($refid !== '') readonly @endif>
+                            <input type="text" name="code" value="{{$code}}" class="form-control"
+                                   @if($code !== '') readonly @endif>
                         </div>
 
                     </div>
