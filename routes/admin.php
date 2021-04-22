@@ -13,6 +13,7 @@ Route::post('category/{id}', 'Admin\AdminController@editCategory') -> name('admi
 // Mass message routes
 Route::get('message', 'Admin\AdminController@massMessage') -> name('admin.messages.mass');
 Route::post('message/send', 'Admin\AdminController@sendMessage') -> name('admin.messages.send');
+Route::post('message/user/send', 'Admin\AdminController@userMessage') -> name('admin.messages.usersend');
 
 // User routes
 Route::get('users','Admin\UserController@users')->name('admin.users');
@@ -63,3 +64,7 @@ Route::post('products/featured/remove','Admin\ProductController@removeFromFeatur
 // Remove tickets
 
 Route::post('tickets/remove','Admin\AdminController@removeTickets')->name('admin.tickets.remove');
+
+// Invites
+Route::get('invite/create','Admin\InviteController@create')->name('admin.invite.create');
+Route::post('invite/create','Admin\InviteController@store')->name('admin.invite.store');

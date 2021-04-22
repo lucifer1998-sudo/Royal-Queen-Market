@@ -19,9 +19,4 @@ class VoucherAlreadyRedeemed extends \Exception
     {
         $this->voucher = $voucher;
     }
-
-    public function flashError()
-    {
-        session() -> flash('errormessage', $this -> message);
-    }
 }

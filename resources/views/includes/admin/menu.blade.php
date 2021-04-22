@@ -76,4 +76,9 @@
     </a>
     @endhasAccess
 
+    <a class="nav-link @isroute('admin.invite.create') active @endisroute @isroute('admin.invite.create') active @endisroute" href="{{ route('admin.invite.create') }}">
+        <i class="far mr-2 fa-envelope"></i>
+        Invites
+    </a>
+
 </div>

@@ -12,6 +12,7 @@ use App\Exceptions\RequestException;
 use App\Http\Requests\Cart\MakePurchasesRequest;
 use App\Http\Requests\Cart\NewItemRequest;
 use App\Http\Requests\Profile\BecomeVendorRequest;
+use App\Http\Requests\Profile\BecomeVendorRequestFromCodeRequest;
 use App\Http\Requests\Profile\ChangeAddressRequest;
 use App\Http\Requests\Profile\ChangeLocalCurrencyRequest;
 use App\Http\Requests\Profile\NewTicketMessageRequest;
@@ -19,6 +20,7 @@ use App\Http\Requests\Profile\NewTicketRequest;
 use App\Http\Requests\Profile\ChangePasswordRequest;
 use App\Http\Requests\PGP\NewPGPKeyRequest;
 use App\Http\Requests\PGP\StorePGPRequest;
+use App\Invite;
 use App\Http\Requests\Product\{NewBasicRequest,NewShippingRequest,NewDigitalRequest,NewImageRequest,NewOfferRequest,NewProductRequest,NewShippingOptionsRequest};
 use App\Http\Requests\Purchase\LeaveFeedbackRequest;
 use App\Http\Requests\Purchase\MakeDisputeRequest;
@@ -222,6 +224,39 @@ class ProfileController extends Controller
     }
 
     /**
+     * Make Vendor from Code
+     *
+     * @param BecomeVendorRequestFromCodeRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function becomeVendorFromCode(BecomeVendorRequestFromCodeRequest $request)
+    {
+        try{
+            $invite = Invite::where('code', $request->code)->where('user_id', auth()->user()->id)->first();
+            if(empty($invite)) {
+                session() -> flash('errormessage', "Invalid Code");
+                return redirect()->back();
+            }
+            if($invite->is_claimed) {
+                session() -> flash('errormessage', "Invitation already claimed");
+                return redirect()->back();
+            }
+            auth() -> user() -> becomeVendor();
+            $invite->update(['is_clamed' => true]);
+            session() -> flash('success', "You're now a vendor!");
+            return redirect()->back();
+        }
+        catch (RedirectException $e){
+            $e -> flashError();
+            return redirect($e -> getRoute());
+        }
+        catch (RequestException $e){
+            session() -> flash('errormessage', $e -> getMessage());
+        }
+        return redirect() -> back();
+    }
+
+    /**
      * Add product to the users wishlist
      *
      * @param Product $product
@@ -353,7 +388,7 @@ class ProfileController extends Controller
                 }
 
                 return redirect() -> back();
-            } 
+            }
 
         } else {
             try{
@@ -723,6 +758,6 @@ class ProfileController extends Controller
         }
         return redirect() -> back();
     }
-    
+
 
 }

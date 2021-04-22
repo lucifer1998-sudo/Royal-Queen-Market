@@ -43,12 +43,28 @@
 
     </table>
 
-    <form action="{{ route('profile.vendor.become') }}" class="form-inline">
-        <button type="submit" class="btn btn-lg btn-success">
-            <i class="fas fa-file-signature mr-2"></i>
-            Become a Vendor
-        </button>
-    </form>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="{{ route('profile.vendor.become') }}" class="form-inline">
+                <button type="submit" class="btn btn-lg btn-success">
+                    <i class="fas fa-file-signature mr-2"></i>
+                    Become a Vendor
+                </button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form action="{{ route('profile.become.fromcode') }}" method="POST">
+                {{ csrf_field() }}
+                <div class="input-group input-group-lg mb-3">
+                    <input name="code" type="text" class="form-control" placeholder="Invite Code">
+                    <button class="btn btn-lg btn-success" type="submit">
+                        <i class="fas fa-ticket-alt mr-2"></i>
+                        Submit Code
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 
 @stop

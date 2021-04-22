@@ -8,6 +8,7 @@ use App\Events\Support\TicketClosed;
 use App\Exceptions\RequestException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SendMessagesRequest;
+use App\Http\Requests\Admin\SendMessageUserRequest;
 use App\Http\Requests\Categories\NewCategoryRequest;
 use App\Http\Requests\Purchase\ResolveDisputeRequest;
 use App\Offer;
@@ -183,8 +184,27 @@ class AdminController extends Controller
     }
 
     /**
+     * Form for the new user message
+     * @param SendMessageUserRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function userMessage(SendMessageUserRequest $request)
+    {
+        $this -> messagesCheck();
+        try{
+            $request -> persist();
+            session() -> flash('success', "Message has been sent!");
+        }
+        catch (RequestException $e){
+            $e -> flashError();
+        }
+
+        return redirect() -> back();
+    }
+
+    /**
      * Send mass message to group of users
-     * 
+     *
      * @param SendMessagesRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -281,7 +301,7 @@ class AdminController extends Controller
 
     /**
      * Solve ticket request
-     * 
+     *
      * @param Ticket $ticket
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -307,8 +327,8 @@ class AdminController extends Controller
             'vendors' => Vendor::orderByDesc('created_at')->paginate(24),
         ]);
     }
-    
-    
+
+
     public function removeTickets(Request $request){
         $type = $request->type;
         if ($type == 'all'){

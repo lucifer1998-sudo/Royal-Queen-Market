@@ -23,6 +23,7 @@ Route::prefix('profile')->group(function(){
 
     Route::get('become/vendor', 'ProfileController@becomeVendor') -> name('profile.vendor.become');
     Route::get('become', 'ProfileController@become') -> name('profile.become');
+    Route::post('become/fromcode', 'ProfileController@becomeVendorFromCode') -> name('profile.become.fromcode');
 
     Route::post('vendor/address', 'ProfileController@changeAddress') -> name('profile.vendor.address'); // add address to account
     Route::get('vendor/address/remove/{id}', 'ProfileController@removeAddress') -> name('profile.vendor.address.remove'); // add address to account
