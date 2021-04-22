@@ -242,7 +242,7 @@ class ProfileController extends Controller
                 return redirect()->back();
             }
             auth() -> user() -> becomeVendorFromCode();
-            $invite->update(['is_clamed' => true]);
+            $invite->update(['is_claimed' => true]);
             session() -> flash('success', "You're now a vendor!");
             return redirect()->back();
         }

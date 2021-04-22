@@ -37,7 +37,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    public static $permissions = ['categories', 'messages', 'users', 'products', 'logs', 'disputes', 'tickets', 'vendorpurchase', 'purchases'];
+    public static $permissions = ['categories', 'messages', 'users', 'products', 'logs', 'disputes', 'tickets', 'vendorpurchase', 'purchases', 'invite_vendors'];
     public static $permissionsLong = [
         'categories' =>'Categories',
         'messages' => 'Messages',
@@ -47,7 +47,8 @@ class User extends Authenticatable
         'disputes' => 'Disputes',
         'tickets' => 'Tickets',
         'vendorpurchase' => 'Vendor Purchases',
-        'purchases' => 'Purchases'
+        'purchases' => 'Purchases',
+        'invite_vendors' => 'Invite Vendors'
     ];
 
     public $incrementing = false;
@@ -565,7 +566,7 @@ class User extends Authenticatable
         $newBan -> until = Carbon::now()->addDays($days);
         $newBan -> save();
     }
-    
+
     public function getLocalCurrency(){
         if (!CurrencyConverter::isEnabled()){
             return 'USD';
