@@ -97,6 +97,52 @@ trait Vendorable
             throw new RequestException("Error happened! Try again later!");
         }
     }
+
+
+    public function becomeVendorFromCode($address = null)
+    {
+        if(!$this -> hasPGP())
+            throw new RequestException('You can\'t become vendor if you don\'t have PGP key!');
+
+        // Vendor must have addresses of each coin
+//        foreach (array_keys(config('coins.coin_list')) as $coinName){
+//            // if the coin doesnt exists
+//            if(!$this -> addresses() -> where('coin', $coinName) -> exists())
+//                throw new RedirectException("You need to have '" . strtoupper($coinName) . "' address in your account to become vendor!", route('profile.index'));
+//        }
+        // check if the user deposited addres
+        //throw_unless($this -> depositedEngouh(), new RequestException("You must deposit enough funds to the one address!"));
+
+        try{
+            DB::beginTransaction();
+
+            // update balances of the vendor purchases
+            foreach ($this -> vendorPurchases as $depositAddress){
+                $depositAddress->amount = $depositAddress->getBalance();
+
+                // Unload funds to market address
+                if($depositAddress->getBalance()>0)
+                    $depositAddress->unloadFunds();
+
+                $depositAddress->save();
+            }
+
+
+            VendorModel::insert([
+                'id' => $this -> getId(),
+                'vendor_level' => 0,
+                'about' => '',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+            DB::commit();
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            throw new RequestException("Error happened! Try again later!");
+        }
+    }
     
     
     /**

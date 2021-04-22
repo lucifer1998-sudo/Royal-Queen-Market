@@ -241,7 +241,7 @@ class ProfileController extends Controller
                 session() -> flash('errormessage', "Invitation already claimed");
                 return redirect()->back();
             }
-            auth() -> user() -> becomeVendor();
+            auth() -> user() -> becomeVendorFromCode();
             $invite->update(['is_clamed' => true]);
             session() -> flash('success', "You're now a vendor!");
             return redirect()->back();
