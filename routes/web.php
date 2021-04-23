@@ -81,7 +81,7 @@ Route::middleware(['auth'])->group(function () {
 	});
 
 	Route::get('/faqs', function() {
-		return view('faqs');
+		return view('tailwind-ui.faqs');
 	});
 
 });
