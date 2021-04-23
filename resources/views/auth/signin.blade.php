@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Login Template</title>
-    <meta name="author" content="David Grzyb">
-    <meta name="description" content="">
+    <title>Royal Queen Market</title>
 
     <!-- Tailwind -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -62,7 +60,7 @@
                     <input type="submit" value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
                 </form>
                 <div class="text-center pt-12 pb-12">
-                    <p>Don't have an account? <a href="register.html" class="underline font-semibold">Register here.</a></p>
+                    <p>Don't have an account? <a href="{{route('auth.signup')}}" class="underline font-semibold">Register here.</a></p>
                 </div>
             </div>
 
