@@ -15,6 +15,7 @@ class RegisterWithInviteController extends Controller
         $invite = Invite::where('code', $code)->first();
         return view('auth.signupwithinvite')->with([
             'code' => $invite->code,
+            'notes' => $invite->notes,
             'username' => $invite->username,
             'captcha' => Captcha::Build(),
         ]);

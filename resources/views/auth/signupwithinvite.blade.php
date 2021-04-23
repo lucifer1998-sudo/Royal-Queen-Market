@@ -76,6 +76,28 @@
                         </div>
 
                     </div>
+
+                    <div class="form-group mt-1">
+                        <span class="text-muted">
+                            Copy Encrypted Message and decrypt it to get validation number
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <textarea rows="7" type="text" name="notes" class="form-control"
+                                   @if($notes !== '') readonly @endif>{{$notes}}</textarea>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Validation Number</div>
+                            </div>
+                            <input type="text" name="validation_number" class="form-control">
+                        </div>
+
+                    </div>
                         </div>
                         <div class="col-md-10 offset-md-1 mb-3">
                             <label for="captcha" class="form-label text-white">Security Challenge</label>
