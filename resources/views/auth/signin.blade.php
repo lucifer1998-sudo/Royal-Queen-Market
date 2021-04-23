@@ -54,6 +54,9 @@
                         <label class="text-lg">Captcha</label>
                         <img src="{{$captcha}}" alt="">
                         <input type="text" id="captcha" name="captcha" placeholder="Captcha" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline @if($errors->has('captcha')) is-invalid @endif">
+                                @error('captcha',$errors)
+                                <p class="text-danger">{{$errors->first('captcha')}}</p>
+                                @enderror
                     </div>
     
                     <input type="submit" value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
