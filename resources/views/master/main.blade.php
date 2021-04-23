@@ -16,6 +16,9 @@
     <link href="{{ URL::asset('css/rqm-app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ URL::asset('css/animation-library-min.css') }}" rel="stylesheet" type="text/css">
 
+    <!-- Tailwind Css -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body class="pb-4" id="main">
 
