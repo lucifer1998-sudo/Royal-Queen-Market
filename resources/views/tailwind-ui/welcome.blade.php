@@ -34,7 +34,7 @@
         <div class="grid gap-4 grid-cols-4">
             @foreach($products as $product)
                 <div class="w-full p-6 flex flex-col bg-rqm-light shadow-md">
-                    <a href="#">
+                    <a href="{{ route('product.show', $product) }}">
                         <img class="rounded-md hover:grow hover:shadow-lg w-full" src="{{ asset('storage/'  . $product -> frontImage() -> image) }}" alt="{{$product->name}}">
                         <div class="pt-3 flex items-center justify-between">
                             <p class="text-rqm-yellow-dark">{{$product->name}}</p>
@@ -43,6 +43,12 @@
                             </svg>
                         </div>
                         <p class="pt-1 text-rqm-yellow-dark">@include('includes.currency', ['usdValue' => $product -> price_from ])</p>
+                        <div class="flex items-end justify-between">
+                            <small class="text-gray-400">Posted by {{ $product -> user -> username }}</small>
+                            <button class="bg-rqm-yellow-dark font-extrabold px-3 py-1 rounded-sm text-rqm-dark">
+                                Buy Now
+                            </button>
+                        </div>
                     </a>
                 </div>
             @endforeach
