@@ -20,11 +20,11 @@
 <body class="bg-rqm-lighter text-gray-600 work-sans leading-normal text-base tracking-normal">
 @include('tailwind-ui.master.navbar')
 @yield('hero')
-<section class="bg-white py-8">
+<section class="py-8">
     <div class="container py-8 px-6 mx-auto">
         @yield('content')
     </div>
 </section>
-@include('tailwind-ui.master.footer')
+{{--@include('tailwind-ui.master.footer')--}}
 </body>
 </html>

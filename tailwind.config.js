@@ -8,7 +8,8 @@ module.exports = {
             'rqm-lighter': '#2c212d',
             'rqm-dark': '#211922',
             'rqm-yellow': '#ffc888',
-            'rqm-yellow-dark': '#ffbc6e'
+            'rqm-yellow-dark': '#ffbc6e',
+            'rqm-yellow-darkest': '#E57002'
         }
     },
   },
