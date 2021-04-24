@@ -33,7 +33,7 @@ class IndexController extends Controller
         else
             $featuredProducts = FeaturedProducts::get();
 
-        return view('welcome', [
+        return view('tailwind-ui.welcome', [
             'productsView' => session() -> get('products_view'),
             'products' => Product::frontPage(),
             'categories' => Category::roots(),

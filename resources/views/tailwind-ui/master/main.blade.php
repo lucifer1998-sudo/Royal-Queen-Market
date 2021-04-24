@@ -17,9 +17,10 @@
     <link href="{{ asset('css/nordic.css') }}" rel="stylesheet">
 
 </head>
-<body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
+<body class="bg-rqm-lighter text-gray-600 work-sans leading-normal text-base tracking-normal">
 @include('tailwind-ui.master.navbar')
-<section class="bg-white py-8">
+@yield('hero')
+<section class="py-8">
     <div class="container py-8 px-6 mx-auto">
         @yield('content')
     </div>
