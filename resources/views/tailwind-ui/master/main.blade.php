@@ -25,6 +25,6 @@
         @yield('content')
     </div>
 </section>
-{{--@include('tailwind-ui.master.footer')--}}
+@include('tailwind-ui.master.footer')
 </body>
 </html>
