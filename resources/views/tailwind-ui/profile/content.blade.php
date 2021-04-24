@@ -7,13 +7,15 @@
         <div class="grid gap-4 grid-cols-2">
             <div class="bg-rqm-dark p-5 rounded shadow w-full">
                 <div class="pb-3 text-2xl text-rqm-yellow-darkest">Change password</div>
+                @if ($errors->any())
                 <div class="bg-rqm-light my-2 p-1.5">
-                    @if ($errors->any())
+
                         @foreach ($errors->all() as $error)
                             <span class="text-base text-rqm-yellow-darkest block">{{$error}}</span>
                         @endforeach
-                    @endif
+
                 </div>
+                @endif
                 <form action="{{ route('profile.password.change') }}" method="POST" class="">
                     {{ csrf_field() }}
                     <div class="flex py-1">
