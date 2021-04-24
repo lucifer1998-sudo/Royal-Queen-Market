@@ -13,7 +13,7 @@
             <nav>
                 <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
                     <li>
-                        <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">
+                        <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="{{URL('/')}}">
                             <img src="{{URL::asset('/media/royal-queen-logo.png')}}" class="w-24" alt="">
                         </a>
                     </li>
@@ -22,19 +22,19 @@
         </div>
 
         <div class="order-2 md:order-3 flex items-center" id="nav-content">
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="#">
+            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('featured')}}">
                 Featured
             </a>
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="#">
+            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('shop')}}">
                 Shop
             </a>
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="#">
+            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('vendors')}}">
                 Vendors
             </a>
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="#">
+            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('faqs')}}">
                 FAQs
             </a>
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="#">
+            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{ route('profile.tickets') }}">
                 Contact Us
             </a>
 
