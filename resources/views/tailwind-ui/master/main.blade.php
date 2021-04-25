@@ -15,11 +15,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
     <link href="{{ asset('css/nordic.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/profile-bg.css') }}" rel="stylesheet">
 
 </head>
 <body class="bg-rqm-lighter text-gray-600 work-sans leading-normal text-base tracking-normal">
 @include('tailwind-ui.master.navbar')
-@yield('hero')
 <section class="py-8">
     <div class="container py-8 px-6 mx-auto">
         @yield('content')
