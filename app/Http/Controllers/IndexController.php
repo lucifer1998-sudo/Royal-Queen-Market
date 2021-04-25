@@ -35,7 +35,7 @@ class IndexController extends Controller
 
         return view('tailwind-ui.welcome', [
             'productsView' => session() -> get('products_view'),
-            'products' => Product::frontPage(),
+            'products' => Product::inRandomOrder()->limit(12)->get(),
             'categories' => Category::roots(),
             'featuredProducts' => $featuredProducts
         ]);

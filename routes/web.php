@@ -57,9 +57,9 @@ Route::middleware(['auth'])->group(function () {
 	//navbar routes
 	Route::get('/featured', function () {
 		$featuredProducts = FeaturedProducts::get();
-	    return view('featured')
+	    return view('tailwind-ui.featured')
 	    	->with([
-	    		'featuredProducts' => $featuredProducts
+	    		'products' => $featuredProducts
 	    	]);
 	});
 
