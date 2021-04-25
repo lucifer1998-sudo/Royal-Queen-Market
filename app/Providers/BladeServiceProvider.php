@@ -24,6 +24,11 @@ class BladeServiceProvider extends ServiceProvider
             return strpos(\Route::currentRouteName(), $routeName) !== false;
         });
 
+        // if we are on  this route custom blade directive
+        Blade::if('isnotroute', function($routeName){
+            return strpos(\Route::currentRouteName(), $routeName) === false;
+        });
+
         Blade::if('vendor', function () {
             return auth() -> check() && auth() -> user() -> isVendor();
         });
