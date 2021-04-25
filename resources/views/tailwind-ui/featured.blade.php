@@ -25,6 +25,20 @@
                     </a>
                 </div>
             @endforeach
+
         </div>
     </div>
+                @if(count($products) < 1)
+
+
+    <!-- Link on the right -->
+    <div class="space-x-2 bg-green-50 p-4 rounded flex items-center text-green-600 my-4 shadow-lg mx-auto max-w-2xl w-full">
+
+        <h3 class="text-green-800 tracking-wider flex-1 text-center">
+            No Featured products to show.  
+        </h3>
+    </div>
+
+
+            @endif
 @endsection
