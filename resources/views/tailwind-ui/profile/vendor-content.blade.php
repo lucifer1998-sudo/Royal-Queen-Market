@@ -11,7 +11,13 @@
                     <div class="h-1 bg-rqm-yellow-darkest" style="width: {{$vendor->nextLevelProgress()}}%"></div>
                 @endif
             </div>
-            <div class="text-sm">{{$vendor->experience}}/{{max($vendor->nextLevelXp()-$vendor->experience,0)}} point{{$vendor->experience > 1 || $vendor->experience == 0 ? 's' : ''}}</div>
+            <div class="text-sm">{{$vendor->experience}}/{{max($vendor->nextLevelXp(),0)}} point{{$vendor->experience > 1 || $vendor->experience == 0 ? 's' : ''}}</div>
+        </div>
+    </div>
+    <div class="bg-rqm-dark p-5 rounded shadow w-full mt-4">
+        <span class="block text-gray-400 text-rqm-yellow-darkest text-xl">Profile</span>
+        <div class="py-3">
+            hello world
         </div>
     </div>
 </div>
