@@ -85,7 +85,7 @@ class ProfileController extends Controller
      */
     public function pgp()
     {
-        return view('profile.pgp');
+        return view('tailwind-ui.profile.index');
     }
 
     /**
