@@ -5,7 +5,7 @@
             <span class="text-rqm-yellow text-sm block">lvl. {{$vendor->getLevel()}}</span>
             <span class="text-rqm-yellow text-sm">Experience</span>
             <div class="bg-rqm-light h-1 shadow">
-                @if($vendor->experience <= 0)
+                @if($vendor->nextLevelProgress() <= 0)
                     <div class="h-1 bg-rqm-yellow-darkest w-0.5"></div>
                 @else
                     <div class="h-1 bg-rqm-yellow-darkest" style="width: {{$vendor->nextLevelProgress()}}%"></div>
