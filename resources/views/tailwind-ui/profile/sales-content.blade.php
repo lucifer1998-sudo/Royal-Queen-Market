@@ -1,5 +1,5 @@
-<div class="bg-rqm-dark @if(count($sales) !== 0) content-center @endif flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
-    @if(count($sales) !== 0)
+<div class="bg-rqm-dark @if(count($sales) == 0) content-center @endif flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
+    @if(count($sales) == 0)
     <div class="flex items-center justify-center w-full">
 
             <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
