@@ -25,13 +25,13 @@
                 <div class="mt-3">
                     <label class="mt-3 text-rqm-yellow">Description</label>
                 </div>
-                <textarea name="description" id="" cols="30" rows="6" class="rounded w-full">{{$vendor->about}}</textarea>
+                <textarea name="description" id="" cols="30" rows="6" class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full rounded" placeholder="Type here..">{{$vendor->about}}</textarea>
                 <div class="mt-3">
                     <label class="text-rqm-yellow" for="profilebg">Profile background</label>
                 </div>
-                <select name="profilebg" id="profilebg" class="w-full rounded h-7">
+                <select name="profilebg" id="profilebg" class="bg-rqm-dark border border-rqm-yellow-darkest px-3 text-rqm-yellow w-full rounded h-7">
                     @foreach(config('vendor.profile_bgs') as $key => $class)
-                        <option value="{{$key}}" @if($vendor->getProfileBg() == $class) selected @endif>{{ucfirst($key)}}</option>
+                        <option value="{{$key}}" @if($vendor->getProfileBg() == $class) selected @endif><p>{{ucfirst($key)}}</p></option>
                     @endforeach
                 </select>
                 <div class="flex py-1 justify-end">
