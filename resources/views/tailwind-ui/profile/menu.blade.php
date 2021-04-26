@@ -1,4 +1,4 @@
-<div class="bg-rqm-dark py-10 rounded w-1/6">
+<div class="bg-rqm-dark py-10 rounded w-1/6 relative">
     <div class="py-2 pl-3 text-rqm-yellow-dark hover:bg-pink-800 hover:shadow @isnotroute('profile.index') hover:grow @endisnotroute @isroute('profile.index')transform scale-105 bg-pink-800 shadow @endisroute">
         <a class="flex w-full" href="{{ route('profile.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -59,5 +59,9 @@
                 <span class="bg-rqm-yellow-dark h-0.5 ml-2 px-2 rounded-full text-rqm-dark text-xs">0</span>
             </div>
         </div>
+    </div>
+
+    <div class="absolute inset-x-0 bottom-0 w-full h-16">
+        <img src="{{URL::asset('/media/top-separator.png')}}" class="h-full object-cover object-top transform transform:rotate-180 w-full" alt="">
     </div>
 </div>
