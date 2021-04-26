@@ -14,13 +14,15 @@
     <div class="flex">
 
         @include('tailwind-ui.profile.menu')
-        <div class="pl-10 w-5/6 h-full">
+        <div class="pl-10 w-5/6">
             @if(\Route::currentRouteName() == 'profile.index')
                 @include('tailwind-ui.profile.settings-content')
             @elseif(\Route::currentRouteName() == 'profile.pgp')
                 @include('tailwind-ui.profile.pgp-key-content')
             @elseif(\Route::currentRouteName() == 'profile.vendor')
                 @include('tailwind-ui.profile.vendor-content')
+            @elseif(\Route::currentRouteName() == 'profile.sales')
+                @include('tailwind-ui.profile.sales-content')
             @endif
         </div>
     </div>
