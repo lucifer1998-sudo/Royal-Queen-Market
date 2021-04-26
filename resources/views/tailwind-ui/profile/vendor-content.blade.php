@@ -17,7 +17,7 @@
     <span class="block text-gray-400 text-rqm-yellow-darkest text-xl">Profile</span>
     <div class="py-3">
         <div class="h-20 rounded">
-            <img src="{{URL::asset('/media/profile-bg-1.jpg')}}" class="bg-cover h-full w-24 w-full" alt="Profile background">
+            <img src="{{URL::asset('/media/profile-bg-1.jpg')}}" class="object-cover h-full w-24 w-full" alt="Profile background">
         </div>
         <div>
             <form action="{{route('profile.vendor.update.post')}}" method="post">
