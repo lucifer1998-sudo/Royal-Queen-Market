@@ -17,8 +17,9 @@
     <div class="bg-rqm-dark p-5 rounded shadow w-full mt-4">
         <span class="block text-gray-400 text-rqm-yellow-darkest text-xl">Profile</span>
         <div class="py-3">
-            <div class="{{$vendor->getProfileBg()}} h-20 rounded"></div>
-            <div class="flex justify-end text-rqm-yellow-dark text-xs">{{$vendor->getProfileBg()}}</div>
+            <div class="h-20 rounded">
+                <img src="{{URL::asset('/media/profile-bg-1.jpg')}}" class="bg-cover h-full w-24 w-full" alt="Profile background">
+            </div>
             <div>
                 <form action="{{route('profile.vendor.update.post')}}" method="post">
                     {{csrf_field()}}
