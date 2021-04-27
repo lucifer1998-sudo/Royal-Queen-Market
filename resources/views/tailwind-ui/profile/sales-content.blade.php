@@ -1,7 +1,6 @@
 <div class="bg-rqm-dark @if(count($sales) == 0) content-center @endif flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
     @if(count($sales) == 0)
     <div class="flex items-center justify-center w-full">
-
             <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
@@ -10,30 +9,41 @@
     @else
         <div class="w-full">
             <div class="mb-5">
-                <div class="grid grid-flow-col grid-cols-5 grid-rows-1 gap-4">
+                <div class="grid grid-flow-col grid-cols-6 grid-rows-1 gap-4">
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.sales') }}" class="bg-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-rqm-dark text-white w-2/3">
                             <button>All ({{ auth() -> user() -> vendor -> salesCount() }})</button>
                         </a>
                     </div>
+                    {{--TEMPORARY LABELS--}}
+                    {{--purchased -> paid--}}
+                    {{--sent -> completed--}}
+                    {{--delivered -> shipped--}}
+                    {{--disputed -> accepted--}}
+                    {{--canceled -> unpaid--}}
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.sales', 'purchased') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
-                            <button>Purchased ({{ auth() -> user() -> vendor -> salesCount('purchased') }})</button>
+                            <button>Paid ({{ auth() -> user() -> vendor -> salesCount('purchased') }})</button>
                         </a>
                     </div>
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.sales', 'sent') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
-                            <button>Sent ({{ auth() -> user() -> vendor -> salesCount('sent') }})</button>
+                            <button>Completed ({{ auth() -> user() -> vendor -> salesCount('sent') }})</button>
                         </a>
                     </div>
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.sales', 'delivered') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
-                            <button>Delivered ({{ auth() -> user() -> vendor -> salesCount('delivered') }})</button>
+                            <button>Shipped ({{ auth() -> user() -> vendor -> salesCount('delivered') }})</button>
                         </a>
                     </div>
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.sales', 'disputed') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
-                            <button>Disputed ({{ auth() -> user() -> vendor -> salesCount('disputed') }})</button>
+                            <button>Accepted ({{ auth() -> user() -> vendor -> salesCount('disputed') }})</button>
+                        </a>
+                    </div>
+                    <div class="flex justify-center p-2">
+                        <a href="{{ route('profile.sales', 'canceled') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
+                            <button>Cancelled ({{ auth() -> user() -> vendor -> salesCount('canceled') }})</button>
                         </a>
                     </div>
                 </div>
