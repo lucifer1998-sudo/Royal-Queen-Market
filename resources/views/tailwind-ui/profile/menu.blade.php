@@ -34,6 +34,7 @@
         </a>
         @endif
     </div>
+    @if(auth() -> user() -> isVendor())
     <div class="py-2 pl-3 flex text-rqm-yellow-dark hover:bg-pink-800 hover:shadow @isnotroute('profile.sales') hover:grow @endisnotroute @isroute('profile.sales') transform scale-105 bg-pink-800 shadow @endisroute">
         <a href="{{ route('profile.sales') }}" class="flex w-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,6 +43,7 @@
             Sales
         </a>
     </div>
+    @endif
     <div class="py-2 pl-3 flex text-rqm-yellow-dark hover:bg-pink-800 hover:shadow @isnotroute('profile.wishlist') hover:grow @endisnotroute @isroute('profile.wishlist') transform scale-105 bg-pink-800 shadow @endisroute">
         <a href="{{ route('profile.wishlist') }}" class="flex w-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
