@@ -8,19 +8,49 @@
             <span>You don't have any sales.</span>
     </div>
     @else
-        <table class="table-auto w-full">
-            <thead class="border-b border-rqm-yellow-dark">
-            <tr>
-                <th class="text-left px-2">Product</th>
-                <th class="text-left px-2">Quantity</th>
-                <th class="text-left px-2">Buyer</th>
-                <th class="text-left px-2">Shipping</th>
-                <th class="text-left px-2">Total</th>
-                <th class="text-left px-2">Address</th>
-                <th class="text-left px-2">ID</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="w-full">
+            <div class="mb-5">
+                <div class="grid grid-flow-col grid-cols-5 grid-rows-1 gap-4">
+                    <div class="flex justify-center p-2">
+                        <a href="{{ route('profile.sales') }}" class="bg-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-rqm-dark text-white w-2/3">
+                            <button>All ({{ auth() -> user() -> vendor -> salesCount() }})</button>
+                        </a>
+                    </div>
+                    <div class="flex justify-center p-2">
+                        <a href="{{ route('profile.sales', 'purchased') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
+                            <button>Purchased ({{ auth() -> user() -> vendor -> salesCount('purchased') }})</button>
+                        </a>
+                    </div>
+                    <div class="flex justify-center p-2">
+                        <a href="{{ route('profile.sales', 'sent') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
+                            <button>Sent ({{ auth() -> user() -> vendor -> salesCount('sent') }})</button>
+                        </a>
+                    </div>
+                    <div class="flex justify-center p-2">
+                        <a href="{{ route('profile.sales', 'delivered') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
+                            <button>Delivered ({{ auth() -> user() -> vendor -> salesCount('delivered') }})</button>
+                        </a>
+                    </div>
+                    <div class="flex justify-center p-2">
+                        <a href="{{ route('profile.sales', 'disputed') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
+                            <button>Disputed ({{ auth() -> user() -> vendor -> salesCount('disputed') }})</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <table class="table-auto w-full">
+                <thead class="border-b border-rqm-yellow-dark">
+                <tr>
+                    <th class="px-2 text-center text-left text-rqm-yellow">Product</th>
+                    <th class="px-2 text-center text-left text-rqm-yellow">Quantity</th>
+                    <th class="px-2 text-center text-left text-rqm-yellow">Buyer</th>
+                    <th class="px-2 text-center text-left text-rqm-yellow">Shipping</th>
+                    <th class="px-2 text-center text-left text-rqm-yellow">Total</th>
+                    <th class="px-2 text-center text-left text-rqm-yellow">Address</th>
+                    <th class="px-2 text-center text-left text-rqm-yellow">ID</th>
+                </tr>
+                </thead>
+                <tbody>
                 @foreach($sales as $index => $purchase)
                     <tr class="@if(!($index % 2)) bg-rqm-light @endif">
                         <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
@@ -74,7 +104,8 @@
                         </td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     @endif
 </div>
