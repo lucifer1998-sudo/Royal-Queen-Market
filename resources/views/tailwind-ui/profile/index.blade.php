@@ -25,6 +25,10 @@
                 @include('tailwind-ui.profile.sales-content')
             @elseif(\Route::currentRouteName() == 'profile.wishlist')
                 @include('tailwind-ui.profile.wishlist-content')
+            @elseif(\Route::currentRouteName() == 'profile.messages.decrypt.show')
+                @include('tailwind-ui.profile.messages-decrypt-content')
+            @elseif(\Route::currentRouteName() == 'profile.messages')
+                @include('tailwind-ui.profile.messages-content')
             @endif
         </div>
     </div>
