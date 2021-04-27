@@ -29,6 +29,8 @@
                 @include('tailwind-ui.profile.messages-decrypt-content')
             @elseif(\Route::currentRouteName() == 'profile.messages')
                 @include('tailwind-ui.profile.messages-content')
+            @elseif(\Route::currentRouteName() == 'profile.notifications')
+                @include('tailwind-ui.profile.notifications-content')
             @endif
         </div>
     </div>
