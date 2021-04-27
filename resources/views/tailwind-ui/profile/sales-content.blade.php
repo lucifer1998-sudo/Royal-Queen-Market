@@ -106,6 +106,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {{ $sales -> links('tailwind-ui.includes.paginate') }}
         </div>
     @endif
 </div>
