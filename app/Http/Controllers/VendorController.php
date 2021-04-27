@@ -623,7 +623,7 @@ class VendorController extends Controller
         // update unvisited sales
         auth() -> user() -> vendor -> sales() -> where('read', false) -> update(['read' => true]);
 
-        return view('profile.vendor.sales', [
+        return view('tailwind-ui.profile.index', [
             'sales' => $sales,
             'state' => $state
         ]);

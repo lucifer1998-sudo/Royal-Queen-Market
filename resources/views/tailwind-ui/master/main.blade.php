@@ -20,8 +20,8 @@
 </head>
 <body class="bg-rqm-lighter text-gray-600 work-sans leading-normal text-base tracking-normal">
 @include('tailwind-ui.master.navbar')
-<section class="py-8">
-    <div class="container py-8 px-6 mx-auto">
+<section>
+    <div class="container px-6 mx-auto">
         @yield('content')
     </div>
 </section>

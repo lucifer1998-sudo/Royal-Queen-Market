@@ -1,4 +1,4 @@
-<div class="pl-10 w-5/6">
+<div class="h-full">
     <div class="bg-rqm-dark p-5 rounded shadow w-full text-center">
         <span class="text-2xl text-gray-400 block">Welcome, {{ auth()->user()->username }}</span>
         <span class="block">Manage your info, privacy and security to make Royal Queen Market work better for you.</span>
@@ -8,13 +8,13 @@
             <div class="bg-rqm-dark p-5 rounded shadow w-full">
                 <div class="pb-3 text-2xl text-rqm-yellow-darkest">Change password</div>
                 @if ($errors->any())
-                <div class="bg-rqm-light my-2 p-1.5">
+                    <div class="bg-rqm-light my-2 p-1.5">
 
                         @foreach ($errors->all() as $error)
                             <span class="text-base text-rqm-yellow-darkest block">{{$error}}</span>
                         @endforeach
 
-                </div>
+                    </div>
                 @endif
                 <form action="{{ route('profile.password.change') }}" method="POST" class="">
                     {{ csrf_field() }}
