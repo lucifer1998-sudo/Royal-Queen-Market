@@ -12,7 +12,7 @@
             <thead class="border-b border-rqm-yellow-dark">
             <tr>
                 <th class="text-left px-2">Product</th>
-                <th class="text-left px-2">#</th>
+                <th class="text-left px-2">Quantity</th>
                 <th class="text-left px-2">Buyer</th>
                 <th class="text-left px-2">Shipping</th>
                 <th class="text-left px-2">Total</th>
@@ -21,33 +21,59 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="bg-rqm-light">
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">Intro to CSS</td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">Adam</td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">858</td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">858</td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">858</td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">858</td>
-                <td class="border-gray-600 px-2 py-2 text-gray-400">858</td>
-            </tr>
-            <tr class="">
-                <td class="border-gray-600 border-r px-2 py-2">Intro to CSS</td>
-                <td class="border-gray-600 border-r px-2 py-2">Adam</td>
-                <td class="border-gray-600 border-r px-2 py-2">858</td>
-                <td class="border-gray-600 border-r px-2 py-2">858</td>
-                <td class="border-gray-600 border-r px-2 py-2">858</td>
-                <td class="border-gray-600 border-r px-2 py-2">858</td>
-                <td class="border-gray-600 px-2 py-2">858</td>
-            </tr>
-            <tr class="bg-rqm-light">
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">Intro to CSS</td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">Adam</td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">858</td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">858</td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">858</td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400">858</td>
-                <td class="border-gray-600 px-2 py-2 text-gray-400">858</td>
-            </tr>
+                @foreach($sales as $index => $purchase)
+                    <tr class="@if(!($index % 2)) bg-rqm-light @endif">
+                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                            <div class="flex">
+                                <a href="{{ route('product.show', $purchase -> offer -> product) }}" class="underline">
+                                    {{ $purchase -> offer -> product -> name }}
+                                </a>
+                                @if($purchase -> isDisputed() && $purchase -> dispute -> isResolved())
+                                    <span class="flex items-center px-3 text-green-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </span>
+                                @endif
+                            </div>
+                        </td>
+                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">{{ $purchase -> quantity }}</td>
+                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                            <div class="flex">
+                                @if($purchase -> buyer)
+                                    {{ $purchase -> buyer -> username }}
+                                @else
+                                    <span class="text-gray-500">User deleted account!</span>
+                                    <span class="flex items-center px-3 text-yellow-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                    </span>
+                                @endif
+                            </div>
+                        </td>
+                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                            @if($purchase -> shipping)
+                                {{ $purchase -> shipping -> name }} - @include('includes.currency', ['usdValue' => $purchase -> shipping -> price])
+                            @else
+                                Digital delivery
+                            @endif
+                        </td>
+                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                            @include('includes.currency', ['usdValue' => $purchase -> value_sum])
+                        </td>
+                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                            <div><p class="truncate w-40">{{ $purchase -> address }}</p></div>
+                        </td>
+                        <td class="border-gray-600 px-2 py-2 text-gray-400">
+                            <div>
+                                <a href="{{ route('profile.sales.single', $purchase) }}" class="underline">
+                                    @if($purchase->isCanceled()) <em>Canceled</em> @else {{ $purchase -> short_id }} @endif
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     @endif
