@@ -23,6 +23,8 @@
                 @include('tailwind-ui.profile.vendor-content')
             @elseif(\Route::currentRouteName() == 'profile.sales')
                 @include('tailwind-ui.profile.sales-content')
+            @elseif(\Route::currentRouteName() == 'profile.wishlist')
+                @include('tailwind-ui.profile.wishlist-content')
             @endif
         </div>
     </div>

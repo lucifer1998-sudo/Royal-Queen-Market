@@ -289,7 +289,7 @@ class ProfileController extends Controller
      */
     public function wishlist()
     {
-        return view('profile.wishlist');
+        return view('tailwind-ui.profile.index');
     }
 
     /**
