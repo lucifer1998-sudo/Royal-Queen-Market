@@ -27,11 +27,11 @@ class NotificationController extends Controller
         foreach ($notifications->where('read',0) as $notification){
             $notification->markAsRead();
         }
-        return view('profile.notifications')->with([
+        return view('tailwind-ui.profile.index')->with([
             'notifications' => $notifications
         ]);
     }
-    
+
     public function deleteNotifications(){
         $notifications = auth()->user()->notifications()->delete();
         session()->flash('success','Notifications deleted succesfully');

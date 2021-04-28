@@ -1,4 +1,4 @@
-<div class="pl-10 w-5/6">
+<div class="h-full">
     <div class="bg-rqm-dark p-5 rounded shadow w-full">
         <span class="block text-gray-400 text-rqm-yellow-darkest text-xl">Stats</span>
         <div class="py-3">
@@ -17,21 +17,22 @@
     <div class="bg-rqm-dark p-5 rounded shadow w-full mt-4">
         <span class="block text-gray-400 text-rqm-yellow-darkest text-xl">Profile</span>
         <div class="py-3">
-            <div class="{{$vendor->getProfileBg()}} h-20 rounded"></div>
-            <div class="flex justify-end text-rqm-yellow-dark text-xs">{{$vendor->getProfileBg()}}</div>
+            <div class="h-20 rounded">
+                <img src="{{URL::asset('/media/profile-bg-1.jpg')}}" class="object-cover h-full w-24 w-full" alt="Profile background">
+            </div>
             <div>
                 <form action="{{route('profile.vendor.update.post')}}" method="post">
                     {{csrf_field()}}
                     <div class="mt-3">
                         <label class="mt-3 text-rqm-yellow">Description</label>
                     </div>
-                    <textarea name="description" id="" cols="30" rows="6" class="rounded w-full">{{$vendor->about}}</textarea>
+                    <textarea name="description" id="" cols="30" rows="6" class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full rounded" placeholder="Type here..">{{$vendor->about}}</textarea>
                     <div class="mt-3">
                         <label class="text-rqm-yellow" for="profilebg">Profile background</label>
                     </div>
-                    <select name="profilebg" id="profilebg" class="w-full rounded h-7">
+                    <select name="profilebg" id="profilebg" class="bg-rqm-dark border border-rqm-yellow-darkest px-3 text-rqm-yellow w-full rounded h-7">
                         @foreach(config('vendor.profile_bgs') as $key => $class)
-                            <option value="{{$key}}" @if($vendor->getProfileBg() == $class) selected @endif>{{ucfirst($key)}}</option>
+                            <option value="{{$key}}" @if($vendor->getProfileBg() == $class) selected @endif><p>{{ucfirst($key)}}</p></option>
                         @endforeach
                     </select>
                     <div class="flex py-1 justify-end">
@@ -43,4 +44,5 @@
             </div>
         </div>
     </div>
+
 </div>
