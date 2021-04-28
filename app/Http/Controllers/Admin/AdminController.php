@@ -58,7 +58,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index',
+        return view('tailwind-ui.admin.index',
             [
                 'total_products' => Product::count(),
                 'total_purchases' => Purchase::count(),
