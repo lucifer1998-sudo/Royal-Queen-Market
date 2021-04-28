@@ -32,7 +32,7 @@ class UserController extends Controller
 
         $request->persist();
         $users = $request->getUsers();
-        return view('admin.users')->with([
+        return view('tailwind-ui.admin.index')->with([
             'users' => $users
         ]);
     }

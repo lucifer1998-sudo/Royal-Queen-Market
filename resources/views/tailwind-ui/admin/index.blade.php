@@ -21,6 +21,8 @@
                 @include('tailwind-ui.admin.categories-content')
             @elseif(\Route::currentRouteName() == 'admin.messages.mass')
                 @include('tailwind-ui.admin.bulk-messages-content')
+            @elseif(\Route::currentRouteName() == 'admin.users')
+                @include('tailwind-ui.admin.users-content')
             @endif
         </div>
     </div>
