@@ -32,12 +32,13 @@
             Users
         </a>
     </div>
-    <div class="py-2 pl-3 flex text-rqm-yellow-dark hover:bg-pink-800 hover:shadow @isnotroute('profile.wishlist') hover:grow @endisnotroute @isroute('profile.wishlist') transform scale-105 bg-pink-800 shadow @endisroute">
-        <a href="{{ route('profile.wishlist') }}" class="flex w-full">
+    <div class="py-2 pl-3 flex text-rqm-yellow-dark hover:bg-pink-800 hover:shadow @isnotroute('admin.products') hover:grow @endisnotroute @isroute('admin.products') transform scale-105 bg-pink-800 shadow @endisroute">
+        <a href="{{ route('admin.products') }}" class="flex w-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
             </svg>
-            Wishlist
+            Products
         </a>
     </div>
     <div class="py-2 pl-3 flex text-rqm-yellow-dark hover:bg-pink-800 hover:shadow @isnotroute('profile.purchases') hover:grow @endisnotroute @isroute('profile.purchases') transform scale-105 bg-pink-800 shadow @endisroute">
