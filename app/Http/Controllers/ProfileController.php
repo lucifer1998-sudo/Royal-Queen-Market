@@ -722,7 +722,7 @@ class ProfileController extends Controller
         }
 
 
-        return view('profile.tickets', [
+        return view('tailwind-ui.contact-us', [
             'replies' => $replies,
             'ticket' => $ticket
         ]);
