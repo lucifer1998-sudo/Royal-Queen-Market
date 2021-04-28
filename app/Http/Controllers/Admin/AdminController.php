@@ -180,7 +180,7 @@ class AdminController extends Controller
     {
         $this -> messagesCheck();
 
-        return view('admin.messages');
+        return view('tailwind-ui.admin.index');
     }
 
     /**
