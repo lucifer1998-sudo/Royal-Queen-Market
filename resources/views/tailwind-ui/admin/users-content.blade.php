@@ -8,7 +8,7 @@
                 {{ csrf_field() }}
                 <div class="grid grid-flow-col grid-cols-4 grid-rows-1 gap-4 w-full">
                     <div>
-                        <input type="text" name="username" class="bg-rqm-dark border border-rqm-yellow-darkest p-2 rounded text-rqm-yellow w-full" placeholder="Username of the user">
+                        <input value="{{ request('username') ?? '' }}" type="text" name="username" class="bg-rqm-dark border border-rqm-yellow-darkest p-2 rounded text-rqm-yellow w-full" placeholder="Username of the user">
                     </div>
                     <div>
                         <select name="order_by" id="" class="bg-rqm-dark border border-rqm-yellow-darkest p-2 rounded text-rqm-yellow w-full" title="Order by">
