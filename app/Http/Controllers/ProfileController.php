@@ -501,7 +501,7 @@ class ProfileController extends Controller
         if(array_key_exists($state, Purchase::$states))
             $purchases = auth() -> user() -> purchases() -> where('state', $state) -> orderByDesc('created_at') -> paginate(20);
 
-        return view('profile.purchases.index', [
+        return view('tailwind-ui.profile.index', [
             'purchases' => $purchases,
             'state' => $state,
         ]);

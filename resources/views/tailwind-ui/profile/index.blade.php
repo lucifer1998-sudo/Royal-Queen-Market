@@ -33,6 +33,8 @@
                 @include('tailwind-ui.profile.notifications-content')
             @elseif(\Route::currentRouteName() == 'profile.become')
                 @include('tailwind-ui.profile.become-vendor-content')
+            @elseif(\Route::currentRouteName() == 'profile.purchases')
+                @include('tailwind-ui.profile.purchases-content')
             @endif
         </div>
     </div>
