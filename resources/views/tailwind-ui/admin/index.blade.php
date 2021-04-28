@@ -29,6 +29,8 @@
                 @include('tailwind-ui.admin.featured-products-content')
             @elseif(\Route::currentRouteName() == 'admin.purchases')
                 @include('tailwind-ui.admin.purchases-content')
+            @elseif(\Route::currentRouteName() == 'admin.log')
+                @include('tailwind-ui.admin.logs-content')
             @endif
         </div>
     </div>
