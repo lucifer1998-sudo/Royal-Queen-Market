@@ -40,7 +40,7 @@ class ProductController extends Controller
 
         $request->persist();
         $products = $request->getProducts();
-        return view('admin.products')->with([
+        return view('tailwind-ui.admin.index')->with([
            'products' => $products
         ]);
     }
@@ -151,16 +151,16 @@ class ProductController extends Controller
      */
     public function purchases()
     {
-        return view('admin.purchases', [
+        return view('tailwind-ui.admin.index', [
             'purchases' => Purchase::orderByDesc('created_at')->paginate(config('marketplace.products_per_page')),
         ]);
     }
-    
+
     public function featuredProductsShow(){
 
         $products = Product::where('featured',1)->paginate(25);
 
-        return view('admin.featuredproducts')->with([
+        return view('tailwind-ui.admin.index')->with([
             'products' => $products
         ]);
     }
@@ -181,8 +181,8 @@ class ProductController extends Controller
         }
         return redirect()->back();
     }
-    
-    
+
+
     public function markAsFeatured(Product $product){
         $this -> checkProducts();
         $product->featured = 1;
