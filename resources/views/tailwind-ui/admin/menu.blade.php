@@ -49,12 +49,12 @@
             Featured Products
         </a>
     </div>
-    <div class="py-2 pl-3 flex text-rqm-yellow-dark hover:bg-pink-800 hover:shadow @isnotroute('profile.messages') hover:grow @endisnotroute @isroute('profile.messages') transform scale-105 bg-pink-800 shadow @endisroute">
-        <a href="{{ route('profile.messages') }}" class="flex w-full">
+    <div class="py-2 pl-3 flex text-rqm-yellow-dark hover:bg-pink-800 hover:shadow @isnotroute('admin.purchases') hover:grow @endisnotroute @isroute('admin.purchases') transform scale-105 bg-pink-800 shadow @endisroute">
+        <a href="{{ route('admin.purchases') }}" class="flex w-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            Messages
+            Purchases
         </a>
     </div>
     <div class="py-2 pl-3 flex text-rqm-yellow-dark hover:bg-pink-800 hover:shadow @isnotroute('profile.messages') hover:grow @endisnotroute @isroute('profile.notifications') transform scale-105 bg-pink-800 shadow @endisroute">

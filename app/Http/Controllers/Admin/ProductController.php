@@ -151,7 +151,7 @@ class ProductController extends Controller
      */
     public function purchases()
     {
-        return view('admin.purchases', [
+        return view('tailwind-ui.admin.index', [
             'purchases' => Purchase::orderByDesc('created_at')->paginate(config('marketplace.products_per_page')),
         ]);
     }

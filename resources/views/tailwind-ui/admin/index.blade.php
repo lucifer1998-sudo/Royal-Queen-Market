@@ -27,6 +27,8 @@
                 @include('tailwind-ui.admin.products-content')
             @elseif(\Route::currentRouteName() == 'admin.featuredproducts.show')
                 @include('tailwind-ui.admin.featured-products-content')
+            @elseif(\Route::currentRouteName() == 'admin.purchases')
+                @include('tailwind-ui.admin.purchases-content')
             @endif
         </div>
     </div>
