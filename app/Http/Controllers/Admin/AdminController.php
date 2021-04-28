@@ -82,7 +82,7 @@ class AdminController extends Controller
     {
         $this -> categoriesCheck();
 
-        return view('admin.categories',
+        return view('tailwind-ui.admin.index',
             [
                 'rootCategories' => Category::roots(),
                 'categories' => Category::nameOrdered(),

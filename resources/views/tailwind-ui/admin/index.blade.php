@@ -17,6 +17,8 @@
         <div class="pl-10 w-5/6">
             @if(\Route::currentRouteName() == 'admin.index')
                 @include('tailwind-ui.admin.dashboard-content')
+            @elseif(\Route::currentRouteName() == 'admin.categories')
+                @include('tailwind-ui.admin.categories-content')
             @endif
         </div>
     </div>
