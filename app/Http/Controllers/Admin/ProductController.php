@@ -160,7 +160,7 @@ class ProductController extends Controller
 
         $products = Product::where('featured',1)->paginate(25);
 
-        return view('admin.featuredproducts')->with([
+        return view('tailwind-ui.admin.index')->with([
             'products' => $products
         ]);
     }
