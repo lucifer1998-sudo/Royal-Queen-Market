@@ -231,7 +231,7 @@ class AdminController extends Controller
     {
         $this -> disputesCheck();
 
-        return view('admin.disputes', [
+        return view('tailwind-ui.admin.index', [
             'allDisputes' => Dispute::paginate(config('marketplace.products_per_page')),
         ]);
     }
