@@ -31,6 +31,8 @@
                 @include('tailwind-ui.profile.messages-content')
             @elseif(\Route::currentRouteName() == 'profile.notifications')
                 @include('tailwind-ui.profile.notifications-content')
+            @elseif(\Route::currentRouteName() == 'profile.become')
+                @include('tailwind-ui.profile.become-vendor-content')
             @endif
         </div>
     </div>

@@ -196,7 +196,7 @@ class ProfileController extends Controller
     public function become()
     {
         #dd( auth() -> user() -> vendorPurchases);
-        return view('profile.become',[
+        return view('tailwind-ui.profile.index',[
             'vendorFee' => config('marketplace.vendor_fee'),
             'depositAddresses' => auth() -> user() -> vendorPurchases
         ]);
