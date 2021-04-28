@@ -74,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/vendors', function () {
 		$vendors = Vendor::allUsers();
-	    return view('vendors')
+	    return view('tailwind-ui.vendors')
 	    	->with([
 	    		'vendors' => $vendors
 	    	]);
