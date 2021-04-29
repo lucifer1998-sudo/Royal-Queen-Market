@@ -35,6 +35,8 @@
                 @include('tailwind-ui.admin.disputes-content')
             @elseif(\Route::currentRouteName() == 'admin.tickets')
                 @include('tailwind-ui.admin.tickets-content')
+            @elseif(\Route::currentRouteName() == 'admin.vendor.purchases')
+                @include('tailwind-ui.admin.vendor-purchases-content')
             @endif
         </div>
     </div>

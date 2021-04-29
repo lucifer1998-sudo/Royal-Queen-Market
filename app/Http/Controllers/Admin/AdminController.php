@@ -323,7 +323,7 @@ class AdminController extends Controller
      */
     public function vendorPurchases()
     {
-        return view('admin.vendorpurchases', [
+        return view('tailwind-ui.admin.index', [
             'vendors' => Vendor::orderByDesc('created_at')->paginate(24),
         ]);
     }

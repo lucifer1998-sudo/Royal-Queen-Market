@@ -81,6 +81,14 @@
             Tickets
         </a>
     </div>
+    <div class="py-2 pl-3 flex text-rqm-yellow-dark hover:bg-pink-800 hover:shadow @isnotroute('admin.vendor.purchases') hover:grow @endisnotroute @isroute('admin.vendor.purchases') transform scale-105 bg-pink-800 shadow @endisroute">
+        <a href="{{ route('admin.vendor.purchases') }}" class="flex w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Vendor Purchases
+        </a>
+    </div>
 
     <div class="py-24"><span></span></div>
 
