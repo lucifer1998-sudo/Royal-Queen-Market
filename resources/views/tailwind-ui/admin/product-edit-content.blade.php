@@ -11,6 +11,8 @@
                 @include('tailwind-ui.admin.product-basic-content', ['basicProduct' => $basicProduct])
             @elseif($section == 'offers')
                 @include('tailwind-ui.admin.product-offers-content', ['productsOffers' => $productsOffers])
+            @elseif($section == 'delivery')
+                @include('tailwind-ui.admin.product-delivery-content', ['physicalProduct' => $physicalProduct])
             @endif
         </div>
     </div>

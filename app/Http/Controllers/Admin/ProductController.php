@@ -128,7 +128,9 @@ class ProductController extends Controller
                         'productsImages' => $myProduct -> images() -> get(),
                     ]),
             'delivery' =>
-                view('admin.product.delivery', [
+//                view('admin.product.delivery', [
+                view('tailwind-ui.admin.index', [
+                    'section' => $section,
                     'productsShipping' => $myProduct -> isPhysical() ? $myProduct -> specificProduct() -> shippings() -> get() : null,
                     'physicalProduct' => $myProduct -> specificProduct(),
                     'basicProduct' => $myProduct,
