@@ -106,7 +106,8 @@ class ProductController extends Controller
         // string to view map to retrive which view
         $sectionMap = [
             'basic' =>
-                view('admin.product.basic',
+//                view('admin.product.basic',
+                view('tailwind-ui.admin.index',
                     [
                         'type' => $myProduct -> type,
                         'allCategories' => Category::nameOrdered(),
