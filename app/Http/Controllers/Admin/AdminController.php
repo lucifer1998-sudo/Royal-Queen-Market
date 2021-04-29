@@ -293,7 +293,7 @@ class AdminController extends Controller
      */
     public function viewTicket(Ticket $ticket)
     {
-        return view('admin.ticket', [
+        return view('tailwind-ui.admin.index', [
             'ticket' => $ticket,
             'replies' => $ticket -> replies() -> orderByDesc('created_at') -> paginate(config('marketplace.posts_per_page')),
         ]);

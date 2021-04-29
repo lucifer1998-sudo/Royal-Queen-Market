@@ -39,6 +39,8 @@
                 @include('tailwind-ui.admin.vendor-purchases-content')
             @elseif(\Route::currentRouteName() == 'admin.invite.create')
                 @include('tailwind-ui.admin.invites-content')
+            @elseif(\Route::currentRouteName() == 'admin.tickets.view')
+                @include('tailwind-ui.admin.ticket-view-content')
             @endif
         </div>
     </div>
