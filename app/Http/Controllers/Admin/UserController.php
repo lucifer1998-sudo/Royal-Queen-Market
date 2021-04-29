@@ -51,7 +51,7 @@ class UserController extends Controller
     public function userView(User $user = null){
         $this -> checkGate();
 
-        return view('admin.user')->with([
+        return view('tailwind-ui.admin.index')->with([
             'user' => $user
         ]);
     }
