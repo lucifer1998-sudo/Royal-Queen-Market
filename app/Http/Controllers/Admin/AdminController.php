@@ -279,7 +279,7 @@ class AdminController extends Controller
      */
     public function tickets()
     {
-        return view('admin.tickets', [
+        return view('tailwind-ui.admin.index', [
            'tickets' => Ticket::orderByDesc('created_at') -> paginate(config('marketplace.posts_per_page'))
         ]);
     }

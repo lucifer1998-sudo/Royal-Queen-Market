@@ -33,6 +33,8 @@
                 @include('tailwind-ui.admin.logs-content')
             @elseif(\Route::currentRouteName() == 'admin.disputes')
                 @include('tailwind-ui.admin.disputes-content')
+            @elseif(\Route::currentRouteName() == 'admin.tickets')
+                @include('tailwind-ui.admin.tickets-content')
             @endif
         </div>
     </div>
