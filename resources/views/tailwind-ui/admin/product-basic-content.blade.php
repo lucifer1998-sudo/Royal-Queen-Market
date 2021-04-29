@@ -68,7 +68,7 @@
                     Save
                 </button>
                 <a href="{{ route('profile.vendor.product.edit', [$basicProduct, 'offers']) }}" class="w-1/6">
-                    <button type="submit" class="bg-rqm-yellow-dark ml-2 p-2 rounded-sm text-base text-rqm-dark w-full">
+                    <button type="button" class="bg-rqm-yellow-dark ml-2 p-2 rounded-sm text-base text-rqm-dark w-full">
                         Next
                     </button>
                 </a>
@@ -77,7 +77,7 @@
                     Save
                 </button>
                 <a href="{{ route('admin.product.edit', [$basicProduct, 'offers']) }}" class="w-1/6">
-                    <button type="submit" class="bg-rqm-yellow-dark ml-2 p-2 rounded-sm text-base text-rqm-dark w-full">
+                    <button type="button" class="bg-rqm-yellow-dark ml-2 p-2 rounded-sm text-base text-rqm-dark w-full">
                         Next
                     </button>
                 </a>

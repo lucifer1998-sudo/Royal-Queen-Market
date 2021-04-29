@@ -109,12 +109,15 @@ class ProductController extends Controller
 //                view('admin.product.basic',
                 view('tailwind-ui.admin.index',
                     [
+                        'section' => $section,
                         'type' => $myProduct -> type,
                         'allCategories' => Category::nameOrdered(),
                         'basicProduct' => $myProduct,]),
             'offers' =>
-                view('admin.product.offers',
+//                view('admin.product.offers',
+                view('tailwind-ui.admin.index',
                     [
+                        'section' => $section,
                         'basicProduct' => $myProduct,
                         'productsOffers' => $myProduct -> offers() -> get()
                     ]),

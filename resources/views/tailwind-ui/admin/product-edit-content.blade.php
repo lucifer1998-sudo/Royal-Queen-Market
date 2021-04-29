@@ -7,7 +7,11 @@
             <div class="flex justify-center text-2xl text-rqm-yellow">
                 Editing product {{$basicProduct->name}}
             </div>
-            @include('tailwind-ui.admin.product-basic-content', ['basicProduct' => $basicProduct])
+            @if($section == 'basic')
+                @include('tailwind-ui.admin.product-basic-content', ['basicProduct' => $basicProduct])
+            @elseif($section == 'offers')
+                @include('tailwind-ui.admin.product-offers-content', ['productsOffers' => $productsOffers])
+            @endif
         </div>
     </div>
 </div>
