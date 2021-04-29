@@ -43,6 +43,8 @@
                 @include('tailwind-ui.admin.ticket-view-content')
             @elseif(\Route::currentRouteName() == 'admin.product.edit')
                 @include('tailwind-ui.admin.product-edit-content')
+            @elseif(\Route::currentRouteName() == 'admin.users.view')
+                @include('tailwind-ui.admin.user-view-content')
             @endif
         </div>
     </div>
