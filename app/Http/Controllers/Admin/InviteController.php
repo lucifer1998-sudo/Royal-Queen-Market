@@ -12,8 +12,8 @@ class InviteController extends Controller
 {
     public function create()
     {
-        $invites = Invite::get();
-        return view('admin.invitecreate', ['username' => request()->username, 'invites' => $invites]);
+        $invites = Invite::paginate(20);
+        return view('tailwind-ui.admin.index', ['username' => request()->username, 'invites' => $invites]);
     }
 
     public function store(InvitePostRequest $request)
