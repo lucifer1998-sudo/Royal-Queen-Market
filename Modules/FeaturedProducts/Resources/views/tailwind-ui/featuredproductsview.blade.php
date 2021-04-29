@@ -36,7 +36,7 @@
                 <form action="{{route('admin.featuredproducts.remove')}}" method="post">
                     {{csrf_field()}}
                     <input name="product_id" type="hidden" value="{{$product->id}}">
-                    <button type="button" class="bg-rqm-yellow-dark font-extrabold px-2 py-1 rounded-sm text-rqm-dark text-sm">
+                    <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-2 py-1 rounded-sm text-rqm-dark text-sm">
                         Remove from featured
                     </button>
                 </form>
