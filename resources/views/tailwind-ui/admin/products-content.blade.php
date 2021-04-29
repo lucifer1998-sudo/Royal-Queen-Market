@@ -58,7 +58,16 @@
                         {{$product->type}}
                     </td>
                     <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
-                        <a href="{{route('admin.users.view',['user'=>$product->user->id])}}">{{$product->user->username}}</a>
+                        @if(! empty($product->user) )
+                            <a href="{{route('admin.users.view',['user'=>$product->user->id])}}">{{$product->user->username}}</a>
+                        @else
+                            <span class="text-gray-500">User deleted account!</span>
+                            <span class="flex items-center px-3 text-yellow-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                            </span>
+                        @endif
                     </td>
                     <td class="border-gray-600 flex justify-around px-2 py-2 text-center text-gray-400">
                         @isModuleEnabled('FeaturedProducts')
