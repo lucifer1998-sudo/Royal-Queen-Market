@@ -122,8 +122,10 @@ class ProductController extends Controller
                         'productsOffers' => $myProduct -> offers() -> get()
                     ]),
             'images' =>
-                view('admin.product.images',
+//                view('admin.product.images',
+                view('tailwind-ui.admin.index',
                     [
+                        'section' => $section,
                         'basicProduct' => $myProduct,
                         'productsImages' => $myProduct -> images() -> get(),
                     ]),

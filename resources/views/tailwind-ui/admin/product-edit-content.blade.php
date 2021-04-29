@@ -13,6 +13,8 @@
                 @include('tailwind-ui.admin.product-offers-content', ['productsOffers' => $productsOffers])
             @elseif($section == 'delivery')
                 @include('tailwind-ui.admin.product-delivery-content', ['physicalProduct' => $physicalProduct])
+            @elseif($section == 'images')
+                @include('tailwind-ui.admin.product-images-content', ['productsImages' => $productsImages])
             @endif
         </div>
     </div>
