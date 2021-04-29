@@ -34,24 +34,40 @@
             <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('faqs')}}">
                 FAQs
             </a>
+
             <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{ route('profile.tickets') }}">
                 Contact Us
             </a>
 
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="#">
-                <svg class="fill-current hover:text-rqm-yellow-dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <circle fill="none" cx="12" cy="7" r="3" />
-                    <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />
-                </svg>
-            </a>
-
-            <a class="text-rqm-yellow px-5 pl-3 inline-block no-underline hover:text-rqm-yellow-dark" href="#">
+            <a class="text-rqm-yellow px-5 pl-3 inline-block no-underline hover:text-rqm-yellow-dark px-5" href="#">
                 <svg class="fill-current hover:text-rqm-yellow-dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z" />
                     <circle cx="10.5" cy="18.5" r="1.5" />
                     <circle cx="17.5" cy="18.5" r="1.5" />
                 </svg>
             </a>
+
+            <div class="group hover:text-rqm-yellow-dark inline-block no-underline text-rqm-yellow pl-3">
+                <svg class="fill-current hover:text-rqm-yellow-dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <circle fill="none" cx="12" cy="7" r="3" />
+                    <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />
+                </svg>
+                <div class="absolute bg-rqm-dark group-hover:visible invisible p-1 right-32 rounded-b-lg w-1/12 z-30">
+                    <span class="block text-base px-4 py-2">{{auth() -> user()->username}}</span>
+                    <hr class="border-t mx-2 border-rqm-yellow-darkest">
+                    <a href="{{ route('profile.index') }}" class="block text-base hover:bg-pink-700 px-4 py-2 hover:grow">View Profile</a>
+                    @if(auth() -> user() -> isAdmin())
+                        <a href="{{ route('admin.index') }}" class="block text-base hover:bg-pink-700 px-4 py-2 hover:grow">Admin Panel</a>
+                    @endif
+                    <hr class="border-t mx-2 border-rqm-yellow-darkest">
+                    <form action="{{route('auth.signout.post')}}" method="post">
+                        @csrf
+                        <a href="#" class="block text-base hover:bg-pink-700 px-4 py-2 hover:grow">
+                            <button class="btn btn-link btn-lg text-white" type="submit">Logout</button>
+                        </a>
+                    </form>
+                </div>
+            </div>
 
         </div>
     </div>
