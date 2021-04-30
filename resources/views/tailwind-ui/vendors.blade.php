@@ -3,7 +3,7 @@
 @section('title','Vendors')
 
 @section('content')
-    <div class="grid grid-flow-col grid-cols-4 grid-rows-{{ceil(count($vendors) / 4)}} gap-7">
+    <div class="gap-4 grid grid-cols-4 pt-20 px-40">
     @foreach ($vendors as $vendor)
             <div class="bg-rqm-light p-5 rounded shadow relative">
                 <div class="flex pb-5">
@@ -33,7 +33,9 @@
                         </div>
                     </div>
                     <div class="bg-rqm-dark flex hover:bg-rqm-light hover:grow hover:shadow-md items-center shadow text-justify text-rqm-yellow-darkest text-sm">
-                        <button>View all products</button>
+                        <a href="{{route('search',['user'=>$vendor->username])}}">
+                            <button>View all products</button>
+                        </a>
                     </div>
                 </div>
                 <div class="absolute bottom-0 mr-2 right-0 text-gray-500 text-xs">Last Seen: {{ $vendor->last_seen ?? 'n/a' }}</div>
