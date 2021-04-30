@@ -119,11 +119,71 @@
                                     <div>Delivery Method</div>
                                     <div class="px-2">
                                         <select name="delivery" id="delivery"
-                                                class="bg-rqm-dark form-control form-control-sm py-1 rounded">
+                                                class="bg-rqm-dark py-1 rounded w-full">
                                             @foreach($product -> specificProduct() -> shippings as $shipping)
                                                 <option value="{{ $shipping -> id }}">{{ $shipping -> long_name }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="py-2">
+                                    <div>Pay with Coin</div>
+                                    <div class="px-2">
+                                        @if(count($product -> getCoins()) > 1)
+                                            <select name="coin" id="coin" class="bg-rqm-dark form-control form-control-sm py-1 rounded w-full">
+                                                @foreach($product -> getCoins() as $coin)
+                                                    <option value="{{ $coin }}">{{ strtoupper(\App\Purchase::coinDisplayName($coin)) }}</option>
+                                                @endforeach
+                                            </select>
+                                        @elseif(count($product -> getCoins()) == 1)
+                                            <span>{{ strtoupper(\App\Purchase::coinDisplayName($product -> getCoins()[0])) }}</span>
+                                            <input type="hidden" name="coin" value="{{ $product -> getCoins()[0] }}">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="py-2">
+                                    <div>Purchase Type</div>
+                                    <div class="px-2">
+                                        @if(count($product -> getTypes()) > 1)
+                                            <select name="type" id="type" class="bg-rqm-dark form-control form-control-sm py-1 rounded w-full">
+                                                @foreach($product -> getTypes() as $type)
+                                                    <option value="{{ $type }}">{{ \App\Purchase::$types[$type] }}</option>
+                                                @endforeach
+                                            </select>
+                                        @elseif(count($product -> getTypes()) == 1)
+                                            <span>{{ \App\Purchase::$types[$product -> getTypes()[0]] }}</span>
+                                            <input type="hidden" name="type" value="{{ $product -> getTypes()[0] }}">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="py-2">
+                                    <div>Quantity ({{ str_plural($product -> mesure) }})</div>
+                                    <div class="px-2">
+                                        <input type="number" min="1" name="amount" id="amount"
+                                               value="1"
+                                               max="{{ $product -> quantity }}"
+                                               class="bg-rqm-dark px-2 py-1 rounded w-full"
+                                               placeholder="Amount of {{ str_plural($product -> mesure) }}"/>
+                                    </div>
+                                </div>
+                                <div class="py-2">
+                                    <div class="flex">
+                                        <button class="bg-rqm-yellow font-black px-2 py-1 rounded text-rqm-dark">
+                                            Add to Cart
+                                        </button>
+                                        @auth
+                                            @if(auth() -> user() -> isWhishing($product))
+                                                <a href="{{ route('profile.wishlist.add', $product) }}"
+                                                   class="bg-rqm-yellow font-black px-2 py-1 rounded text-rqm-dark mx-2">
+                                                    Remove from Wishlist
+                                                </a>
+                                            @else
+                                                <a href="{{ route('profile.wishlist.add', $product) }}"
+                                                   class="bg-rqm-yellow font-black px-2 py-1 rounded text-rqm-dark mx-2">
+                                                    Add to Wishlist
+                                                </a>
+                                            @endif
+                                        @endauth
                                     </div>
                                 </div>
                             </div>
@@ -185,6 +245,134 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <div style='border-bottom: 2px solid #eaeaea'>
+                            <ul class='flex cursor-pointer'>
+                                <a href="{{ route('product.show', $product) }}#productsmenu">
+                                    <li class="@isroute('product.show') bg-rqm-dark @endisroute @isnotroute('product.show') bg-gray-200 text-rqm-dark bg-white @endisnotroute px-6 py-2 rounded-t-lg">Details</li>
+                                </a>
+                                <a href="{{ route('product.rules', $product) }}#productsmenu">
+                                    <li class="@isroute('product.rules') bg-rqm-dark @endisroute @isnotroute('product.rules') bg-gray-200 text-rqm-dark bg-white @endisnotroute px-6 py-2 rounded-t-lg">Payment rules</li>
+                                </a>
+                                <a href="{{ route('product.feedback', $product) }}#productsmenu">
+                                    <li class="@isroute('product.feedback') bg-rqm-dark @endisroute @isnotroute('product.feedback') bg-gray-200 text-rqm-dark bg-white @endisnotroute px-6 py-2 rounded-t-lg">Feedback</li>
+                                </a>
+                                @if($product -> isPhysical())
+                                <a href="{{ route('product.delivery', $product) }}#productsmenu">
+                                    <li class="@isroute('product.delivery') bg-rqm-dark @endisroute @isnotroute('product.delivery') bg-gray-200 text-rqm-dark bg-white @endisnotroute px-6 py-2 rounded-t-lg">Delivery</li>
+                                </a>
+                                @endif
+                                @if(Auth::user()->id == $product->user->id)
+                                    <a href="{{ route('product.coupon', $product) }}#productsmenu">
+                                        <li class="@isroute('product.coupon') bg-rqm-dark @endisroute @isnotroute('product.coupon') bg-gray-200 text-rqm-dark bg-white @endisnotroute px-6 py-2 rounded-t-lg">Coupons</li>
+                                    </a>
+                                @endif
+                            </ul>
+                        </div>
+                        <div class="px-4 py-10 w-full">
+                            @isroute('product.show')
+                            {!! $product -> description !!}
+                            @endisroute
+
+                            @isroute('product.rules')
+                            {!! $product -> rules !!}
+                            @endisroute
+
+                            @isroute('product.feedback')
+                            @if($product -> hasFeedback())
+                                <h3 class="mb-3">Feedback ({{ count($product -> feedback) }})</h3>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Quality rate ({{ $product -> avgRate('quality_rate') }})</th>
+                                        <th>Communication rate ({{ $product -> avgRate('communication_rate') }})</th>
+                                        <th>Shipping rate ({{ $product -> avgRate('shipping_rate') }})</th>
+                                        <th>Comment</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($product -> feedback as $feedback)
+                                        <tr>
+                                            <td>
+                                                @include('includes.purchases.stars', ['stars' => $feedback -> quality_rate])
+                                            </td>
+                                            <td>
+                                                @include('includes.purchases.stars', ['stars' => $feedback -> communication_rate])
+                                            </td>
+                                            <td>
+                                                @include('includes.purchases.stars', ['stars' => $feedback -> shipping_rate])
+                                            </td>
+                                            <td>
+                                                {{ $feedback -> comment }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+
+                                </table>
+                            @else
+                                <div class="alert alert-warning">There is no available feedback for this product, yet.</div>
+                            @endif
+                            @endisroute
+
+                            @isroute('product.delivery')
+                            <p class="text-white">Ships {{ $product -> specificProduct() -> shipsTo() }}: <em>{{ $product -> specificProduct() -> countriesLong() }}</em></p>
+                            <p class="text-white">Ships from <strong>{{ $product -> specificProduct() -> shipsFrom() }}</p></strong>
+                            <table class="table-auto w-full">
+                                <thead>
+                                <tr>
+                                    <th class="px-2 text-left text-rqm-yellow">Delivery name</th>
+                                    <th class="px-2 text-left text-rqm-yellow">Duration</th>
+                                    <th class="px-2 text-left text-rqm-yellow">Price</th>
+                                    <th class="px-2 text-left text-rqm-yellow">Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($product -> specificProduct() -> shippings as $shipping)
+                                    <tr>
+                                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">{{ $shipping -> name }}</td>
+                                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">{{ $shipping -> duration }}</td>
+                                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">@include('includes.currency', ['usdValue' => $shipping -> dollars ])</td>
+                                        <td class="border-gray-600 px-2 py-2 text-gray-400">{{ $shipping -> from_quantity }} to {{ $shipping -> to_quantity }} {{ str_plural($product -> mesure) }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            @endisroute
+
+                            @isroute('product.coupon')
+                            <table class="table table-hover table-striped text-white">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Discount Price</th>
+                                    <th scope="col">Expiration Date</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($coupon as $c)
+                                    <tr>
+                                        <td>{{ $c-> code }}</td>
+                                        <td>@include('includes.currency', ['usdValue' => $c -> data -> get ('price') ])</td>
+                                        <td>{{ $c -> expires_at }}</td>
+
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <form method="POST" action="{{ route('product.coupon.generate', $product) }}">
+                                        @csrf
+                                        <td><input type="text" name="cValue" class="form-control" placeholder="Discount in {{ \App\Marketplace\Utility\CurrencyConverter::getLocalSymbol() }}"></td>
+                                        <td><input type="number" step="1" min="1" class="form-control" name="qty" placeholder="Quantity"></td>
+                                        <td><input type="number" class="form-control" name="duration" placeholder="Duration in days"></td>
+                                        <td><button type="submit" class="btn btn-outline-success">Generate Coupon</button></td>
+                                    </form>
+                                </tr>
+                                </tbody>
+                            </table>
+                            @endisroute
                         </div>
                     </div>
                 </form>
