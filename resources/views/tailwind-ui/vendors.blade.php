@@ -3,7 +3,7 @@
 @section('title','Vendors')
 
 @section('content')
-    <div class="grid grid-flow-col grid-cols-4 grid-rows-{{ceil(count($vendors) / 4)}} gap-7">
+    <div class="gap-4 grid grid-cols-4 pt-20 px-40">
     @foreach ($vendors as $vendor)
             <div class="bg-rqm-light p-5 rounded shadow relative">
                 <div class="flex pb-5">
