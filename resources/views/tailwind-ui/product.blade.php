@@ -39,9 +39,9 @@
                                     @if(session()->has('success'))
                                         @include('tailwind-ui.includes.success', ['strongMessage' => 'Success', 'message' => session()->get('success')])
                                     @elseif(session()->has('error'))
-                                        @include('tailwind-ui.includes.warning', ['strongMessage' => 'Success', 'message' => session()->get('error')])
+                                        @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => session()->get('error')])
                                     @elseif(session()->has('errormessage'))
-                                        @include('tailwind-ui.includes.warning', ['strongMessage' => 'Success', 'message' => session()->get('errormessage')])
+                                        @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => session()->get('errormessage')])
                                     @endif
                                 </div>
                                 <div class="text-2xl w-full">{{ $product -> name }}</div>
