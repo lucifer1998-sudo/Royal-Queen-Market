@@ -1,6 +1,6 @@
 @extends('tailwind-ui.master.main')
 
-@section('title','Vendors')
+@section('title', 'Contact Us')
 
 @section('content')
     <div class="pt-20 w-full">
