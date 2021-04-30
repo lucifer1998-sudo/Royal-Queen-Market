@@ -60,6 +60,9 @@
                             <option @if(app('request')->input('order_by') == 'newest') selected @endif value="newest">Newest</option>
                         </select>
                     </div>
+                    <div class="p-2">
+                        <button type="submit" class="bg-rqm-yellow-dark font-semibold rounded text-rqm-dark w-full">Search</button>
+                    </div>
                 </form>
             </div>
         </div>
