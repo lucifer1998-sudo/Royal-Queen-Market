@@ -86,6 +86,7 @@
                     </div>
                 @endforeach
             </div>
+            {{ $products -> links('tailwind-ui.includes.paginate') }}
         </div>
     </div>
 @endsection
