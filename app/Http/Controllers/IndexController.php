@@ -62,7 +62,8 @@ class IndexController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function category(Category $category) {
-        return view('category', [
+//        return view('category', [
+        return view('tailwind-ui.shops', [
             'productsView' => session() -> get('products_view'),
             'category' => $category,
             'products' => $category->childProducts(),

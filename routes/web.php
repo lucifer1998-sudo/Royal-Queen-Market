@@ -64,7 +64,8 @@ Route::middleware(['auth'])->group(function () {
 	});
 
 	Route::get('/shop', function () {
-		$products = Product::all();
+//		$products = Product::all();
+		$products = Product::paginate(12);
 	    return view('tailwind-ui.shops')
 	    	->with([
 	    		'products' => $products,
