@@ -33,7 +33,9 @@
                         </div>
                     </div>
                     <div class="bg-rqm-dark flex hover:bg-rqm-light hover:grow hover:shadow-md items-center shadow text-justify text-rqm-yellow-darkest text-sm">
-                        <button>View all products</button>
+                        <a href="{{route('search',['user'=>$vendor->username])}}">
+                            <button>View all products</button>
+                        </a>
                     </div>
                 </div>
                 <div class="absolute bottom-0 mr-2 right-0 text-gray-500 text-xs">Last Seen: {{ $vendor->last_seen ?? 'n/a' }}</div>
