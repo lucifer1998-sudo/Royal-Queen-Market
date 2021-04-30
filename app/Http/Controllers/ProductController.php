@@ -54,7 +54,8 @@ class ProductController extends Controller
             abort(404);
 
 
-        return view('product.index', [
+//        return view('product.index', [
+        return view('tailwind-ui.product', [
             'product' => $product,
         ]);
     }
