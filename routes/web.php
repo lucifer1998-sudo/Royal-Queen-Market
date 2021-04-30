@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/shop', function () {
 		$products = Product::all();
-	    return view('shop')
+	    return view('tailwind-ui.shops')
 	    	->with([
 	    		'products' => $products,
 	    		'categories' => Category::roots()
@@ -73,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
 	});
 
 	Route::get('/vendors', function () {
-		$vendors = Vendor::allUsers();
+		$vendors = Vendor::allUsers2();
 	    return view('tailwind-ui.vendors')
 	    	->with([
 	    		'vendors' => $vendors

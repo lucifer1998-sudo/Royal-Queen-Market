@@ -29,6 +29,16 @@ class Vendor extends User
         return User::whereIn('id', $vendorIDs) -> get();
     }
 
+    /**
+     * @return Collection of \App\User instaces of all admins
+     */
+    public static function allUsers2()
+    {
+        $vendorIDs = Vendor::all() -> pluck('id');
+
+        return User::whereIn('id', $vendorIDs) -> paginate(20);
+    }
+
 
     /**
      * Return user instance of the vendor
@@ -254,9 +264,9 @@ class Vendor extends User
                 ->get();
         });
         return $vendors;
-        
+
     }
-    
+
     public function getId(){
         return $this->id;
     }
@@ -283,7 +293,7 @@ class Vendor extends User
         }
         return true;
     }
-    
+
 
 
 }
