@@ -96,7 +96,7 @@ class SearchController extends Controller
 
         $end = round($end, 5);
 
-        return view('results', [
+        return view('tailwind-ui.shops', [
             'productsView' => session() -> get('products_view'),
             'products' => $finalResult,
             'categories' => Category::roots(),
