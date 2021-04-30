@@ -70,9 +70,21 @@
                         <div class="flex justify-center pt-5">
                             <div>
                                 <div class="flex justify-center text-lg text-rqm-yellow w-64">
-                                    <button type="submit" value="Log In" class="bg-rqm-yellow font-black py-2 rounded text-rqm-dark w-full">Login</button>
+                                    <button type="submit" value="Log In" class="bg-rqm-yellow font-black py-2 text-rqm-dark w-full">Login</button>
                                 </div>
                             </div>
+                        </div>
+                        <div class="flex justify-center pt-3">
+                            <div>
+                                <div class="flex justify-center text-lg text-rqm-yellow w-64">
+                                    <a href="{{route('auth.signup')}}" class="w-full">
+                                        <button type="button" value="Log In" class="w-full">Sign Up</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-center py-5 w-full">
+                            <img src="{{URL::asset('/media/bottom-separator-1.png')}}" class="h-1/3 transform" alt="">
                         </div>
                     </form>
                 </div>
