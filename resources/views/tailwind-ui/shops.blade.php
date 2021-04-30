@@ -14,11 +14,17 @@
                     {{csrf_field()}}
                     <div>
                         <label for="search" class="text-rqm-yellow-darkest block">Search Terms</label>
-                        <input type="text" name="search" id="search" value="{{app('request')->input('query')}}" class="bg-rqm-lighter border rounded">
+                        <input type="text" name="search" id="search" value="{{app('request')->input('query')}}" class="bg-rqm-lighter border rounded w-full">
                     </div>
                     <div>
                         <label for="user" class="text-rqm-yellow-darkest block">User</label>
-                        <input type="text" name="user" id="user" value="{{app('request')->input('user')}}" class="bg-rqm-lighter border rounded">
+                        <input type="text" name="user" id="user" value="{{app('request')->input('user')}}" class="bg-rqm-lighter border rounded w-full">
+                    </div>
+                    <div>
+                        <label for="category" class="text-rqm-yellow-darkest block">Category</label>
+                        <select id="category" name="category" class="bg-rqm-light border py-0.5 rounded text-rqm-yellow-dark w-full">
+                            <option selected value="any">Any</option>
+                        </select>
                     </div>
                 </form>
             </div>
