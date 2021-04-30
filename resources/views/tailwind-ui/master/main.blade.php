@@ -19,12 +19,16 @@
 
 </head>
 <body class="bg-rqm-lighter text-gray-600 work-sans leading-normal text-base tracking-normal">
-@include('tailwind-ui.master.navbar')
+@if(\Route::currentRouteName() != 'auth.signin' &&  \Route::currentRouteName() != 'auth.signup')
+    @include('tailwind-ui.master.navbar')
+@endif
 <section>
     <div class="container px-6 mx-auto">
         @yield('content')
     </div>
 </section>
+@if(\Route::currentRouteName() != 'auth.signin' &&  \Route::currentRouteName() != 'auth.signup')
 @include('tailwind-ui.master.footer')
+@endif
 </body>
 </html>
