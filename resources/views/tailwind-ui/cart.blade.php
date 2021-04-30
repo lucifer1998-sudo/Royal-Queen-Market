@@ -8,7 +8,16 @@
             <div class="text-2xl text-rqm-yellow">
                 Total @include('includes.currency', ['usdValue' => $totalSum])
             </div>
-            <div></div>
+            <div class="py-2">
+                <div class="flex justify-between">
+                    <a href="{{ route('profile.cart.checkout') }}" class="bg-rqm-yellow font-black px-4 py-2 rounded text-rqm-dark">
+                        Checkout
+                    </a>
+                    <a href="{{ route('profile.cart.clear') }}" class="bg-rqm-yellow font-black px-4 py-2 rounded text-rqm-dark">
+                        Clear
+                    </a>
+                </div>
+            </div>
         </div>
         @foreach($items as $productId => $item)
         <form action="{{ route('profile.cart.add', \App\Product::find($productId)) }}" method="POST" class="my-2">
