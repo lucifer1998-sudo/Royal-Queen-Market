@@ -36,7 +36,7 @@ class Vendor extends User
     {
         $vendorIDs = Vendor::all() -> pluck('id');
 
-        return User::whereIn('id', $vendorIDs) -> paginate(20);
+        return User::whereIn('id', $vendorIDs) -> paginate(12);
     }
 
 

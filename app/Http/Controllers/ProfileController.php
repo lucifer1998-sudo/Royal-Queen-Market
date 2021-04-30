@@ -312,14 +312,14 @@ class ProfileController extends Controller
         }
 
         if ($couponCheck > 0) {
-            return view('cart.index',[
+            return view('tailwind-ui.cart',[
                 'items' => Cart::getCart() -> items(),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
                 'totalSum' => Cart::getCart() -> total($couponValue ),
             ]);
         } else {
             $deduct = 0;
-            return view('cart.index',[
+            return view('tailwind-ui.cart',[
                 'items' => Cart::getCart() -> items(),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
                 'totalSum' => Cart::getCart() -> total($deduct),
@@ -453,14 +453,14 @@ class ProfileController extends Controller
         }
 
         if ($couponCheck > 0) {
-            return view('cart.checkout', [
+            return view('tailwind-ui.checkout', [
                 'items' => Cart::getCart() -> items(),
                 'totalSum' => Cart::getCart() -> total($couponValue),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
 
             ]);
         } else {
-            return view('cart.checkout', [
+            return view('tailwind-ui.checkout', [
                 'items' => Cart::getCart() -> items(),
                 'totalSum' => Cart::getCart() -> total(0),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
