@@ -319,7 +319,7 @@ class ProfileController extends Controller
             ]);
         } else {
             $deduct = 0;
-            return view('cart.index',[
+            return view('tailwind-ui.cart',[
                 'items' => Cart::getCart() -> items(),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
                 'totalSum' => Cart::getCart() -> total($deduct),
