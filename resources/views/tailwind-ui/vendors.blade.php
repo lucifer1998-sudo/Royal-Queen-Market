@@ -9,7 +9,7 @@
                 <div class="flex pb-5">
                     <div class="w-2/3">
                         <div class="">
-                            <span class="block text-2xl text-rqm-yellow-dark">{{ $vendor->username}}</span>
+                            <span class="block text-2xl text-rqm-yellow-dark truncate">{{ $vendor->username}}</span>
                         </div>
                         <div class="flex justify-start">
                             <div class="flex">
@@ -40,4 +40,6 @@
             </div>
     @endforeach
     </div>
+
+    {{ $vendors -> links('tailwind-ui.includes.paginate') }}
 @endsection
