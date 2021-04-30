@@ -24,11 +24,13 @@
                     <textarea class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full" name="message" id="title" rows="5" placeholder="Enter ticket reply"></textarea>
 
                     <div class="flex justify-end">
-                        <a href="{{ route('admin.tickets.solve', $ticket) }}" class="mx-2">
-                            <button type="button" class="bg-rqm-yellow-dark font-extrabold px-3 py-1 rounded-sm text-rqm-dark">
-                                Close ticket
-                            </button>
-                        </a>
+                        @if(auth() -> user() -> isAdmin())
+                            <a href="{{ route('admin.tickets.solve', $ticket) }}" class="mx-2">
+                                <button type="button" class="bg-rqm-yellow-dark font-extrabold px-3 py-1 rounded-sm text-rqm-dark">
+                                    Close ticket
+                                </button>
+                            </a>
+                        @endif
                         <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-3 py-1 rounded-sm text-rqm-dark">
                             Post message
                         </button>
