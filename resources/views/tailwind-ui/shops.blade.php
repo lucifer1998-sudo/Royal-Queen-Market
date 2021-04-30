@@ -1,6 +1,6 @@
 @extends('tailwind-ui.master.main')
 
-@section('title','Vendors')
+@section('title', 'Shops')
 
 @section('content')
     <div class="w-full flex">
