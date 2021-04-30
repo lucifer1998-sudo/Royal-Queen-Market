@@ -17,7 +17,7 @@ class RegisterController extends Controller {
      */
     public function showSignUp($refid = '') {
 
-        return view('auth.signup')->with([
+        return view('tailwind-ui.signup')->with([
             'refid' => $refid,
             'captcha' => Captcha::Build(),
         ]);

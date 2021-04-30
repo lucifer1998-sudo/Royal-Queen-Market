@@ -21,11 +21,11 @@ class LoginController extends Controller {
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showSignIn() {
-        return view('auth.signin')->with([
+        return view('tailwind-ui.login')->with([
             'captcha' => Captcha::build()
         ]);
     }
-    
+
     public function postSignIn(SignInRequest $request){
         try{
             return $request -> persist();
@@ -67,6 +67,6 @@ class LoginController extends Controller {
             return redirect() -> back();
         }
     }
-    
+
 }
 
