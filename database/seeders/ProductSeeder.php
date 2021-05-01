@@ -128,8 +128,7 @@ class ProductSeeder extends Seeder
             $newImage -> first = true;
             $newImage -> save();
 
-            // Physical product
-            if($i % 2 == 0) {
+            
                 $newPhysical = new \App\PhysicalProduct;
                 $newPhysical -> id = $newProduct -> id;
                 $newPhysical -> countries_option = 'all';
@@ -137,15 +136,8 @@ class ProductSeeder extends Seeder
                 $newPhysical -> country_from = 'SRB';
                 $newPhysical -> save();
 
-            }
-            // Digital product
-            else{
-                $newDigital = new \App\DigitalProduct();
-                $newDigital -> id = $newProduct -> id;
-                $newDigital -> autodelivery = false;
-                $newDigital -> content = '';
-                $newDigital -> save();
-            }
+            
+    
 
 
             $this->command->info('Created Product '.$i.'/'.$this->productsToCreate);

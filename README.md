@@ -8,7 +8,8 @@ RQM (Royal Queen Market) is a web application built on top of laravel framework.
 ## Important TODO
 
 ### UI Integration
- - Admin dashboard pages
- - Vendors page
- - Contact us page
- - Profile pages ( fixes & missing )
+ - ~~Admin dashboard pages~~
+ - ~~Vendors page~~
+ - ~~Contact us page~~
+ - ~~Profile pages ( fixes & missing )~~
+ - Multisig
