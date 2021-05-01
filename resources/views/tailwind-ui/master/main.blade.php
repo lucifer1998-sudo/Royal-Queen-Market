@@ -18,7 +18,7 @@
     <link href="{{ asset('css/profile-bg.css') }}" rel="stylesheet">
 
 </head>
-<body class="bg-rqm-lighter text-gray-600 work-sans leading-normal text-base tracking-normal">
+<body class="bg-rqm-dark text-gray-600 work-sans leading-normal text-base tracking-normal">
 @if(\Route::currentRouteName() != 'auth.signin' &&  \Route::currentRouteName() != 'auth.signup')
     @include('tailwind-ui.master.navbar')
 @endif

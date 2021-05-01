@@ -6,13 +6,13 @@
     <div class="pt-20 w-full">
         <div class="w-full">
             <div class="flex justify-center px-96">
-                <div class="bg-rqm-dark shadow w-2/3">
+                <div class="bg-rqm-lighter shadow w-2/3">
                     <div>
                         <img src="{{URL::asset('/media/login-case.png')}}" class="w-full" alt="">
                     </div>
                     <div class="justify-center py-5 text-rqm-yellow">
-                        <div class="text-4xl w-full flex justify-center">Login</div>
-                        <div class="flex font-extralight justify-center text-2xl w-full">Sessions epires every 90 minutes</div>
+                        <div class="text-2xl w-full flex justify-center font-sans roboto">LOGIN</div>
+                        <div class="flex font-extralight justify-center text-1xl w-full font-sans roboto">Sessions epires every 90 minutes</div>
                     </div>
                     <form action="{{ route('auth.signin.post') }}" method="POST">
                         @csrf
@@ -31,7 +31,7 @@
                                     </svg>
                                 </div>
                                 <div class="bg-rqm-light px-2 py-1">
-                                    <input type="text" id="username" name="username" placeholder="Username" class="bg-rqm-light py-1 text-rqm-yellow" />
+                                    <input type="text" id="username" name="username" placeholder="Username" class=" py-1 rounded-full" />
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                     </svg>
                                 </div>
                                 <div class="bg-rqm-light px-2 py-1">
-                                    <input type="password" id="password" name="password" placeholder="Password" class="bg-rqm-light py-1 text-rqm-yellow" />
+                                    <input type="password" id="password" name="password" placeholder="Password" class=" py-1 rounded-full" />
                                 </div>
                             </div>
                         </div>
@@ -62,8 +62,8 @@
                                 <div class="flex justify-center text-lg text-rqm-yellow w-64">
                                     <img src="{{$captcha}}" alt="">
                                 </div>
-                                <div class="flex justify-center py-2 text-lg text-rqm-yellow w-64">
-                                    <input type="text" id="captcha" name="captcha" placeholder="Captcha" class="bg-rqm-light px-2 py-2 text-base text-rqm-yellow" />
+                                <div class="flex justify-center py-2 text-lg w-64">
+                                    <input type="text" id="captcha" name="captcha" placeholder="Captcha" class=" px-2 py-2 text-base rounded-full" />
                                 </div>
                             </div>
                         </div>
