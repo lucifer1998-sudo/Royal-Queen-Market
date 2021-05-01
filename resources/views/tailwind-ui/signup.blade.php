@@ -23,6 +23,11 @@
                         @elseif(session()->has('errormessage'))
                             @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => session()->get('errormessage')])
                         @endif
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => $error])
+                            @endforeach
+                        @endif
                         <div class="flex justify-center py-1">
                             <div class="flex justify-center">
                                 <div class="bg-rqm-light px-2 py-1 relative flex w-full flex-wrap items-stretch">
@@ -49,7 +54,7 @@
                                     <span class="leading-snug z-10 absolute text-rqm-yellow items-center justify-center px-4 py-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
                                     </svg></span>
-                                    <input type="password" id="password_confirm" name="password_confirm" placeholder="Confirm Password" class=" py-1 rounded-full relative w-full pl-10 placeholder-rqm-dark" />
+                                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" class=" py-1 rounded-full relative w-full pl-10 placeholder-rqm-dark" />
                                 </div>
                             </div>
                         </div>

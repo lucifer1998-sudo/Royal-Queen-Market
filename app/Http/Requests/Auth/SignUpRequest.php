@@ -31,7 +31,7 @@ class SignUpRequest extends FormRequest {
             'captcha' => ['required', new Captcha()],
             'username' => 'required|unique:users|alpha_num|min:4|max:12',
             'password' => 'required|confirmed|min:8',
-
+            'password_confirmation' => 'required|min:8'
         ];
     }
 

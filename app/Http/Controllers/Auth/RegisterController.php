@@ -36,6 +36,7 @@ class RegisterController extends Controller {
             return redirect()->route('auth.mnemonic');
         } catch (\Exception $e) {
             Log::error($e);
+            session() -> flash('errormessage', $e -> getMessage());
             return redirect()->back();
         }
 
