@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="flex justify-center">
-                            
+
                         </div>
                         <div class="flex justify-center pt-5">
                             <div>
@@ -66,21 +66,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex">
-                            <div>
-                                <div class="flex justify-center text-lg w-64">
-                                    
-                                <a href="#" class=" w-full">
-                                    <button type="button" value="lostPw" class="w-full">I Lost My Password</button>
-                                </a>
-                            
-                                    <a href="{{route('auth.signup')}}" class=" w-full">
-                                        <button type="button" value="Log In" class="w-full">Sign Up</button>
+                        <div class="flex-1 pb-5 pt-10">
+                            <div class="flex-1">
+                                <div class="flex justify-around px-7 text-white">
+                                    <a href="#" class="text-left w-full">
+                                        I Lost My Password
+                                    </a>
+                                    <a href="{{route('auth.signup')}}" class="text-right w-full">
+                                        Sign Up
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
