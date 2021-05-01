@@ -1,9 +1,24 @@
 <div class="bg-rqm-dark content-center flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
     <div class="flex items-center justify-center w-full">
         <form action="{{ route('profile.vendor.become') }}" class="">
-            <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-3 py-3 rounded-sm text-rqm-dark">
-                Become a vendor
-            </button>
+            @csrf
+            @if(session()->has('success'))
+                @include('tailwind-ui.includes.success', ['strongMessage' => 'Success', 'message' => session()->get('success')])
+            @elseif(session()->has('error'))
+                @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => session()->get('error')])
+            @elseif(session()->has('errormessage'))
+                @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => session()->get('errormessage')])
+            @endif
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => $error])
+                @endforeach
+            @endif
+            <div class="flex justify-center">
+                <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-3 py-3 rounded-sm text-rqm-dark">
+                    Become a vendor
+                </button>
+            </div>
         </form>
     </div>
     <div class="flex justify-center py-5 text-lg text-rqm-yellow w-full">OR</div>
