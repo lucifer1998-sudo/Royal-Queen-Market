@@ -1,4 +1,4 @@
-<nav id="header" class="bg-rqm-lighter m-10 py-1 py-3 relative top-0 w-full z-30">
+<nav id="header" class="bg-rqm-lighter mb-10 mt-20 py-3 relative top-0 w-full z-30">
     <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
 
         <label for="menu-toggle" class="cursor-pointer md:hidden block">
