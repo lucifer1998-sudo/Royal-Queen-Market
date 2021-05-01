@@ -83,11 +83,11 @@
                     <div class="bg-rqm-dark p-2">
                         <details class="mb-4" open>
                             <summary class="flex items-center justify-between text-rqm-yellow text-sm">
-                                    <span>
-                                        Welcome to Aurora Cannabis Market
+                                    <span class="mr-5">
+                                        Welcome to Royal Queen Cannabis Market
                                     </span>
-                                <hr class="w-3/4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <hr class="flex-grow">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                 </svg>
                             </summary>
