@@ -11,7 +11,7 @@
         <div class="w-1/2 flex">
             <div class="pl-14 my-auto">
                 <div>
-                    <span class="text-5xl text-rqm-yellow-darkest w-10/12">Exotic Plant Market</span>
+                    <span class="text-5xl text-rqm-yellow-darkest w-10/12">Royal Queen Market</span>
                 </div>
                 <div class="pt-8">
                     <p class="text-gray-400 w-10/12 text-justify">
@@ -19,9 +19,11 @@
                     </p>
                 </div>
                 <div class="pt-10">
-                    <button class="bg-rqm-yellow-dark font-extrabold px-5 py-2 rounded-sm text-rqm-dark">
-                        Buy Now
-                    </button>
+                    <a href="{{URL('shop')}}">
+                        <button class="bg-rqm-yellow-dark font-extrabold px-5 py-2 rounded-sm text-rqm-dark">
+                            Shop Now
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
