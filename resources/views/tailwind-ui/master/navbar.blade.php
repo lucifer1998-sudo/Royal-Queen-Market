@@ -1,4 +1,4 @@
-<nav id="header" class="bg-rqm-lighter w-full z-30 top-0 py-1">
+<nav id="header" class="bg-rqm-lighter m-10 py-1 py-3 relative top-0 w-full z-30">
     <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
 
         <label for="menu-toggle" class="cursor-pointer md:hidden block">
@@ -14,7 +14,7 @@
                 <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
                     <li>
                         <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="{{URL('/')}}">
-                            <img src="{{URL::asset('/media/royal-queen-logo.png')}}" class="w-24" alt="">
+                            <img src="{{URL::asset('/media/royal-queen-logo.png')}}" class="absolute bottom-0 w-2/12" alt="">
                         </a>
                     </li>
                 </ul>
@@ -22,24 +22,24 @@
         </div>
 
         <div class="order-2 md:order-3 flex items-center" id="nav-content">
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('featured')}}">
+            <a class="text-white {{Request::is('featured') ? "text-rqm-yellow" : '' }}  px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('featured')}}">
                 Featured
             </a>
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('shop')}}">
+            <a class="text-white {{Request::is('shop') ? "text-rqm-yellow" : '' }} px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('shop')}}">
                 Shop
             </a>
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('vendors')}}">
+            <a class="text-white {{Request::is('vendors') ? "text-rqm-yellow" : '' }} px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('vendors')}}">
                 Vendors
             </a>
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('faqs')}}">
+            <a class="text-white {{Request::is('faqs') ? "text-rqm-yellow" : '' }} px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('faqs')}}">
                 FAQs
             </a>
 
-            <a class="text-rqm-yellow px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{ route('profile.tickets') }}">
+            <a class="text-white @isroute('profile.tickets') text-rqm-yellow @endisroute px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{ route('profile.tickets') }}">
                 Contact Us
             </a>
 
-            <a class="text-rqm-yellow px-5 pl-3 inline-block no-underline hover:text-rqm-yellow-dark px-5" href="#">
+            <a class="text-white @isroute('profile.cart') text-rqm-yellow @endisroute px-5 pl-3 inline-block no-underline hover:text-rqm-yellow-dark px-5" href="{{route('profile.cart')}}">
                 <svg class="fill-current hover:text-rqm-yellow-dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z" />
                     <circle cx="10.5" cy="18.5" r="1.5" />
@@ -47,7 +47,7 @@
                 </svg>
             </a>
 
-            <div class="group hover:text-rqm-yellow-dark inline-block no-underline text-rqm-yellow pl-3">
+            <div class="text-white @isroute('profile.index') text-rqm-yellow @endisroute group hover:text-rqm-yellow-dark inline-block no-underline pl-3">
                 <svg class="fill-current hover:text-rqm-yellow-dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <circle fill="none" cx="12" cy="7" r="3" />
                     <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />
