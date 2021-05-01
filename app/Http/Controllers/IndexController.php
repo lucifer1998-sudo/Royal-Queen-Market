@@ -32,10 +32,11 @@ class IndexController extends Controller
             $featuredProducts = null;
         else
             $featuredProducts = FeaturedProducts::get();
-
+        $products = Product::paginate(12);
         return view('tailwind-ui.welcome', [
             'productsView' => session() -> get('products_view'),
-            'products' => Product::inRandomOrder()->limit(12)->get(),
+//            'products' => Product::inRandomOrder()->limit(12)->get(), // this is the old; for welcome page
+            'products' => $products,
             'categories' => Category::roots(),
             'featuredProducts' => $featuredProducts
         ]);

@@ -25,9 +25,9 @@
             <a class="text-white {{Request::is('featured') ? "text-rqm-yellow" : '' }}  px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('featured')}}">
                 Featured
             </a>
-            <a class="text-white {{Request::is('shop') ? "text-rqm-yellow" : '' }} px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('shop')}}">
-                Shop
-            </a>
+{{--            <a class="text-white {{Request::is('shop') ? "text-rqm-yellow" : '' }} px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('shop')}}">--}}
+{{--                Shop--}}
+{{--            </a>--}}
             <a class="text-white {{Request::is('vendors') ? "text-rqm-yellow" : '' }} px-5 inline-block no-underline hover:text-rqm-yellow-dark" href="{{URL('vendors')}}">
                 Vendors
             </a>

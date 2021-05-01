@@ -66,23 +66,62 @@
                 </form>
             </div>
         </div>
-        <div class="bg-rqm-dark ml-5 p-5 w-4/5">
-            <div class="grid gap-4 grid-cols-4">
+        <div class="bg-rqm-dark p-5 w-4/5 relative">
+            <div class="absolute inset-0 bg-repeat h-full opacity-10 w-full" style="background-image: url({{URL::asset('/media/bg.cleaned.png')}})">
+                <span></span>
+            </div>
+            <div class="grid gap-6 grid-cols-4">
                 @foreach($products as $product)
-                    <div class="w-full p-6 flex flex-col bg-rqm-light shadow-md">
+                    <div class="border border-gray-500 flex flex-col py-7 rounded-2xl shadow-md w-full relative">
+                        <div class="flex justify-center pb-5">
+                            <div class="break-words justify-center text-center text-white w-1/2 font-black">{{$product->name}}</div>
+                        </div>
                         <a href="{{ route('product.show', $product) }}">
-                            <img class="rounded-md hover:grow hover:shadow-lg w-full" src="{{ asset('storage/'  . $product -> frontImage() -> image) }}" alt="{{$product->name}}">
-                            <div class="pt-3 flex items-center justify-between">
-                                <p class="text-rqm-yellow-dark">{{$product->name}}</p>
-                                <svg class="h-6 w-6 fill-current text-rqm-yellow-darkest hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                    <path d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z" />
-                                </svg>
+                            <div class="w-full px-7">
+                                <img class="rounded-2xl hover:grow hover:shadow-lg w-full" src="{{ asset('storage/'  . $product -> frontImage() -> image) }}" alt="{{$product->name}}">
                             </div>
-                            <p class="pt-1 text-rqm-yellow-dark">@include('includes.currency', ['usdValue' => $product -> price_from ])</p>
-                            <div class="flex items-end justify-between">
-                                <small class="text-gray-400">Posted by {{ $product -> user -> username }}</small>
-                                <button class="bg-rqm-yellow-dark font-extrabold px-3 py-1 rounded-sm text-rqm-dark">
-                                    Buy Now
+                            <div class="flex items-center justify-center py-3">
+                                <p class="font-black pt-1 text-2xl text-white">@include('includes.currency', ['usdValue' => $product -> price_from ])</p>
+                            </div>
+                            <div class="bg-gray-500 bg-opacity-25 flex items-center justify-between px-6 py-3">
+                                <div class="text-rqm-yellow">
+                                    {{ $product -> user -> username }}
+                                </div>
+                                <div class="flex">
+                                    @foreach($product -> getCoins() as $coin)
+                                        <span class="px-1 text-white">{{ strtoupper(\App\Purchase::coinDisplayName($coin)) }}</span>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @if($product -> type != 'digital')
+                                <div class="flex items-center justify-center pb-14 pt-3 px-6">
+                                    <div class="">
+                                        <div class="px-1 text-center text-white">
+                                            Ships from {{ $product -> specificProduct() -> shipsFrom() }}
+                                        </div>
+                                        <div class="px-1 text-center text-white">
+                                            Ships to {{ $product -> specificProduct() -> shipsTo() }} @if(! empty($product -> specificProduct() -> countriesLong())) : <em>{{ $product -> specificProduct() -> countriesLong() }}</em> @endif
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @else
+                                <div class="flex items-center justify-center pb-14 pt-3 px-6">
+                                    <div class="">
+                                        <div class="px-1 text-center text-white">
+                                            Digital Product
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="absolute bottom-7 flex inset-x-0 items-end justify-center">
+                                <button class="bg-rqm-yellow-dark flex font-extrabold px-6 py-1 rounded-3xl text-rqm-dark">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
+                                    </span>
+                                    <span class="px-2">Buy Now</span>
                                 </button>
                             </div>
                         </a>
