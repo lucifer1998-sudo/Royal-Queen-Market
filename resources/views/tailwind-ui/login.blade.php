@@ -12,7 +12,7 @@
                     </div>
                     <div class="justify-center py-5 text-rqm-yellow">
                         <div class="text-2xl w-full flex justify-center font-sans roboto">LOGIN</div>
-                        <div class="flex font-extralight justify-center text-1xl w-full font-sans roboto">Sessions epires every 90 minutes</div>
+                        <div class="flex font-extralight justify-center text-1xl w-full font-sans roboto">Sessions expires every 90 minutes</div>
                     </div>
                     <form action="{{ route('auth.signin.post') }}" method="POST">
                         @csrf
@@ -25,34 +25,26 @@
                         @endif
                         <div class="flex justify-center py-1">
                             <div class="flex justify-center">
-                                <div class="bg-rqm-light flex items-center px-4 py-1 text-rqm-yellow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <div class="bg-rqm-light px-2 py-1 relative flex w-full flex-wrap items-stretch">
+                                    <span class="leading-snug z-10 h-full absolute text-rqm-yellow items-center justify-center px-4 py-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-                                </div>
-                                <div class="bg-rqm-light px-2 py-1">
-                                    <input type="text" id="username" name="username" placeholder="Username" class=" py-1 rounded-full" />
+                                    </svg></span>
+                                    <input type="text" id="username" name="username" placeholder="Username" class=" py-1 rounded-full relative w-full pl-10" />
                                 </div>
                             </div>
                         </div>
                         <div class="flex justify-center py-1">
                             <div class="flex justify-center">
-                                <div class="bg-rqm-light flex items-center px-4 py-1 text-rqm-yellow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                                    </svg>
-                                </div>
                                 <div class="bg-rqm-light px-2 py-1">
-                                    <input type="password" id="password" name="password" placeholder="Password" class=" py-1 rounded-full" />
+                                    <span class="leading-snug z-10 h-full absolute text-rqm-yellow items-center justify-center px-4 py-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                                    </svg></span>
+                                    <input type="password" id="password" name="password" placeholder="Password" class=" py-1 rounded-full relative w-full pl-10" />
                                 </div>
                             </div>
                         </div>
                         <div class="flex justify-center">
-                            <div class="flex justify-end w-64">
-                                <a href="#" class="text-rqm-yellow-darkest text-sm">
-                                    Forgot Password?
-                                </a>
-                            </div>
+                            
                         </div>
                         <div class="flex justify-center pt-5">
                             <div>
@@ -74,20 +66,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex justify-center pt-3">
+                        <div class="flex">
                             <div>
-                                <div class="flex justify-center text-lg text-rqm-yellow w-64">
-                                    <a href="{{route('auth.signup')}}" class="w-full">
+                                <div class="flex justify-center text-lg w-64">
+                                    
+                                <a href="#" class=" w-full">
+                                    <button type="button" value="lostPw" class="w-full">I Lost My Password</button>
+                                </a>
+                            
+                                    <a href="{{route('auth.signup')}}" class=" w-full">
                                         <button type="button" value="Log In" class="w-full">Sign Up</button>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex justify-center py-5 w-full">
-                            <img src="{{URL::asset('/media/bottom-separator-1.png')}}" class="h-1/3 transform" alt="">
-                        </div>
+                        
                     </form>
                 </div>
+            </div>
+            <div class="flex justify-center py-5 w-full">
+                            <img src="{{URL::asset('/media/bottom-separator-1.png')}}" class="h-1/3 transform" alt="">
             </div>
         </div>
     </div>
