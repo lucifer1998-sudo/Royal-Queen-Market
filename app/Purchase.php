@@ -110,6 +110,7 @@ class Purchase extends Model
      */
     public function getPayment()
     {
+
         if($this -> payment == null)
             $this -> payment = app() -> makeWith(\App\Marketplace\Payment\Payment::class, ['purchase' => $this]);
         return $this -> payment;

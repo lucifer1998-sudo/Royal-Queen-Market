@@ -7,6 +7,8 @@ use App\Marketplace\Utility\RPCWrapper;
 use App\Marketplace\Utility\BitcoinConverter;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Auth;
+use App\User;
 
 class BitcoinMutlisig implements Coin
 {
@@ -39,17 +41,49 @@ class BitcoinMutlisig implements Coin
     function generateAddress(array $params = []): string
     {
         // only if the btc user is set then call with parameter
-        if(array_key_exists('btc_user', $params))
-            $address = $this -> bitcoind -> getnewaddress($params['btc_user']);
-        else
-            $address = $this -> bitcoind -> getnewaddress();
+        $user = Auth::user();
+        $vendor = User::findOrFail($params['user']);
+        $vendorKey = $vendor->coinAddress('btcm')->address;
+        $userKey = $user->coinAddress('btcm')->address;
+        #$keys =  array($vendorKey, $userKey);
+        #$keys = "[\".$vendorKey.\",\".$userKey.\"]";
+        #dd($keys);
+        #$keys = ["\" . $vendorKey . \",\" . $userKey . \""]
+        #dd($keys);
+        if(array_key_exists('user', $params)) {
+            Log::error("trigger");
+            $address = $this -> bitcoind -> createmultisig(2, [$vendorKey, $userKey]); }
+        else {
+            $address = $this -> bitcoind -> createmultisig();
+        }
 
         // Error in bitcoin
         if($this -> bitcoind -> error)
 
             throw new \Exception($this -> bitcoind -> error);
+        
 
-        return $address;
+        $p2sh_address = $address['address'];
+        $redeemScript = $address['redeemScript'];
+
+        // $import_result = $this -> bitcoind -> importmulti(
+        //     [
+        //         [
+        //             'redeemscript' => $redeemScript,
+        //             'scriptPubKey' => ['address' => $p2sh_address],
+        //             'timestamp'    => "now",
+        //             'watchonly' => true,
+
+        //         ]
+        //     ],
+        //     [
+        //         'rescan' => false
+        //     ]);
+
+        // $unspent_transaction = $this -> bitcoind -> listunspent(2, 999999);
+
+        // dd($unspent_transaction);
+        return $p2sh_address;
     }
 
 

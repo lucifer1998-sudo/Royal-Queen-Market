@@ -19,7 +19,12 @@ class Escrow extends Payment
     function purchased()
     {
         // generate escrow address as the account pass the Purchase id
-        $this->purchase->address = $this->coin->generateAddress(['user' => $this->purchase->id]);
+        if ($this->purchase->coin_name = "btcm") {
+            $this->purchase->address = $this->coin->generateAddress(['user' => $this->purchase->vendor_id]);
+        } else {
+            $this->purchase->address = $this->coin->generateAddress(['user' => $this->purchase->id]);
+        }
+        
     }
 
     /**
