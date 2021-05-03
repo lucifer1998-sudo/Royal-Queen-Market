@@ -11,6 +11,7 @@
         "ext-xmlrpc": "*",
         "barryvdh/laravel-ide-helper": "^2.4",
         "beyondcode/laravel-vouchers": "^1.3",
+        "bitwasp/bitcoin": "^1.0",
         "defuse/php-encryption": "^2.2",
         "doctrine/dbal": "^2.9",
         "elasticsearch/elasticsearch": "^7.12",
@@ -49,7 +50,10 @@
             "Modules\\": "Modules/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/http/bech32.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

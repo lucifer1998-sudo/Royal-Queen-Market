@@ -9,6 +9,21 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Auth;
 use App\User;
+use BitWasp\Bitcoin\Address\AddressCreator;
+use BitWasp\Bitcoin\Bitcoin;
+use BitWasp\Bitcoin\Key\Deterministic\HdPrefix\GlobalPrefixConfig;
+use BitWasp\Bitcoin\Key\Deterministic\HdPrefix\NetworkConfig;
+use BitWasp\Bitcoin\Key\Factory\HierarchicalKeyFactory;
+use BitWasp\Bitcoin\Network\Slip132\BitcoinRegistry;
+use BitWasp\Bitcoin\Key\Deterministic\Slip132\Slip132;
+use BitWasp\Bitcoin\Key\KeyToScript\KeyToScriptHelper;
+use BitWasp\Bitcoin\Network\NetworkFactory;
+use BitWasp\Bitcoin\Serializer\Key\HierarchicalKey\Base58ExtendedKeySerializer;
+use BitWasp\Bitcoin\Serializer\Key\HierarchicalKey\ExtendedKeySerializer;
+use BitWasp\Bitcoin\Base58;
+use BitWasp\Bitcoin\Key\Deterministic\MultisigHD;
+use BitWasp\Bitcoin\Key\Deterministic\ElectrumKey;
+
 
 class BitcoinMutlisig implements Coin
 {
@@ -45,14 +60,49 @@ class BitcoinMutlisig implements Coin
         $vendor = User::findOrFail($params['user']);
         $vendorKey = $vendor->coinAddress('btcm')->address;
         $userKey = $user->coinAddress('btcm')->address;
-        #$keys =  array($vendorKey, $userKey);
-        #$keys = "[\".$vendorKey.\",\".$userKey.\"]";
-        #dd($keys);
-        #$keys = ["\" . $vendorKey . \",\" . $userKey . \""]
-        #dd($keys);
+
+        $adapter = Bitcoin::getEcAdapter();
+        $btc = NetworkFactory::bitcoin();
+
+        // Initialize Slip132 and produce the p2wsh multisig prefixes + factory
+        $slip132 = new Slip132(new KeyToScriptHelper($adapter));
+        $ZpubPrefix = $slip132->p2wshMultisig($m = 2, $n = 2, $sortCosignKeys = true, new BitcoinRegistry());
+
+        // NetworkConfig and GlobalPrefixConfig should be set
+        // with the minimum features required for your application,
+        // otherwise you'll accept keys you didn't want.
+        $serializer = new Base58ExtendedKeySerializer(new ExtendedKeySerializer($adapter, new GlobalPrefixConfig([
+            new NetworkConfig($btc, [$ZpubPrefix,])
+        ])));
+
+        $hkFactory = new HierarchicalKeyFactory($adapter, $serializer);
+
+        $key1 = "Zpub6yxUjtA5aNroCK8oNe8qUCDHGkYEX2ypW4CQ81tWi1ETk4mN9N72fYuWuAPWDWmpLEi7H4odKwm8sUCmxf8XcauKTYkhXLuzVxPhBjiExVg";
+        $key2 = "Zpub6yTwvGJ1hG6amvwSsTaeSUnS6Ffy6pGESMFn4NVTicwwaYMvJ9NhZABaxQH1hY9zzx3DgAdL44CYc2qRWdGGaWZqQ52uXWMVPd1aTxGBvhw";
+
+        $test1 = $hkFactory->fromExtended($key1, $btc);
+        $multisigHdKeys = [
+            $hkFactory->fromExtended($key1, $btc),
+            $hkFactory->fromExtended($key2, $btc)
+        ];
+
+
+
+        $accountNode = $hkFactory->multisig($ZpubPrefix->getScriptDataFactory(), ...$multisigHdKeys);
+        $receivingNode = $accountNode->deriveChild(0);
+        $x = new MultisigHD($ZpubPrefix->getScriptDataFactory(), ...$multisigHdKeys);
+        #Base58::decodeCheck($base58)
+        #$y = $serializer->parse($btc, $x->getKeys()[0])
+        $y = $x->getKeys()[0];
+        $z = $x->getKeys()[1];
+        #dd($y->getPublicKey());
+
+    
+
+        #dd($receivingNode->getKeys());
         if(array_key_exists('user', $params)) {
-            Log::error("trigger");
-            $address = $this -> bitcoind -> createmultisig(2, [$vendorKey, $userKey]); }
+            #Log::error("trigger");
+            $address = $this -> bitcoind -> createmultisig(2, [$y, $z]); }
         else {
             $address = $this -> bitcoind -> createmultisig();
         }
