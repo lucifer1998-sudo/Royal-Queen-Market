@@ -50,10 +50,7 @@
             "Modules\\": "Modules/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        },
-        "files": [
-            "app/http/bech32.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
