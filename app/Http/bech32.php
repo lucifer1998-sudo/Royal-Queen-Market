@@ -63,6 +63,7 @@ function hrpExpand($hrp, $hrpLen)
  * @param bool $pad - whether to pad (only when encoding)
  * @return int[]
  * @throws Exception
+ asdasdadadasd
  */
 function convertBits(array $data, $inLen, $fromBits, $toBits, $pad = true)
 {
