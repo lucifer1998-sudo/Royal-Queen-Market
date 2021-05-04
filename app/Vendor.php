@@ -5,6 +5,7 @@ namespace App;
 use App\Marketplace\Payment\FinalizeEarlyPayment;
 use App\Traits\Experience;
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 class Vendor extends User
 {
     use Uuids;
+
     use Experience;
     protected $table = 'vendors';
     protected $keyType = 'string';

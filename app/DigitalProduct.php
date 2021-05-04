@@ -5,11 +5,11 @@ namespace App;
 use App\Exceptions\RequestException;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Hashidable;
 
 class DigitalProduct extends User
 {
     use Uuids;
-
     /**
      * Return instance of the product
      *

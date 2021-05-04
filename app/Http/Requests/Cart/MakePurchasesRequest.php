@@ -76,6 +76,7 @@ class MakePurchasesRequest extends FormRequest
             try{
                 DB::beginTransaction();
                 // foreach item in cart
+                
                 foreach (Cart::getCart() -> items() as $productId => $item){
                     // Purchase procedure
                     $item -> purchased(0);

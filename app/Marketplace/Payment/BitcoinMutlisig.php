@@ -9,20 +9,10 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Auth;
 use App\User;
-use BitWasp\Bitcoin\Address\AddressCreator;
-use BitWasp\Bitcoin\Bitcoin;
-use BitWasp\Bitcoin\Key\Deterministic\HdPrefix\GlobalPrefixConfig;
-use BitWasp\Bitcoin\Key\Deterministic\HdPrefix\NetworkConfig;
-use BitWasp\Bitcoin\Key\Factory\HierarchicalKeyFactory;
-use BitWasp\Bitcoin\Network\Slip132\BitcoinRegistry;
-use BitWasp\Bitcoin\Key\Deterministic\Slip132\Slip132;
-use BitWasp\Bitcoin\Key\KeyToScript\KeyToScriptHelper;
-use BitWasp\Bitcoin\Network\NetworkFactory;
-use BitWasp\Bitcoin\Serializer\Key\HierarchicalKey\Base58ExtendedKeySerializer;
-use BitWasp\Bitcoin\Serializer\Key\HierarchicalKey\ExtendedKeySerializer;
-use BitWasp\Bitcoin\Base58;
-use BitWasp\Bitcoin\Key\Deterministic\MultisigHD;
-use BitWasp\Bitcoin\Key\Deterministic\ElectrumKey;
+use App\Purchase;
+use BitWasp\BitcoinLib\BIP32;
+use BitWasp\BitcoinLib\BitcoinLib;
+
 
 
 class BitcoinMutlisig implements Coin
@@ -61,80 +51,136 @@ class BitcoinMutlisig implements Coin
         $vendorKey = $vendor->coinAddress('btcm')->address;
         $userKey = $user->coinAddress('btcm')->address;
 
-        $adapter = Bitcoin::getEcAdapter();
-        $btc = NetworkFactory::bitcoin();
+        #$key1 = "tpubD6NzVbkrYhZ4YBNMHhprevfo2UxYCnxKuWDXN9HcY252rRo9W1Zvfn2wSHSGeHfSJqdWk8PMaRNpzpJKVz8Va2vx5wiDAdt5PhMnRPqUtwJ";
 
-        // Initialize Slip132 and produce the p2wsh multisig prefixes + factory
-        $slip132 = new Slip132(new KeyToScriptHelper($adapter));
-        $ZpubPrefix = $slip132->p2wshMultisig($m = 2, $n = 2, $sortCosignKeys = true, new BitcoinRegistry());
+        $keys = [$userKey, $vendorKey];
+        $m = 2;
+        $userPrefix = $user->purchases()->count() + 1;
+        $vendorPrefix = $vendor->sales()->count() + 1;
+        #dd($vendorPrefix);
 
-        // NetworkConfig and GlobalPrefixConfig should be set
-        // with the minimum features required for your application,
-        // otherwise you'll accept keys you didn't want.
-        $serializer = new Base58ExtendedKeySerializer(new ExtendedKeySerializer($adapter, new GlobalPrefixConfig([
-            new NetworkConfig($btc, [$ZpubPrefix,])
-        ])));
+        $bip32user = BIP32::build_key(array($userKey, "M"), "0/" . $userPrefix);
+        $pubkeyUser = BIP32::extract_public_key($bip32user);
+        $bip32vendor = BIP32::build_key(array($vendorKey, "M"), "0/" . $vendorPrefix);
+        $pubkeyVendor = BIP32::extract_public_key($bip32vendor);
+        #dd($pubkeyUser);
 
-        $hkFactory = new HierarchicalKeyFactory($adapter, $serializer);
-
-        $key1 = "Zpub6yxUjtA5aNroCK8oNe8qUCDHGkYEX2ypW4CQ81tWi1ETk4mN9N72fYuWuAPWDWmpLEi7H4odKwm8sUCmxf8XcauKTYkhXLuzVxPhBjiExVg";
-        $key2 = "Zpub6yTwvGJ1hG6amvwSsTaeSUnS6Ffy6pGESMFn4NVTicwwaYMvJ9NhZABaxQH1hY9zzx3DgAdL44CYc2qRWdGGaWZqQ52uXWMVPd1aTxGBvhw";
-
-        $test1 = $hkFactory->fromExtended($key1, $btc);
-        $multisigHdKeys = [
-            $hkFactory->fromExtended($key1, $btc),
-            $hkFactory->fromExtended($key2, $btc)
-        ];
-
-
-
-        $accountNode = $hkFactory->multisig($ZpubPrefix->getScriptDataFactory(), ...$multisigHdKeys);
-        $receivingNode = $accountNode->deriveChild(0);
-        $x = new MultisigHD($ZpubPrefix->getScriptDataFactory(), ...$multisigHdKeys);
-        #Base58::decodeCheck($base58)
-        #$y = $serializer->parse($btc, $x->getKeys()[0])
-        $y = $x->getKeys()[0];
-        $z = $x->getKeys()[1];
-        #dd($y->getPublicKey());
-
-    
-
-        #dd($receivingNode->getKeys());
         if(array_key_exists('user', $params)) {
             #Log::error("trigger");
-            $address = $this -> bitcoind -> createmultisig(2, [$y, $z]); }
+            $address = $this -> bitcoind -> createmultisig(2, [$pubkeyUser, $pubkeyVendor]); 
+           # dd($address);
+        }
         else {
             $address = $this -> bitcoind -> createmultisig();
         }
 
+       # $test = $this -> bitcoind -> getreceivedbyaddress ($address['address'], 2);
+        #dd($test);
+        #dd($address['address']);
         // Error in bitcoin
         if($this -> bitcoind -> error)
 
             throw new \Exception($this -> bitcoind -> error);
         
 
-        $p2sh_address = $address['address'];
+        #dd($address);
         $redeemScript = $address['redeemScript'];
+        $x = $address['address'];
 
-        // $import_result = $this -> bitcoind -> importmulti(
-        //     [
-        //         [
-        //             'redeemscript' => $redeemScript,
-        //             'scriptPubKey' => ['address' => $p2sh_address],
-        //             'timestamp'    => "now",
-        //             'watchonly' => true,
+      #  $this  -> multisig_address = $x;
+      #  $this -> redeem_script = $redeemScript;
+      
 
-        //         ]
-        //     ],
-        //     [
-        //         'rescan' => false
-        //     ]);
+        $import_result = $this -> bitcoind -> importmulti(
+            [
+                [
+                    'redeemscript' => $redeemScript,
+                    'scriptPubKey' => ['address' => $x],
+                    'timestamp'    => "now",
+                    'watchonly' => false,
 
-        // $unspent_transaction = $this -> bitcoind -> listunspent(2, 999999);
+                ]
+            ],
+            [
+                'rescan' => false
+            ]);
 
-        // dd($unspent_transaction);
-        return $p2sh_address;
+        //  $unspent_transaction = $this -> bitcoind -> listunspent(2, 999999);
+
+        # dd($import_result);
+        
+        return $x;
     }
+
+
+    // function getRedeemScript(array $params = []): string
+    // {
+    //     // only if the btc user is set then call with parameter
+    //     $user = Auth::user();
+    //     $vendor = User::findOrFail($params['user']);
+    //     $vendorKey = $vendor->coinAddress('btcm')->address;
+    //     $userKey = $user->coinAddress('btcm')->address;
+
+    //     #$key1 = "tpubD6NzVbkrYhZ4YBNMHhprevfo2UxYCnxKuWDXN9HcY252rRo9W1Zvfn2wSHSGeHfSJqdWk8PMaRNpzpJKVz8Va2vx5wiDAdt5PhMnRPqUtwJ";
+
+    //     $keys = [$userKey, $vendorKey];
+    //     $m = 2;
+    //     $userPrefix = $user->purchases()->count() + 1;
+    //     $vendorPrefix = $vendor->sales()->count() + 1;
+    //     #dd($vendorPrefix);
+
+    //     $bip32user = BIP32::build_key(array($userKey, "M"), "0/" . $userPrefix);
+    //     $pubkeyUser = BIP32::extract_public_key($bip32user);
+    //     $bip32vendor = BIP32::build_key(array($vendorKey, "M"), "0/" . $vendorPrefix);
+    //     $pubkeyVendor = BIP32::extract_public_key($bip32vendor);
+    //     #dd($pubkeyUser);
+
+    //     if(array_key_exists('user', $params)) {
+    //         #Log::error("trigger");
+    //         $address = $this -> bitcoind -> createmultisig(2, [$pubkeyUser, $pubkeyVendor]); 
+    //        # dd($address);
+    //     }
+    //     else {
+    //         $address = $this -> bitcoind -> createmultisig();
+    //     }
+
+    //    # $test = $this -> bitcoind -> getreceivedbyaddress ($address['address'], 2);
+    //     #dd($test);
+    //     #dd($address['address']);
+    //     // Error in bitcoin
+    //     if($this -> bitcoind -> error)
+
+    //         throw new \Exception($this -> bitcoind -> error);
+        
+
+    //     #dd($address);
+    //     $redeemScript = $address['redeemScript'];
+    //     $x = $address['address'];
+
+    //    # $this  -> multisig_address = $x;
+    //     #$this -> redeem_script = $redeemScript;
+      
+
+    //     $import_result = $this -> bitcoind -> importmulti(
+    //         [
+    //             [
+    //                 'redeemscript' => $redeemScript,
+    //                 'scriptPubKey' => ['address' => $x],
+    //                 'timestamp'    => "now",
+    //                 'watchonly' => false,
+
+    //             ]
+    //         ],
+    //         [
+    //             'rescan' => false
+    //         ]);
+
+    //     //  $unspent_transaction = $this -> bitcoind -> listunspent(2, 999999);
+
+    //     # dd($import_result);
+        
+    //     return $redeemScript;
+    // }
 
 
     /**
@@ -147,16 +193,22 @@ class BitcoinMutlisig implements Coin
     function getBalance(array $params = []): float
     {
         // first check by address
-        if(array_key_exists('address', $params))
+        if(array_key_exists('address', $params)) {
             $accountBalance = $this -> bitcoind -> getreceivedbyaddress($params['address'], (int)config('marketplace.bitcoin.minconfirmations'));
+
+        }
+
+        
 //        else if(array_key_exists('account', $params))
 //            // fetch the balance of the account if this parameter is set
 //            $accountBalance = $this -> bitcoind -> getbalance($params['account'], (int)config('marketplace.bitcoin.minconfirmations'));
-        else
+        else {
             throw new \Exception('You havent specified any parameter');
+        }
 
-        if($this -> bitcoind -> error)
+        if($this -> bitcoind -> error) {
             throw new \Exception($this -> bitcoind -> error);
+        }
 
         return $accountBalance;
     }
@@ -171,6 +223,7 @@ class BitcoinMutlisig implements Coin
      */
     function sendToAddress(string $toAddress, float $amount)
     {
+
         // call bitcoind procedure
         $this -> bitcoind -> sendtoaddress($toAddress, $amount);
 

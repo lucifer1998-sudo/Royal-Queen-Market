@@ -3,11 +3,13 @@
 namespace App;
 
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Model;
 
 class Notification extends Model
 {
     use Uuids;
+
     public $incrementing = false;
     protected $primaryKey = 'id';
     protected $keyType = 'string';

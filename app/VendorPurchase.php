@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Log;
 class VendorPurchase extends Model
 {
     use Uuids;
+
     protected $keyType = 'string';
     protected $primaryKey = 'id';
     public $incrementing = false;
@@ -145,6 +147,7 @@ class VendorPurchase extends Model
 
         }
         catch (\Exception $e){
+            Log::error("This");
             Log::warning($e);
             return false;
         }

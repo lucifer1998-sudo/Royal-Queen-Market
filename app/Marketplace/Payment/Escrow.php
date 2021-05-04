@@ -21,6 +21,8 @@ class Escrow extends Payment
         // generate escrow address as the account pass the Purchase id
         if ($this->purchase->coin_name = "btcm") {
             $this->purchase->address = $this->coin->generateAddress(['user' => $this->purchase->vendor_id]);
+            // $this->purchase->multisig_address = $this->purchase->address;
+            // $this->purchase->redeem_script = $this->coin->getRedeemScript(['user' => $this->purchase->vendor_id]);
         } else {
             $this->purchase->address = $this->coin->generateAddress(['user' => $this->purchase->id]);
         }
@@ -43,12 +45,13 @@ class Escrow extends Payment
         $feeCaluclator = new FeeCalculator($this->purchase->to_pay);
 
         // make array of receivers
+        
         $receiversAmounts = [
             // vendor receiver
             $this->purchase->vendor->user-> coinAddress($this -> coinLabel()) -> address
                 => $feeCaluclator->getBase(),
         ];
-
+        #dd('here');
         // check if user has refered user
         $hasReferral = $this -> purchase -> buyer -> hasReferredBy();
 
@@ -62,6 +65,46 @@ class Escrow extends Payment
 
         // send the funds to the random address of the market
         $marketplaceAddresses = config('coins.market_addresses.' . $this -> coinLabel());
+
+        if (!empty($marketplaceAddresses)) {
+            $randomMarketAddress = $marketplaceAddresses[array_rand($marketplaceAddresses)];
+            $receiversAmounts[$randomMarketAddress] = $feeCaluclator->getFee($hasReferral);
+        }
+
+        // call a coin procedure to send funds
+        $this->coin->sendToMany($receiversAmounts);
+
+    }
+
+    function multisigdelivered()
+    {
+#        dd($this->purchase->vendor->user-> coinAddress($this -> coinLabel()));
+        // fee that needs to be caluclated
+        #dd($this -> coinLabel());
+        $feeCaluclator = new FeeCalculator($this->purchase->to_pay);
+
+        // make array of receivers
+        
+        $receiversAmounts = [
+            // vendor receiver
+            $this->purchase->vendor->user-> coinAddress($this -> coinLabel()) -> address
+                => $feeCaluclator->getBase(),
+        ];
+        #dd('here');
+        // check if user has refered user
+        $hasReferral = $this -> purchase -> buyer -> hasReferredBy();
+
+        // set the buyer's referred by user into receivers
+        if($hasReferral){
+            $referredByUserAddress = $this -> purchase -> buyer -> referredBy -> coinAddress($this -> coinLabel()) -> address;
+
+            $receiversAmounts[$referredByUserAddress] = $feeCaluclator -> getFee($hasReferral);
+        }
+
+
+        // send the funds to the random address of the market
+        $marketplaceAddresses = config('coins.market_addresses.' . $this -> coinLabel());
+
         if (!empty($marketplaceAddresses)) {
             $randomMarketAddress = $marketplaceAddresses[array_rand($marketplaceAddresses)];
             $receiversAmounts[$randomMarketAddress] = $feeCaluclator->getFee($hasReferral);

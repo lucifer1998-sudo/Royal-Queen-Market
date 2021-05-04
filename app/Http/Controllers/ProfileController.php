@@ -556,7 +556,13 @@ class ProfileController extends Controller
     public function markAsDelivered(Purchase $purchase)
     {
         try{
-            $purchase -> delivered();
+            if ($purchase->type == "multisig") {
+                #dd("this works");
+                $purchase -> multisigdelivered();
+            } else {
+
+                $purchase -> delivered();
+            }
         }
         catch(RequestException $e){
             $e -> flashError();

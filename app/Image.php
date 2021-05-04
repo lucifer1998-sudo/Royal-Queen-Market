@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 class Image extends Model
 {
     use Uuids;
+
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;

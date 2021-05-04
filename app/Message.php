@@ -9,6 +9,7 @@ use App\Marketplace\Encryption\EncryptedMessage;
 use App\Marketplace\Encryption\EncryptionKey;
 use App\Marketplace\Encryption\Keypair;
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Carbon\Carbon;
 use Defuse\Crypto\Crypto;
 use Defuse\Crypto\Exception\EnvironmentIsBrokenException;
@@ -21,6 +22,7 @@ use ParagonIE\EasyRSA\PublicKey;
 class Message extends Model
 {
     use Uuids;
+
     public $incrementing = false;
     protected $primaryKey = 'id';
     protected $keyType = 'string';

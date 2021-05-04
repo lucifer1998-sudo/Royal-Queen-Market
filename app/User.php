@@ -9,6 +9,7 @@ use App\Marketplace\Utility\CurrencyConverter;
 use App\Traits\Adminable;
 use App\Traits\Displayable;
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use BeyondCode\Vouchers\Traits\CanRedeemVouchers;
 use App\Traits\Vendorable;
 use Carbon\Carbon;

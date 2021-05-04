@@ -4,11 +4,13 @@ namespace App;
 
 use App\Marketplace\Utility\CurrencyConverter;
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
 {
     use Uuids;
+
     protected $primaryKey = 'id';
     protected $keyType = 'string';
 

@@ -30,30 +30,59 @@ trait Purchasable {
     {
         // check if shipping is not deleted in the mean time
         // shipping is deleted between adding to cart and checkout
-        if($this->shipping && Shipping::where('id',$this->shipping->id)->where('deleted', '=', 1)->exists()){
-            Cart::getCart()->clearCart(); // clear cart
-            throw new RequestException('Selected shipping is deleted, please add the product again.');
-        }
+        #dd($this);
+        if ($this->type == "multisig") {
+            if($this->shipping && Shipping::where('id',$this->shipping->id)->where('deleted', '=', 1)->exists()){
+                Cart::getCart()->clearCart(); // clear cart
+                throw new RequestException('Selected shipping is deleted, please add the product again.');
+            }
 
-        // Generate Payment Service from Service Container
-        $this -> payment = app() -> makeWith(\App\Marketplace\Payment\Payment::class, ['purchase' => $this]);
+            // Generate Payment Service from Service Container
+            $this -> payment = app() -> makeWith(\App\Marketplace\Payment\Payment::class, ['purchase' => $this]);
 
-        // Runs purchased procedure of the payment
-        $this -> getPayment() -> purchased();
-        // Prepare purchase
-        $this -> encryptMessage();
-        // calculate bitcoin to pay in this moment
-        if ($discount == 0) {
-            $this -> to_pay = $this -> getPayment() -> usdToCoin($this -> getSumDollars());
+            // Runs purchased procedure of the payment
+            $this -> getPayment() -> purchased();
+            // Prepare purchase
+            $this -> encryptMessage();
+            // calculate bitcoin to pay in this moment
+            if ($discount == 0) {
+                $this -> to_pay = $this -> getPayment() -> usdToCoin($this -> getSumDollars());
+            } else {
+                $this -> to_pay = $this -> getPayment() -> usdToCoin($this -> getSumDollarsDiscount($discount));
+            }
+            
+            // Substract the quantity from the product
+            $this -> offer -> product -> substractQuantity($this -> quantity);
+            $this -> offer -> product -> save();
+
+            event(new NewPurchase($this));
         } else {
-            $this -> to_pay = $this -> getPayment() -> usdToCoin($this -> getSumDollarsDiscount($discount));
-        }
-        
-        // Substract the quantity from the product
-        $this -> offer -> product -> substractQuantity($this -> quantity);
-        $this -> offer -> product -> save();
+            if($this->shipping && Shipping::where('id',$this->shipping->id)->where('deleted', '=', 1)->exists()){
+                Cart::getCart()->clearCart(); // clear cart
+                throw new RequestException('Selected shipping is deleted, please add the product again.');
+            }
 
-        event(new NewPurchase($this));
+            // Generate Payment Service from Service Container
+            $this -> payment = app() -> makeWith(\App\Marketplace\Payment\Payment::class, ['purchase' => $this]);
+
+            // Runs purchased procedure of the payment
+            $this -> getPayment() -> purchased();
+            // Prepare purchase
+            $this -> encryptMessage();
+            // calculate bitcoin to pay in this moment
+            if ($discount == 0) {
+                $this -> to_pay = $this -> getPayment() -> usdToCoin($this -> getSumDollars());
+            } else {
+                $this -> to_pay = $this -> getPayment() -> usdToCoin($this -> getSumDollarsDiscount($discount));
+            }
+            
+            // Substract the quantity from the product
+            $this -> offer -> product -> substractQuantity($this -> quantity);
+            $this -> offer -> product -> save();
+
+            event(new NewPurchase($this));
+        }
+
 
         // if it is autodelivery mark as sent and run sent procedure
 
@@ -107,6 +136,24 @@ trait Purchasable {
 
         // checking for normal type
         throw_if($this->type!='normal',new RequestException('This purchase is not Escrow type!'));
+
+        // Calling procedure for marking as sent
+        $this->markingAsSent();
+    }
+
+    public function multisigSent()
+    {
+        // checking for vendor
+        if(!$this -> isVendor())
+            throw new RequestException('You must be vendor of this product to mark this sale as sent!');
+
+        // checking for purchased
+        throw_unless($this->state=='purchased', new RequestException(
+            'Purchase must be in purchased state!'
+        ));
+
+        // checking for normal type
+        throw_if($this->type!='multisig',new RequestException('This purchase is not Multisig type!'));
 
         // Calling procedure for marking as sent
         $this->markingAsSent();
@@ -200,6 +247,43 @@ trait Purchasable {
             // state now must be delivered
             throw_unless($this->state=='delivered', new \Exception('This purchase is already delivered!'));
             $this -> getPayment() -> delivered();
+
+            event(new ProductDelivered($this));
+        }
+        catch (\Exception $e){
+            // return to before state
+            $this->state='sent';
+            $this->save();
+
+            // logout the exception message
+
+            Log::error("Purchase $this->id :" . $e ->getMessage());
+
+            throw new RequestException('Error happened! Please try again later!');
+        }
+
+    }
+
+    public function multisigdelivered()
+    {
+        #dd("trigger");
+        if(!$this -> isBuyer())
+            throw new RequestException('You must be buyer to mark this purchase as delivered!');
+
+        throw_if($this->type!='multisig', new RequestException('This purchase must be Multisig type!'));
+
+        // state must be 'sent' to be delivered
+        throw_unless($this->state=='sent', new RequestException('This purchase is already delivered!'));
+
+
+        try{
+            $this->state = 'delivered';
+            $this -> save();
+
+            // state now must be delivered
+            throw_unless($this->state=='delivered', new \Exception('This purchase is already delivered!'));
+
+            $this -> getPayment() -> multisigdelivered();
 
             event(new ProductDelivered($this));
         }

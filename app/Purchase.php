@@ -13,6 +13,7 @@ use App\Marketplace\Utility\UUID;
 use App\Traits\DisplayablePurchase;
 use App\Traits\Purchasable;
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Carbon\Carbon;
 use Faker\Provider\Payment;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,7 @@ class Purchase extends Model
     use Uuids;
     use DisplayablePurchase;
     use Purchasable;
+
     public $incrementing = false;
     protected $keyType = 'string';
 
@@ -35,7 +37,7 @@ class Purchase extends Model
     public static $types = [
         'fe' => 'Finalize Early',
         'normal' => 'Normal Escrow',
-//        'multisig' => 'Multisignature',
+        'multisig' => 'Multisignature',
     ];
     const DEFAULT_TYPE = 'normal';
 
@@ -115,6 +117,11 @@ class Purchase extends Model
             $this -> payment = app() -> makeWith(\App\Marketplace\Payment\Payment::class, ['purchase' => $this]);
         return $this -> payment;
     }
+
+    // public function multisiggetPayment()
+    // {
+
+    // }
 
     public function __construct()
     {

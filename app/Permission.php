@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model

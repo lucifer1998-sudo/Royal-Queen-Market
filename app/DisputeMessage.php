@@ -3,12 +3,14 @@
 namespace App;
 
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class DisputeMessage extends Model
 {
     use Uuids;
+
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;

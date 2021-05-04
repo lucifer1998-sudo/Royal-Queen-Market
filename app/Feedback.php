@@ -3,12 +3,14 @@
 namespace App;
 
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Feedback extends Model
 {
     use Uuids;
+
     public $incrementing = false;
     protected $keyType = 'string';
     protected $primaryKey = 'id';

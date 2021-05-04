@@ -4,6 +4,7 @@ namespace App;
 
 use App\Exceptions\RequestException;
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 

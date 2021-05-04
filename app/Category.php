@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Hashidable;
 
 class Category extends Model
 {

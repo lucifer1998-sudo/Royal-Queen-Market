@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 use Illuminate\Support\Facades\Log;
 use BeyondCode\Vouchers\Traits\HasVouchers;
+use Illuminate\Support\Facades\Crypt;
 
 class Product extends Model
 {
@@ -25,6 +26,14 @@ class Product extends Model
         'name' => 'name',
     ];
 
+    public function getRouteKey()
+    {
+        #$hashids = new Hashids('MySecretSalt');
+        $test = Crypt::encryptString($this->getKey());
+        #Log::error($test);
+        return $test;
+    }
+
     /**
      * Return collection for front page
      *
@@ -34,6 +43,7 @@ class Product extends Model
     {
         return self::where('active', 1) ->  paginate(config('marketplace.products_per_page'));
     }
+
 
 
     /**

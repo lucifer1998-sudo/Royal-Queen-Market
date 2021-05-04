@@ -667,9 +667,14 @@ class VendorController extends Controller
      */
     public function markAsSent(Purchase $sale)
     {
+
         try{
-            $sale -> sent();
-            session() -> flash('success', 'You have successfully marked sale as sent!');
+            if ($sale->type == 'multisig') {
+                $sale -> multisigSent();
+            } else {
+                $sale -> sent();
+                session() -> flash('success', 'You have successfully marked sale as sent!');
+            }
         }
         catch (RequestException $e){
             $e -> flashError();

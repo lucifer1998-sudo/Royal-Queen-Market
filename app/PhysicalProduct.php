@@ -3,11 +3,13 @@
 namespace App;
 
 use App\Traits\Uuids;
+use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Model;
 
 class PhysicalProduct extends User
 {
     use Uuids;
+
     public $incrementing = false;
     protected $keyType = 'string';
     protected $primaryKey = 'id';

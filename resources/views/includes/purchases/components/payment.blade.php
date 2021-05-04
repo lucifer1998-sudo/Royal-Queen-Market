@@ -71,7 +71,19 @@
                         sent</a>
                 @endif
 
+                @if($purchase->type == 'multisig' && $purchase -> isPurchased() && $purchase -> isVendor())
+                    <a href="{{ route('profile.sales.sent.confirm', $purchase) }}"
+                       class="btn btn-outline-mblue"><i class="fas fa-clipboard-check mr-2"></i> Mark as
+                        sent</a>
+                @endif
+
                  @if($purchase->type == 'normal' && $purchase -> isSent() && $purchase -> isBuyer())
+                    <a href="{{ route('profile.purchases.delivered.confirm', $purchase) }}"
+                       class="btn btn-outline-success"><i class="fas fa-clipboard-check mr-2"></i> Mark as
+                        delivered</a>
+                @endif
+
+                 @if($purchase->type == 'multisig' && $purchase -> isSent() && $purchase -> isBuyer())
                     <a href="{{ route('profile.purchases.delivered.confirm', $purchase) }}"
                        class="btn btn-outline-success"><i class="fas fa-clipboard-check mr-2"></i> Mark as
                         delivered</a>

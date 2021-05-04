@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\Uuids;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Hashidable;
 
 
 /**
