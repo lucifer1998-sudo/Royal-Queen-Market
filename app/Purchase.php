@@ -29,6 +29,11 @@ class Purchase extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    public function getRouteKey()
+    {
+        return bin2hex($this->getKey());
+    }
+
     /**
      * Types of purchases
      *
@@ -335,6 +340,7 @@ class Purchase extends Model
      */
     public function isAllowed() : bool
     {
+       # dd($this -> buyer );
         // return true for user and buyer
         return auth() -> check() && // must be logged in
             (  auth() -> user() == $this -> vendor -> user // user is vendor of the sale

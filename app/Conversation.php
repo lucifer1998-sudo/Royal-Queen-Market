@@ -14,6 +14,11 @@ class Conversation extends Model
     protected $primaryKey = 'id';
     protected $keyType = 'string';
 
+    public function getRouteKey()
+    {
+        return bin2hex($this->getKey());
+    }
+
     /**
      * Create conversation for mass message, Sender is null
      *

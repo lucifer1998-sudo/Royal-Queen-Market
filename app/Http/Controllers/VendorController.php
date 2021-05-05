@@ -637,6 +637,7 @@ class VendorController extends Controller
      */
     public function sale(Purchase $sale)
     {
+        #dd($sale);
         if(!$sale -> isAllowed())
             return abort(404);
 

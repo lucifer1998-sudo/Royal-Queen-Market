@@ -61,6 +61,27 @@ class RouteServiceProvider extends ServiceProvider
             return hex2bin($value);
         });
 
+        Route::bind('conversation', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
+        Route::bind('ticket', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
+
+        Route::bind('purchase', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
+        Route::bind('sale', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
 
 
         // Route::bind('shipping', function($value, $route)

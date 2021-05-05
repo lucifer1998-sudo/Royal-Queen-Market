@@ -15,6 +15,11 @@ class Ticket extends Model
     public $incrementing = false;
     protected $primaryKey = 'id';
     protected $keyType = 'string';
+
+    public function getRouteKey()
+    {
+        return bin2hex($this->getKey());
+    }
     /**
      * Opens new ticket with the title, of logged user
      *
