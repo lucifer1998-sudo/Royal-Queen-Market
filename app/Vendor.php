@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 
 class Vendor extends User
 {
@@ -20,6 +21,14 @@ class Vendor extends User
     protected $keyType = 'string';
     protected $primaryKey = 'id';
     protected $fillable = ['id', 'vendor_level', 'about', 'created_at', 'updated_at'];
+
+    // public function getRouteKey()
+    // {
+    //     #$hashids = new Hashids('MySecretSalt');
+    //     $test = Crypt::encryptString($this->getKey());
+    //     #Log::error($test);
+    //     return $test;
+    // }
 
     /**
      * @return Collection of \App\User instaces of all admins

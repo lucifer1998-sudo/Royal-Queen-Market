@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use App\Product;
+use App\Vendor;
+use App\User;
 use Illuminate\Support\Facades\Crypt;
 
 class RouteServiceProvider extends ServiceProvider
@@ -30,6 +32,24 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::bind('product', function($value, $route)
+        {
+            #$hashids = new Hashids\Hashids('MySecretSalt');
+            return Crypt::decryptString($value);
+        });
+
+        // Route::bind('vendor', function($value, $route)
+        // {
+        //     #$hashids = new Hashids\Hashids('MySecretSalt');
+        //     return Crypt::decryptString($value);
+        // });
+
+        Route::bind('user', function($value, $route)
+        {
+            #$hashids = new Hashids\Hashids('MySecretSalt');
+            return Crypt::decryptString($value);
+        });
+
+        Route::bind('category', function($value, $route)
         {
             #$hashids = new Hashids\Hashids('MySecretSalt');
             return Crypt::decryptString($value);

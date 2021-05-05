@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use Monolog\Logger;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Support\Facades\Crypt;
 
 
 class User extends Authenticatable
@@ -32,6 +33,16 @@ class User extends Authenticatable
     use Adminable;
     use Displayable;
     use CanRedeemVouchers;
+
+    public function getRouteKey()
+    {
+        #$hashids = new Hashids('MySecretSalt');
+        #dd($this->getKey());
+        $test = Crypt::encryptString($this->getKey());
+        #Log::error($test);
+        return $test;
+    }
+
 
     /**
      * Permissions of the User

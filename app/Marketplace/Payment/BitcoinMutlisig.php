@@ -276,7 +276,7 @@ class BitcoinMutlisig implements Coin
      */
     function coinLabel(): string
     {
-        return 'btc';
+        return 'btcm';
     }
 
 

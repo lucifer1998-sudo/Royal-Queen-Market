@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Hashidable;
+use Illuminate\Support\Facades\Crypt;
 
 class Category extends Model
 {
@@ -12,6 +13,14 @@ class Category extends Model
     public $incrementing = false;
     protected $primaryKey = 'id';
     protected $keyType = 'string';
+
+    public function getRouteKey()
+    {
+        #$hashids = new Hashids('MySecretSalt');
+        $test = Crypt::encryptString($this->getKey());
+        #Log::error($test);
+        return $test;
+    }
 
 
     /**
