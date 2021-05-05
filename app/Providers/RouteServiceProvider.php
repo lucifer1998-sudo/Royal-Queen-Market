@@ -31,11 +31,36 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot();
 
-        // Route::bind('product', function($value, $route)
-        // {
-        //     #$hashids = new Hashids\Hashids('MySecretSalt');
-        //     return Crypt::decryptString($value);
-        // });
+        Route::bind('product', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
+        Route::bind('offer', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
+        Route::bind('vendor', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
+        Route::bind('category', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
+        Route::bind('user', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
+        Route::bind('message', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
 
 
         // Route::bind('shipping', function($value, $route)
@@ -176,13 +201,6 @@ class RouteServiceProvider extends ServiceProvider
         // });
     }
 
-    private function getModel($model, $routeKey)
-    {
-        $id = \Hashids::connection($model)->decode($routeKey)[0] ?? null;
-        $modelInstance = resolve($model);
-
-        return  $modelInstance->findOrFail($id);
-    }
 
     /**
      * Define the routes for the application.

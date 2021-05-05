@@ -14,6 +14,11 @@ class Offer extends Model
     protected $primaryKey = 'id';
     protected $keyType = 'string';
 
+    public function getRouteKey()
+    {
+        return bin2hex($this->getKey());
+    }
+
     public static function averagePrice() : float
     {
         $averagePrice = self::avg('price');

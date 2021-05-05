@@ -56,16 +56,16 @@ Route::prefix('profile')->group(function(){
     // New product
     Route::post('vendor/product/post', 'VendorController@newProduct') -> name('profile.vendor.product.post');
     // Delete product
-    Route::get('vendor/product/{id}/delete/confirmation', 'VendorController@confirmProductRemove') -> name('profile.vendor.product.remove.confirm');
+    Route::get('vendor/product/{product}/delete/confirmation', 'VendorController@confirmProductRemove') -> name('profile.vendor.product.remove.confirm');
     Route::get('vendor/product/{id}/delete', 'VendorController@removeProduct') -> name('profile.vendor.product.remove');
     // Toggle product visibility
-    Route::get('vendor/product/{id}/toggle/confirmation', 'VendorController@confirmToggleProduct') -> name('profile.vendor.product.toggle.confirm');
-    Route::get('vendor/product/{id}/toggle', 'VendorController@toggleProduct') -> name('profile.vendor.product.toggle');
+    Route::get('vendor/product/{product}/toggle/confirmation', 'VendorController@confirmToggleProduct') -> name('profile.vendor.product.toggle.confirm');
+    Route::get('vendor/product/{product}/toggle', 'VendorController@toggleProduct') -> name('profile.vendor.product.toggle');
 
 
 
     // Edit Product
-    Route::get('vendor/product/edit/{id}/section/{section?}', 'VendorController@editProduct') -> name('profile.vendor.product.edit');
+    Route::get('vendor/product/edit/{product}/section/{section?}', 'VendorController@editProduct') -> name('profile.vendor.product.edit');
 
     // Sales routes
     Route::get('sales/{state?}', 'VendorController@sales') -> name('profile.sales');

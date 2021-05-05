@@ -29,6 +29,11 @@ class Message extends Model
 
     protected $fillable = ['read'];
 
+    public function getRouteKey()
+    {
+        return bin2hex($this->getKey());
+    }
+
     /**
      * Determines if the parameter $message is encrypted
      *

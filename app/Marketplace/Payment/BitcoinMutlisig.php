@@ -12,6 +12,7 @@ use App\User;
 use App\Purchase;
 use BitWasp\BitcoinLib\BIP32;
 use BitWasp\BitcoinLib\BitcoinLib;
+use BitWasp\BitcoinLib\Electrum;
 
 
 
@@ -241,12 +242,28 @@ class BitcoinMutlisig implements Coin
      */
     function sendToMany(array $addressesAmounts)
     {
-        // send to many addresses
-//        foreach ($addressesAmounts as $address => $amount){
-//            $this -> bitcoind -> sendtoaddress($address, $amount);
-//        }
+      //   $user = Auth::user();
+      //   $i = $user->purchases()->count() + 1;
+      //   $test = [];
+      //   $amnt = [];
+      //  foreach ($addressesAmounts as $address => $amount){
+      //      array_push($test, $address);
+      //      array_push($amnt, $amount);
+      //  }
 
-        $this->bitcoind->sendmany("", $addressesAmounts, (int)config('marketplace.bitcoin.minconfirmations'));
+      //  $bip32user = BIP32::build_key(array($test[0], "M"), "0/" . $i);
+      //  $pubkeyUser = BIP32::extract_public_key($bip32user);
+      //  #$x = BitcoinLib::public_key_to_address($test[0]);
+      //  $mb = '00';
+      //  #$pubkey = Electrum::public_key_from_mpk($test[0], $i);
+      // # $
+      //  $x = BitcoinLib::public_key_to_address($pubkeyUser, $mb);
+
+      //  $xb = [$x => $amnt[0]];
+      //  #dd($x);
+        #dd($addressesAmounts);
+
+       $this->bitcoind->sendmany("", $addressesAmounts, (int)config('marketplace.bitcoin.minconfirmations'));
 
 
         if ($this->bitcoind->error) {

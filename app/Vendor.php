@@ -22,13 +22,10 @@ class Vendor extends User
     protected $primaryKey = 'id';
     protected $fillable = ['id', 'vendor_level', 'about', 'created_at', 'updated_at'];
 
-    // public function getRouteKey()
-    // {
-    //     #$hashids = new Hashids('MySecretSalt');
-    //     $test = Crypt::encryptString($this->getKey());
-    //     #Log::error($test);
-    //     return $test;
-    // }
+    public function getRouteKey()
+    {
+        return bin2hex($this->getKey());
+    }
 
     /**
      * @return Collection of \App\User instaces of all admins

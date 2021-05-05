@@ -16,11 +16,9 @@ class Category extends Model
 
     public function getRouteKey()
     {
-        #$hashids = new Hashids('MySecretSalt');
-        $test = Crypt::encryptString($this->getKey());
-        #Log::error($test);
-        return $test;
+        return bin2hex($this->getKey());
     }
+
 
 
     /**
