@@ -34,14 +34,14 @@ class User extends Authenticatable
     use Displayable;
     use CanRedeemVouchers;
 
-    public function getRouteKey()
-    {
-        #$hashids = new Hashids('MySecretSalt');
-        #dd($this->getKey());
-        $test = Crypt::encryptString($this->getKey());
-        #Log::error($test);
-        return $test;
-    }
+    // public function getRouteKey()
+    // {
+    //     #$hashids = new Hashids('MySecretSalt');
+    //     #dd($this->getKey());
+    //     $test = Crypt::encryptString($this->getKey());
+    //     #Log::error($test);
+    //     return $test;
+    // }
 
 
     /**

@@ -84,7 +84,7 @@ class Escrow extends Payment
         $feeCaluclator = new FeeCalculator($this->purchase->to_pay);
 
         // make array of receivers
-        
+        #dd($this -> coinLabel());
         $receiversAmounts = [
             // vendor receiver
             $this->purchase->vendor->user-> coinAddress($this -> coinLabel()) -> address

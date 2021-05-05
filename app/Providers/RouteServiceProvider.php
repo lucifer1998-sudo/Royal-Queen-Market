@@ -31,11 +31,30 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot();
 
-        Route::bind('product', function($value, $route)
-        {
-            #$hashids = new Hashids\Hashids('MySecretSalt');
-            return Crypt::decryptString($value);
-        });
+        // Route::bind('product', function($value, $route)
+        // {
+        //     #$hashids = new Hashids\Hashids('MySecretSalt');
+        //     return Crypt::decryptString($value);
+        // });
+
+
+        // Route::bind('shipping', function($value, $route)
+        // {
+        //     #$hashids = new Hashids\Hashids('MySecretSalt');
+        //     return Crypt::decryptString($value);
+        // });
+
+        // Route::bind('options', function($value, $route)
+        // {
+        //     #$hashids = new Hashids\Hashids('MySecretSalt');
+        //     return Crypt::decryptString($value);
+        // });
+
+        // Route::bind('product/edit', function($value, $route)
+        // {
+        //     #$hashids = new Hashids\Hashids('MySecretSalt');
+        //     return Crypt::decryptString($value);
+        // });
 
         // Route::bind('vendor', function($value, $route)
         // {
@@ -43,17 +62,17 @@ class RouteServiceProvider extends ServiceProvider
         //     return Crypt::decryptString($value);
         // });
 
-        Route::bind('user', function($value, $route)
-        {
-            #$hashids = new Hashids\Hashids('MySecretSalt');
-            return Crypt::decryptString($value);
-        });
+        // Route::bind('user', function($value, $route)
+        // {
+        //     #$hashids = new Hashids\Hashids('MySecretSalt');
+        //     return Crypt::decryptString($value);
+        // });
 
-        Route::bind('category', function($value, $route)
-        {
-            #$hashids = new Hashids\Hashids('MySecretSalt');
-            return Crypt::decryptString($value);
-        });
+        // Route::bind('category', function($value, $route)
+        // {
+        //     #$hashids = new Hashids\Hashids('MySecretSalt');
+        //     return Crypt::decryptString($value);
+        // });
 
 
         // Route::bind('address', function ($value, $route) {

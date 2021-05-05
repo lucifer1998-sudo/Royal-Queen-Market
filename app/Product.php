@@ -26,13 +26,13 @@ class Product extends Model
         'name' => 'name',
     ];
 
-    public function getRouteKey()
-    {
-        #$hashids = new Hashids('MySecretSalt');
-        $test = Crypt::encryptString($this->getKey());
-        #Log::error($test);
-        return $test;
-    }
+    // public function getRouteKey()
+    // {
+    //     #$hashids = new Hashids('MySecretSalt');
+    //     $test = Crypt::encryptString($this->getKey());
+    //     #Log::error($test);
+    //     return $test;
+    // }
 
     /**
      * Return collection for front page

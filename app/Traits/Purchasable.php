@@ -283,7 +283,7 @@ trait Purchasable {
             // state now must be delivered
             throw_unless($this->state=='delivered', new \Exception('This purchase is already delivered!'));
 
-            $this -> getPayment() -> multisigdelivered();
+            $this -> getPayment() -> delivered();
 
             event(new ProductDelivered($this));
         }
