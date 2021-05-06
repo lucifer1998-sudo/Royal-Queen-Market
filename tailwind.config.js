@@ -9,7 +9,8 @@ module.exports = {
             'rqm-dark': '#211922',
             'rqm-yellow': '#ffc888',
             'rqm-yellow-dark': '#ffbc6e',
-            'rqm-yellow-darkest': '#E57002'
+            'rqm-yellow-darkest': '#E57002',
+            'rqm-white': '#FFFFFF'
         },
         minHeight: {
             '1/2': '50%'
