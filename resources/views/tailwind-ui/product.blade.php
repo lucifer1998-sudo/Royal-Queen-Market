@@ -80,9 +80,7 @@
                                         </div>
                                     @endfor
                                 </small>
-                                <small class="bg-rqm-yellow-darkest font-black items-center px-1 rounded-2xl text-rqm-dark">
-                                    {{ ucfirst($product -> type) }}
-                                </small>
+                            
                                 <small class="flex items-center w-full">
                                     @if($product->user->vendor->experience < 0)
                                         Vendor has Negative experience, trade with caution !
