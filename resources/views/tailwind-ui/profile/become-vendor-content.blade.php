@@ -11,16 +11,16 @@
         <tbody>
             @foreach($depositAddresses as $depositAddress)
             <tr class="">
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400 text-center">
+                <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center">
                     <span class="">{{ strtoupper($depositAddress -> coin) }}</span>
                 </td>
                 <td class="border-gray-600 border-r px-2 py-2 text-gray-400 text-center">
                     <input type="text" readonly class="bg-rqm-dark border border-rqm-yellow-darkest p-2 rounded text-rqm-yellow w-full" value="{{ $depositAddress -> address }}"/>
                 </td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400 text-center">
+                <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center">
                     <span class="">{{ $depositAddress -> target }}</span>
                 </td>
-                <td class="border-gray-600 border-r px-2 py-2 text-gray-400 text-center">
+                <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center">
                     @if($depositAddress -> isEnough())
                         <span class="">Enough funds</span>
                     @endif

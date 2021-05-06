@@ -63,7 +63,7 @@
                 <tbody>
                 @foreach($purchases as $index => $purchase)
                     <tr class="@if(!($index % 2)) bg-rqm-light @endif">
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             <div class="flex">
                                 <a href="{{ route('product.show', $purchase -> offer -> product) }}" class="underline">
                                     {{ $purchase -> offer -> product -> name }}
@@ -77,8 +77,8 @@
                                 @endif
                             </div>
                         </td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">{{ $purchase -> quantity }}</td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">{{ $purchase -> quantity }}</td>
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             <div class="flex">
                                 @if($purchase -> buyer)
                                     {{ $purchase -> buyer -> username }}
@@ -92,20 +92,20 @@
                                 @endif
                             </div>
                         </td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             @if($purchase -> shipping)
                                 {{ $purchase -> shipping -> name }} - @include('includes.currency', ['usdValue' => $purchase -> shipping -> price])
                             @else
                                 Digital delivery
                             @endif
                         </td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             @include('includes.currency', ['usdValue' => $purchase -> value_sum])
                         </td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             <div><p class="truncate w-40">{{ $purchase -> address }}</p></div>
                         </td>
-                        <td class="border-gray-600 px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 px-2 py-2 text-rqm-white">
                             <div>
                                 <a href="{{ route('profile.sales.single', $purchase) }}" class="underline">
                                     @if($purchase->isCanceled()) <em>Canceled</em> @else {{ $purchase -> short_id }} @endif

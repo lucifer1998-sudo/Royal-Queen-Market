@@ -28,7 +28,11 @@
     </div>
 </section>
 @if(\Route::currentRouteName() != 'auth.signin' &&  \Route::currentRouteName() != 'auth.signup')
-@include('tailwind-ui.master.footer')
+
+
+    <div class="bg-rqm-lighter container inset-0.5 px-6 mx-auto mb-10 mt-10">
+    @include('tailwind-ui.master.footer')
+    </div>
 @endif
 </body>
 </html>

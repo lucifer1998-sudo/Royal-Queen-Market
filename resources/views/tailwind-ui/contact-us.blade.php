@@ -3,7 +3,15 @@
 @section('title', 'Contact Us')
 
 @section('content')
-    <div class="pt-20 w-full">
+    <div class="flex justify-center w-full">
+        <div class="pl-10 w-1/6 h-full">
+            <span></span>
+        </div>
+        <div class="flex h-full justify-center pl-10 w-5/6">
+            <img src="{{URL::asset('/media/bottom-separator-1.png')}}" class="h-1/3 rotate-180 transform w-2/4" alt="">
+        </div>
+    </div>
+    <div class="flex">
         <div class="w-full flex">
             <div class="bg-rqm-lighter pb-10 pt-6 px-2 px-7 rounded shadow w-1/5">
                 <div class="w-full">
@@ -25,34 +33,47 @@
                     @endif
                 </div>
             </div>
+
             <div class="bg-rqm-lighter ml-5 p-5 w-4/5">
-                @if(! $ticket)
-                <div class="py-2">
-                    <span class="text-2xl text-rqm-yellow">Open new Support Ticket</span>
-                </div>
-                <div class="p-2">
-                    <form action="{{ route('profile.tickets.new') }}" method="POST">
-                        {{ csrf_field()  }}
-                        <div>
-                            <span class="block text-lg text-rqm-yellow">Title</span>
-                            <input type="text" name="title" class="bg-rqm-dark px-2 py-2 rounded text-rqm-yellow w-full" id="title" aria-describedby="title" placeholder="Enter ticket title">
-                        </div>
-                        <div>
-                            <span class="block text-lg text-rqm-yellow">Message</span>
-                            <textarea class="bg-rqm-dark px-2 py-2 rounded text-rqm-yellow w-full" name="message" id="title" rows="5" placeholder="Enter ticket content"></textarea>
-                            <small class="text-rqm-yellow-darkest">Describe your problem with the market!</small>
-                        </div>
-                        <div class="flex justify-end">
-                            <button type="submit" class="bg-rqm-yellow font-black p-2 rounded text-rqm-dark">
-                                Open ticket
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                @else
-                    @include('tailwind-ui.admin.ticket-view-content')
-                @endif
+               
+                    @if(! $ticket)
+                    <div class="py-2">
+                        <span class="text-2xl text-rqm-yellow">Open new Support Ticket</span>
+                    </div>
+                    <div class="p-2">
+
+                        <form action="{{ route('profile.tickets.new') }}" method="POST">
+                            {{ csrf_field()  }}
+                            <div>
+                                <span class="block text-lg text-rqm-yellow">Title</span>
+                                <input type="text" name="title" class="bg-rqm-dark px-2 py-2 rounded text-rqm-yellow w-full" id="title" aria-describedby="title" placeholder="Enter ticket title">
+                            </div>
+                            <div>
+                                <span class="block text-lg text-rqm-yellow">Message</span>
+                                <textarea class="bg-rqm-dark px-2 py-2 rounded text-rqm-yellow w-full" name="message" id="title" rows="5" placeholder="Enter ticket content"></textarea>
+                                <small class="text-rqm-yellow-darkest">Describe your problem with the market!</small>
+                            </div>
+                            <div class="flex justify-end">
+                                <button type="submit" class="bg-rqm-yellow font-black p-2 rounded text-rqm-dark">
+                                    Open ticket
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    @else
+                        @include('tailwind-ui.admin.ticket-view-content')
+                    @endif
+                 
             </div>
+        </div>
+    </div>
+
+        <div class="flex justify-center w-full">
+        <div class="pl-10 w-1/6 h-full">
+            <span></span>
+        </div>
+        <div class="flex h-full justify-center pl-10 w-5/6">
+            <img src="{{URL::asset('/media/bottom-separator-1.png')}}" class="h-1/3 transform w-2/4" alt="">
         </div>
     </div>
 @endsection

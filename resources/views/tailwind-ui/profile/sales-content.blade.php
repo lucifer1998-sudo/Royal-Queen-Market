@@ -63,7 +63,7 @@
                 <tbody>
                 @foreach($sales as $index => $purchase)
                     <tr class="@if(!($index % 2)) bg-rqm-light @endif">
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             <div class="flex">
                                 <a href="{{ route('product.show', $purchase -> offer -> product) }}" class="underline">
                                     {{ $purchase -> offer -> product -> name }}
@@ -77,14 +77,14 @@
                                 @endif
                             </div>
                         </td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">{{ $purchase -> quantity }}</td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">{{ $purchase -> quantity }}</td>
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             <div class="flex">
                                 @if($purchase -> buyer)
                                     {{ $purchase -> buyer -> username }}
                                 @else
                                     <span class="text-gray-500">User deleted account!</span>
-                                    <span class="flex items-center px-3 text-yellow-400">
+                                    <span class="flex items-center px-3 text-rqm-white">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                         </svg>
@@ -92,20 +92,20 @@
                                 @endif
                             </div>
                         </td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             @if($purchase -> shipping)
                                 {{ $purchase -> shipping -> name }} - @include('includes.currency', ['usdValue' => $purchase -> shipping -> price])
                             @else
                                 Digital delivery
                             @endif
                         </td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             @include('includes.currency', ['usdValue' => $purchase -> value_sum])
                         </td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             <div><p class="truncate w-40">{{ $purchase -> address }}</p></div>
                         </td>
-                        <td class="border-gray-600 px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 px-2 py-2 text-rqm-white">
                             <div>
                                 <a href="{{ route('profile.sales.single', $purchase) }}" class="underline">
                                     @if($purchase->isCanceled()) <em>Canceled</em> @else {{ $purchase -> short_id }} @endif
