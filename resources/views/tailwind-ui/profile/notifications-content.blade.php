@@ -1,4 +1,4 @@
-<div class="bg-rqm-dark @if( empty($notifications) ) content-center @endif flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
+<div class="bg-rqm-lighter @if( empty($notifications) ) content-center @endif flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
     @if( $notifications->count() == 0 )
         <div class="flex items-center justify-center w-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                 @foreach($notifications as $index => $notification)
-                    <tr class="@if(!($index % 2)) bg-rqm-light @endif">
+                    <tr class="@if(!($index % 2)) bg-rqm-dark @endif">
                         <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
                             {{$notification->description}}
                         </td>

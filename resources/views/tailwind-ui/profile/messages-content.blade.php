@@ -1,5 +1,5 @@
 <div class="h-full">
-    <div class="bg-rqm-dark p-5 rounded shadow w-full text-center h-full">
+    <div class="bg-rqm-lighter p-5 rounded shadow w-full text-center h-full">
         <div class="flex pb-36 pt-10 px-10">
             <div class="h-screen w-1/4">
                 <div class="block pb-5 w-full"><span class="bg-rqm-dark block shadow text-2xl text-rqm-yellow-darkest w-full">Inbox</span></div>

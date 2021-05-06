@@ -25,7 +25,7 @@
                     @endif
                 </div>
             </div>
-            <div class="bg-rqm-dark ml-5 p-5 w-4/5">
+            <div class="bg-rqm-lighter ml-5 p-5 w-4/5">
                 @if(! $ticket)
                 <div class="py-2">
                     <span class="text-2xl text-rqm-yellow">Open new Support Ticket</span>
@@ -35,11 +35,11 @@
                         {{ csrf_field()  }}
                         <div>
                             <span class="block text-lg text-rqm-yellow">Title</span>
-                            <input type="text" name="title" class="bg-rqm-light px-2 py-2 rounded text-rqm-yellow w-full" id="title" aria-describedby="title" placeholder="Enter ticket title">
+                            <input type="text" name="title" class="bg-rqm-dark px-2 py-2 rounded text-rqm-yellow w-full" id="title" aria-describedby="title" placeholder="Enter ticket title">
                         </div>
                         <div>
                             <span class="block text-lg text-rqm-yellow">Message</span>
-                            <textarea class="bg-rqm-light px-2 py-2 rounded text-rqm-yellow w-full" name="message" id="title" rows="5" placeholder="Enter ticket content"></textarea>
+                            <textarea class="bg-rqm-dark px-2 py-2 rounded text-rqm-yellow w-full" name="message" id="title" rows="5" placeholder="Enter ticket content"></textarea>
                             <small class="text-rqm-yellow-darkest">Describe your problem with the market!</small>
                         </div>
                         <div class="flex justify-end">

@@ -1,6 +1,5 @@
-<div class="bg-rqm-dark content-center flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
-    <div class="flex items-center justify-center w-full">
-    <table class="table table-striped text-white">
+<div class="bg-rqm-lighter flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
+    <table class="table-auto pl-10 w-5/6">
         <thead>
             <tr>
                 <th>Coin</th>
@@ -11,27 +10,29 @@
         </thead>
         <tbody>
             @foreach($depositAddresses as $depositAddress)
-            <tr>
+            <tr class="justify-center">
                 <td>
-                    <span class="badge badge-info">{{ strtoupper($depositAddress -> coin) }}</span>
+                    <span class="">{{ strtoupper($depositAddress -> coin) }}</span>
                 </td>
                 <td>
-                    <input type="text" readonly class="form-control" value="{{ $depositAddress -> address }}"/>
+                    <input type="text" readonly class="bg-rqm-dark border border-rqm-yellow-darkest p-2 rounded text-rqm-yellow" value="{{ $depositAddress -> address }}"/>
                 </td>
                 <td class="text-right">
-                    <span class="badge badge-primary">{{ $depositAddress -> target }}</span>
+                    <span class="">{{ $depositAddress -> target }}</span>
                 </td>
                 <td class="text-right">
                     @if($depositAddress -> isEnough())
-                        <span class="badge badge-success">Enough funds</span>
+                        <span class="">Enough funds</span>
                     @endif
-                    <span class="badge badge-info">{{ $depositAddress -> balance }}</span>
+                    <span class="">{{ $depositAddress -> balance }}</span>
                 </td>
             </tr>
             @endforeach
         </tbody>
 
     </table>
+    <div class="flex items-center justify-center w-full">
+
         <form action="{{ route('profile.vendor.become') }}" class="">
             @csrf
             @if(session()->has('success'))
