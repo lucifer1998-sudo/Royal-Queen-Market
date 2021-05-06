@@ -29,8 +29,8 @@ class CreateVouchersTable extends Migration
             $table->unsignedBigInteger('voucher_id');
             $table->timestamp('redeemed_at');
 
-            // $table->foreign('user_id')->references('id')->on('users');
-            // $table->foreign('voucher_id')->references('id')->on($voucherTable);
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('voucher_id')->references('id')->on($voucherTable);
         });
     }
 

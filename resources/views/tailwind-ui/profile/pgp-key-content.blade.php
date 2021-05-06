@@ -1,4 +1,4 @@
-<div class="bg-rqm-dark content-center flex flex-wrap h-full justify-center p-5 rounded shadow w-full">
+<div class="bg-rqm-lighter content-center flex flex-wrap h-full justify-center p-5 rounded shadow w-full">
     <div class="w-full">
         @if(auth() -> user() -> hasPGP())
             <p class="mb-5 text-base text-rqm-yellow-darkest text-white">Your PGP key is:</p>

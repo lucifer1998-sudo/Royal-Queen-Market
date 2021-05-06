@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="w-full flex">
-        <div class="bg-rqm-dark pb-10 px-2 px-7 rounded shadow w-1/5">
+        <div class="bg-rqm-lighter pb-10 px-2 px-7 rounded shadow w-1/5">
             <div class="py-3 text-2xl text-rqm-yellow">Categories</div>
             @include('tailwind-ui.shops-listcategories', ['categories' => $categories])
 
@@ -51,7 +51,7 @@
                         <label for="product_type" class="text-rqm-yellow-darkest block">Type</label>
                         <select id="product_type" name="product_type" class="bg-rqm-light border py-0.5 rounded text-rqm-yellow-dark w-full">
                             <option selected value="all">All</option>
-                            <option value="digital" @if(app('request')->input('type') == 'digital') selected @endif>Digital</option>
+                            <!-- <option value="digital" @if(app('request')->input('type') == 'digital') selected @endif>Digital</option> -->
                             <option value="physical" @if(app('request')->input('type') == 'physical') selected @endif>Physical</option>
                         </select>
                     </div>
@@ -73,6 +73,7 @@
                     </div>
                 </form>
             </div>
+            
         </div>
         <div class="bg-rqm-dark w-4/5 relative">
             <div class="absolute inset-0 bg-repeat h-full opacity-10 w-full" style="background-image: url({{URL::asset('/media/bg.cleaned.png')}})">

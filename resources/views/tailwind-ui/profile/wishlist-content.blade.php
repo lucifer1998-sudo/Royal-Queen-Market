@@ -1,4 +1,4 @@
-<div class="bg-rqm-dark @if(! auth() -> user() -> whishes -> isNotEmpty() ) content-center @endif flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
+<div class="bg-rqm-lighter @if(! auth() -> user() -> whishes -> isNotEmpty() ) content-center @endif flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
     @if(! auth() -> user() -> whishes -> isNotEmpty() )
         <div class="flex items-center justify-center w-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">

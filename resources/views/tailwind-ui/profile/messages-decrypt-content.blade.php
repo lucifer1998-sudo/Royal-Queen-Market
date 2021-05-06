@@ -1,5 +1,5 @@
 <div class="h-full">
-    <div class="bg-rqm-dark h-full p-40 rounded shadow text-center w-full">
+    <div class="bg-rqm-lighter h-full p-40 rounded shadow text-center w-full">
         <span class="block text-2xl text-gray-400 text-rqm-yellow">Decrypt your messages</span>
         <span class="block">All your messages are encrypted. Please enter your password to unlock your decryption key and make messages viewable.</span>
         <form action="{{route('profile.messages.decrypt.post')}}" method="post">

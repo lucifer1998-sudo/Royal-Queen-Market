@@ -8,7 +8,7 @@ class VoucherIsInvalid extends \Exception
 
     public static function withCode(string $code)
     {
-        return new static('The provided code '.$code.' is invalid.', $code);
+        return new static('The provided code '.$code.' is invalid with this Product.', $code);
     }
 
     public function __construct($message, $code)
@@ -23,5 +23,10 @@ class VoucherIsInvalid extends \Exception
     public function getVoucherCode()
     {
         return $this->code;
+    }
+
+    public function flashError()
+    {
+        session() -> flash('errormessage', $this -> message);
     }
 }
