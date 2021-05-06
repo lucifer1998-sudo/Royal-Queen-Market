@@ -72,7 +72,7 @@
                         {{$user->created_at}}
                     </td>
                     <td class="border-gray-600 px-2 py-2 text-gray-400 text-center">
-                        <a href="{{route('admin.users.view',['user'=>$user->id])}}" class="">
+                        <a href="{{route('admin.users.view',['user'=>$user])}}" class="">
                             <button type="button" class="bg-rqm-yellow-dark font-extrabold px-2 py-1 rounded-sm text-rqm-dark text-sm">
                                 View
                             </button>

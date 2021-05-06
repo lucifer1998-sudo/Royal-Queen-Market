@@ -12,10 +12,7 @@
         </div>
     </div>
     <div class="w-full flex">
-        <div class="bg-rqm-dark pb-10 px-2 px-7 rounded shadow w-1/5">
-        <div class="absolute h-full opacity-10 w-1/5"  style="background-image: url({{URL::asset('/media/bg.cleaned.png')}})">
-                <span></span>
-            </div>
+        <div class="bg-rqm-lighter pb-10 px-2 px-7 rounded shadow w-1/5">
             <div class="py-3 text-2xl text-rqm-yellow">Categories</div>
             @include('tailwind-ui.shops-listcategories', ['categories' => $categories])
 
