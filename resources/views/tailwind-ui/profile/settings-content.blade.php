@@ -1,12 +1,12 @@
 <div class="h-full">
     <div class="bg-rqm-lighter p-5 rounded shadow w-full text-center">
-        <span class="text-2xl text-gray-400 block">Welcome, {{ auth()->user()->username }}</span>
-        <span class="block">Manage your info, privacy and security to make Royal Queen Market work better for you.</span>
+        <span class="text-2xl text-gray-400 block text-rqm-yellow">Welcome, {{ auth()->user()->username }}</span>
+        <span class="block text-rqm-white">Manage your info, privacy and security to make Royal Queen Market work better for you.</span>
     </div>
     <div class="mt-9 w-full">
         <div class="grid gap-4 grid-cols-2">
             <div class="bg-rqm-lighter p-5 rounded shadow w-full">
-                <div class="pb-3 text-2xl text-rqm-yellow-darkest">Change password</div>
+                <div class="pb-3 text-2xl text-rqm-yellow">Change password</div>
                 @if ($errors->any())
                     <div class="bg-rqm-light my-2 p-1.5">
 
@@ -19,15 +19,15 @@
                 <form action="{{ route('profile.password.change') }}" method="POST" class="">
                     {{ csrf_field() }}
                     <div class="flex py-1">
-                        <div class="text-gray-400 w-1/3">Old password</div>
+                        <div class="text-gray-400 w-1/3 text-rqm-white">Old password</div>
                         <input type="password" class="w-2/3 rounded" id="old_password" name="old_password">
                     </div>
                     <div class="flex py-1">
-                        <div class="text-gray-400 w-1/3">New password</div>
+                        <div class="text-gray-400 w-1/3 text-rqm-white">New password</div>
                         <input type="password" class="w-2/3 rounded" id="new_password" name="new_password">
                     </div>
                     <div class="flex py-1">
-                        <div class="text-gray-400 w-1/3">Confirm password</div>
+                        <div class="text-gray-400 w-1/3 text-rqm-white">Confirm password</div>
                         <input type="password" class="w-2/3 rounded" id="new_password_confirmation" name="new_password_confirmation">
                     </div>
                     <div class="flex py-1 justify-end">
@@ -38,7 +38,7 @@
                 </form>
             </div>
             <div class="bg-rqm-lighter p-5 rounded shadow w-full">
-                <div class="pb-3 text-2xl text-center text-rqm-yellow-darkest">Two Factor Authentication</div>
+                <div class="pb-3 text-2xl text-center text-rqm-yellow">Two Factor Authentication</div>
                 @if ($errors->any())
                     <div class="bg-rqm-light my-2 p-1.5">
 
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="bg-rqm-lighter p-5 rounded shadow w-full">
-                <div class="pb-3 text-2xl text-rqm-yellow-darkest">Referral link</div>
+                <div class="pb-3 text-2xl text-rqm-yellow">Referral link</div>
                 @if ($errors->any())
                     <div class="bg-rqm-light my-2 p-1.5">
 
@@ -79,11 +79,11 @@
                     <div class="bg-rqm-lighter flex flex-1 justify-center py-3">
                         {{ route('auth.signup', auth() -> user() -> referral_code) }}
                     </div>
-                    <small class="text-rqm-yellow-dark">Paste this address to other users who wants to sign up on the market!</small>
+                    <small class="text-rqm-white">Paste this address to other users who wants to sign up on the market!</small>
                 </div>
             </div>
             <div class="bg-rqm-lighter p-5 rounded shadow w-full">
-                <div class="pb-3 text-2xl text-rqm-yellow-darkest">Payment Addresses</div>
+                <div class="pb-3 text-2xl text-rqm-yellow">Payment Addresses</div>
                 @if ($errors->any())
                     <div class="bg-rqm-light my-2 p-1.5">
 
@@ -96,12 +96,12 @@
                 <form action="{{ route('profile.vendor.address') }}" method="POST" class="">
                     {{ csrf_field() }}
                     <div class="flex py-1">
-                        <div class="text-gray-400 w-1/3">New address (pubkey)</div>
+                        <div class="text-gray-400 w-1/3 text-rqm-white">New address (pubkey)</div>
                         <input type="text" class="w-2/3 rounded" id="address" name="address">
 
                     </div>
                     <div class="flex py-1">
-                        <div class="text-gray-400 w-1/3">Crypto</div>
+                        <div class="text-gray-400 w-1/3 text-rqm-white">Crypto</div>
                         <select name="coin" id="coin" class="w-2/3 rounded">
                             @foreach(config('coins.coin_list') as $supportedCoin => $instance)
                                 <option value="{{ $supportedCoin }}">{{ strtoupper(\App\Address::label($supportedCoin)) }}</option>
@@ -114,7 +114,7 @@
                         </button>
                     </div>
                     <div class="flex py-1">
-                        <small class="text-rqm-yellow-dark text-justify">On this address you will receive payments from purchases! Funds will be sent to your most recent added address of coin!</small>
+                        <small class=" text-justify text-rqm-white">On this address you will receive payments from purchases! Funds will be sent to your most recent added address of coin!</small>
                     </div>
                 </form>
             </div>
