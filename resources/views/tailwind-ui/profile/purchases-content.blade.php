@@ -12,7 +12,7 @@
                 <div class="grid grid-flow-col grid-cols-6 grid-rows-1 gap-4">
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.purchases') }}" class="bg-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-rqm-dark text-white w-2/3">
-                            <button>All ({{ auth() -> user() -> vendor -> salesCount() }})</button>
+                            <button>All ({{ auth() -> user() -> purchasesCount() }})</button>
                         </a>
                     </div>
                     {{--TEMPORARY LABELS--}}
@@ -23,27 +23,27 @@
                     {{--canceled -> unpaid--}}
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.purchases', 'purchased') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
-                            <button>Paid ({{ auth() -> user() -> vendor -> salesCount('purchased') }})</button>
+                            <button>Paid ({{ auth() -> user() -> purchasesCount('purchased') }})</button>
                         </a>
                     </div>
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.purchases', 'sent') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
-                            <button>Completed ({{ auth() -> user() -> vendor -> salesCount('sent') }})</button>
+                            <button>Completed ({{ auth() -> user() -> purchasesCount('sent') }})</button>
                         </a>
                     </div>
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.purchases', 'delivered') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
-                            <button>Shipped ({{ auth() -> user() -> vendor -> salesCount('delivered') }})</button>
+                            <button>Shipped ({{ auth() -> user() -> purchasesCount('delivered') }})</button>
                         </a>
                     </div>
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.purchases', 'disputed') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
-                            <button>Accepted ({{ auth() -> user() -> vendor -> salesCount('disputed') }})</button>
+                            <button>Accepted ({{ auth() -> user() -> purchasesCount('disputed') }})</button>
                         </a>
                     </div>
                     <div class="flex justify-center p-2">
                         <a href="{{ route('profile.purchases', 'canceled') }}" class="border border-rqm-yellow flex justify-center md:w-4/5 py-1 rounded-full text-white w-2/3">
-                            <button>Cancelled ({{ auth() -> user() -> vendor -> salesCount('canceled') }})</button>
+                            <button>Cancelled ({{ auth() -> user() -> purchasesCount('canceled') }})</button>
                         </a>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                 @endforeach
                 </tbody>
             </table>
-            {{ $sales -> links('tailwind-ui.includes.paginate') }}
+            {{ $purchases -> links('tailwind-ui.includes.paginate') }}
         </div>
     @endif
 </div>

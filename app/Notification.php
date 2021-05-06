@@ -16,6 +16,11 @@ class Notification extends Model
 
     protected $fillable = ['description','route_name','route_params'];
 
+    public function getRouteKey()
+    {
+        return bin2hex($this->getKey());
+    }
+
     /**
      * Returns user that notifications is sent to
      *

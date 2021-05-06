@@ -35,7 +35,13 @@
                         </td>
                         <td class="border-gray-600 px-2 py-2 text-gray-400 text-center">
                             @if($notification->getRoute() !== null )
-                                <a href="{{route($notification->getRoute(),$notification->getRouteParams())}}" class="underline"> View</a>
+                                @php
+                                    foreach ($notification->getRouteParams() as $key => $val )
+                                    {
+                                    $value = $notification->getRouteParams()[$key];
+                                    }
+                                @endphp
+                                <a href="{{route($notification->getRoute(),bin2hex($value))}}" class="underline"> View</a>
                             @else
                                 None
                             @endif
