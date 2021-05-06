@@ -3,7 +3,15 @@
 @section('title', 'Contact Us')
 
 @section('content')
-    <div class="pt-20 w-full">
+    <div class="flex justify-center w-full">
+        <div class="pl-10 w-1/6 h-full">
+            <span></span>
+        </div>
+        <div class="flex h-full justify-center pl-10 w-5/6">
+            <img src="{{URL::asset('/media/bottom-separator-1.png')}}" class="h-1/3 rotate-180 transform w-2/4" alt="">
+        </div>
+    </div>
+    <div class="flex">
         <div class="w-full flex">
             <div class="bg-rqm-lighter pb-10 pt-6 px-2 px-7 rounded shadow w-1/5">
                 <div class="w-full">
@@ -25,7 +33,9 @@
                     @endif
                 </div>
             </div>
+
             <div class="bg-rqm-lighter ml-5 p-5 w-4/5">
+
                 @if(! $ticket)
                 <div class="py-2">
                     <span class="text-2xl text-rqm-yellow">Open new Support Ticket</span>
@@ -53,6 +63,15 @@
                     @include('tailwind-ui.admin.ticket-view-content')
                 @endif
             </div>
+        </div>
+    </div>
+
+        <div class="flex justify-center w-full">
+        <div class="pl-10 w-1/6 h-full">
+            <span></span>
+        </div>
+        <div class="flex h-full justify-center pl-10 w-5/6">
+            <img src="{{URL::asset('/media/bottom-separator-1.png')}}" class="h-1/3 transform w-2/4" alt="">
         </div>
     </div>
 @endsection
