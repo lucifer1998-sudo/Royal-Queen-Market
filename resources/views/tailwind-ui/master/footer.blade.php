@@ -1,5 +1,5 @@
 {{--<footer class="flex  py-10">--}}
-    <footer class="flex justify-center text-center py-10 px-10 ">
+    <footer class="flex justify-center text-center py-10 px-10 bg-rqm-lighter m-10">
             <div class="">
                 <img src="{{URL::asset('/media/royal-queen-logo.png')}}" class="w-40" alt="" style="height:auto;width:300px">
             </div>
