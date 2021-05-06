@@ -1,7 +1,7 @@
-<footer class="flex justify-center text-center py-10">
+<footer class="flex justify-center text-center py-10 pb-12">
     <div>
         <div class="flex justify-center">
-            <img src="{{URL::asset('/media/royal-queen-logo.png')}}" class="w-40" alt="">
+            <img src="{{URL::asset('/media/w-400.png')}}" class="w-40" alt="">
         </div>
 
         <div class="pt-7 text-3xl text-rqm-yellow-darkest">

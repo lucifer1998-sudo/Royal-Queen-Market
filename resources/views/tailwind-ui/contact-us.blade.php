@@ -35,33 +35,35 @@
             </div>
 
             <div class="bg-rqm-lighter ml-5 p-5 w-4/5">
+               
+                    @if(! $ticket)
+                    <div class="py-2">
+                        <span class="text-2xl text-rqm-yellow">Open new Support Ticket</span>
+                    </div>
+                    <div class="p-2">
 
-                @if(! $ticket)
-                <div class="py-2">
-                    <span class="text-2xl text-rqm-yellow">Open new Support Ticket</span>
-                </div>
-                <div class="p-2">
-                    <form action="{{ route('profile.tickets.new') }}" method="POST">
-                        {{ csrf_field()  }}
-                        <div>
-                            <span class="block text-lg text-rqm-yellow">Title</span>
-                            <input type="text" name="title" class="bg-rqm-dark px-2 py-2 rounded text-rqm-yellow w-full" id="title" aria-describedby="title" placeholder="Enter ticket title">
-                        </div>
-                        <div>
-                            <span class="block text-lg text-rqm-yellow">Message</span>
-                            <textarea class="bg-rqm-dark px-2 py-2 rounded text-rqm-yellow w-full" name="message" id="title" rows="5" placeholder="Enter ticket content"></textarea>
-                            <small class="text-rqm-yellow-darkest">Describe your problem with the market!</small>
-                        </div>
-                        <div class="flex justify-end">
-                            <button type="submit" class="bg-rqm-yellow font-black p-2 rounded text-rqm-dark">
-                                Open ticket
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                @else
-                    @include('tailwind-ui.admin.ticket-view-content')
-                @endif
+                        <form action="{{ route('profile.tickets.new') }}" method="POST">
+                            {{ csrf_field()  }}
+                            <div>
+                                <span class="block text-lg text-rqm-yellow">Title</span>
+                                <input type="text" name="title" class="bg-rqm-dark px-2 py-2 rounded text-rqm-yellow w-full" id="title" aria-describedby="title" placeholder="Enter ticket title">
+                            </div>
+                            <div>
+                                <span class="block text-lg text-rqm-yellow">Message</span>
+                                <textarea class="bg-rqm-dark px-2 py-2 rounded text-rqm-yellow w-full" name="message" id="title" rows="5" placeholder="Enter ticket content"></textarea>
+                                <small class="text-rqm-yellow-darkest">Describe your problem with the market!</small>
+                            </div>
+                            <div class="flex justify-end">
+                                <button type="submit" class="bg-rqm-yellow font-black p-2 rounded text-rqm-dark">
+                                    Open ticket
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    @else
+                        @include('tailwind-ui.admin.ticket-view-content')
+                    @endif
+                 
             </div>
         </div>
     </div>

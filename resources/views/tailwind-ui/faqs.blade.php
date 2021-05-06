@@ -3,7 +3,17 @@
 @section('title','FAQs')
 
 @section('content')
+    <div class="flex justify-center w-full">
+        <div class="pl-10 h-full">
+            <span></span>
+        </div>
+        <div class="flex h-full justify-center pl-10 w-5/6">
+            <img src="{{URL::asset('/media/bottom-separator-1.png')}}" class="h-1/3 rotate-180 transform" alt="">
+        </div>
+    </div>
+                
     <div class="pt-20 w-full">
+
         <div class="w-full">
             <div>
                 <div class="flex items-center justify-center text-2xl text-rqm-yellow-dark">How can we help you?</div>
