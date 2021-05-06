@@ -74,7 +74,7 @@
                         <th class="px-2 text-center text-left text-rqm-yellow">Quantity</th>
                         <th class="px-2 text-center text-left text-rqm-yellow">Price from</th>
                         <th class="px-2 text-center text-left text-rqm-yellow">Category</th>
-                        <th class="px-2 text-center text-left text-rqm-yellow">Type</th>
+                  
                         <th></th>
                     </tr>
                 </thead>
@@ -85,7 +85,7 @@
                             <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center">{{ $product -> quantity }}</td>
                             <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center">@include('includes.currency', ['usdValue' => $product -> price_from ])</td>
                             <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center"><a href="{{ route('category.show', $product -> category) }}">{{ $product -> category -> name }}</a></td>
-                            <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center"><span class="badge badge-primary">{{ $product -> isDigital() ? 'Digital' : 'Physical' }}</span></td>
+                    
                             <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                                 <a href="{{ route('profile.vendor.product.clone.show', $product ) }}" class="btn btn-sm btn-info">
                                     Clone
