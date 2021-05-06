@@ -42,7 +42,7 @@ class LogController extends Controller
         $logs = Cache::remember('logs', $this->logsCacheTimeMinutes, function () {
             return Log::with('user')->orderBy('created_at','desc')->paginate($this->logsPerPage);
         });
-        return view('admin.log')->with([
+        return view('tailwind-ui.admin.index')->with([
             'cacheMinutes' => $this->logsCacheTimeMinutes,
             'logs' => $logs
         ]);

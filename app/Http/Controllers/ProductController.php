@@ -54,7 +54,8 @@ class ProductController extends Controller
             abort(404);
 
 
-        return view('product.index', [
+//        return view('product.index', [
+        return view('tailwind-ui.product', [
             'product' => $product,
         ]);
     }
@@ -67,7 +68,8 @@ class ProductController extends Controller
             abort(404);
 
 
-        return view('product.rules', [
+//        return view('product.rules', [
+        return view('tailwind-ui.product', [
             'product' => $product,
         ]);
     }
@@ -79,7 +81,8 @@ class ProductController extends Controller
         elseif ($product->active == false)
             abort(404);
 
-        return view('product.feedback', [
+//        return view('product.feedback', [
+        return view('tailwind-ui.product', [
             'product' => $product,
         ]);
     }
@@ -91,7 +94,8 @@ class ProductController extends Controller
         elseif ($product->product->active == false)
             abort(404);
 
-        return view('product.delivery', [
+//        return view('product.delivery', [
+        return view('tailwind-ui.product', [
             'product' => $product->product,
         ]);
     }
@@ -109,7 +113,8 @@ class ProductController extends Controller
         #$vouchers = $test->createVouchers(2, [], today()->addDays(7));
        // $coupon = $product->vouchers();
         #dd($coupon->code);
-        return view('product.coupon', [
+//        return view('product.coupon', [
+        return view('tailwind-ui.product', [
             'product' => $product->product,
             'coupon'  => $coupon,
         ]);

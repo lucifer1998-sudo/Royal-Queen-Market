@@ -31,6 +31,11 @@ class Category extends Model
         return self::whereNull('parent_id') -> get();
     }
 
+    public function isParent()
+    {
+        return $this->parent_id === null;
+    }
+
     /**
      * Returns the collection of all categories A-Z ordered
      *

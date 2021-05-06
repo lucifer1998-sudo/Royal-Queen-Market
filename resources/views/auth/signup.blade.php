@@ -1,126 +1,87 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+<html lang="en">
 <head>
-
-    <title>Login - Royal Queen Market</title>
-
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind Register Template</title>
+    <meta name="author" content="David Grzyb">
+    <meta name="description" content="">
 
+    <!-- Tailwind -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
 
-    <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-    <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ URL::asset('css/rqm-app.css') }}" rel="stylesheet" type="text/css">
-    <link rel="icon" href="{{URL::asset('/media/rqm-icon.png')}}" type="image/png" sizes="16x16">
-    <script defer src="https://kit.fontawesome.com/b111388ee6.js" crossorigin="anonymous"></script>
-
+        .font-family-karla {
+            font-family: karla;
+        }
+    </style>
 </head>
+<body class="bg-white font-family-karla h-screen">
 
-<body class="page-bg-color">
+    <div class="w-full flex flex-wrap">
 
-    <div class="container login-margin-top">
-        <div class="row">
-            <div class="col-md-4 offset-md-4 rounded-3 shadow p-0">
-                <div class="login-case">
-                    <img src="{{URL::asset('/media/login-case.png')}}" class="img-fluid" alt="">
-                </div>
-                <h1 class="h3 text-warning mt-4 text-center">SIGN UP</h1>
-                <p class="text-warning text-center">GET YOUR ACCOUNT IN MINUTES</p>
-                <form action="{{route('auth.signup.post')}}" method="post" class="needs-validation">
+        <!-- Register Section -->
+        <div class="w-full md:w-1/2 flex flex-col">
+
+            <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
+                <a href="#" class="bg-black text-white font-bold text-xl p-4">Logo</a>
+            </div>
+
+            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <p class="text-center text-3xl">Join Us.</p>
+                <form class="flex flex-col pt-3 md:pt-8" action="{{route('auth.signup.post')}}" method="post">
                     @csrf
-                    <div class="row">
-                        <div class="col-md-10 offset-md-1 mb-4">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-warning" id="basic-addon1"><i
-                                        class="far fa-user-circle"></i></span>
-                                <input type="text" class="form-control @if($errors->has('username')) is-invalid @endif" placeholder="Username" name="username" id="username">
+                    <div class="flex flex-col pt-4">
+                        <label for="username" class="text-lg">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline @if($errors->has('username')) is-invalid @endif">
                                 @if($errors->has('username'))
                                     <p class="text-danger">{{$errors->first('username')}}</p>
                                 @endif
-                            </div>
-                            <div class="input-group mb-2">
-                                <span class="input-group-text text-warning" id="basic-addon1"><i
-                                        class="fas fa-lock"></i></i></span>
-                                <input type="password" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="Password" name="password"
-                                   id="password">
-                            </div>
-                            <div class="input-group mb-2">
-                                <span class="input-group-text text-warning" id="basic-addon1"><i
-                                        class="fas fa-lock"></i></i></span>
-                                <input type="password" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="Confirm Password"
-                                   name="password_confirmation" id="password_confirm">
-                            </div>
+                    </div>
+    
+                    <div class="flex flex-col pt-4">
+                        <label for="password" class="text-lg">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline @if($errors->has('password')) is-invalid @endif">
+                    </div>
+
+                    <div class="flex flex-col pt-4">
+                        <label for="password_confirm" class="text-lg">Confirm Password</label>
+                        <input type="password" id="password_confirm" name="password_confirmation" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline @if($errors->has('password')) is-invalid @endif">
                             @if($errors->has('password'))
                                 <p class="text-danger">{{$errors->first('password')}}</p>
                             @endif
-                            <div class="form-group mt-1">
-                                <span class="text-muted">
-                                    Your private key for decrypting messages will be protected with your password. Please make
-                                    sure that you choose a strong one
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-10 offset-md-1 mb-3">
-                    <div class="form-group">
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">Referral Code</div>
-                            </div>
-                            <input type="text" name="refid" value="{{$refid}}" class="form-control"
-                                   @if($refid !== '') readonly @endif>
-                        </div>
-
+                        <p>Please create a strong password and save it. This password will be used to decrypt your inbox and they cannot be decrypted by anyone else.</p>
                     </div>
-                        </div>
-                        <div class="col-md-10 offset-md-1 mb-3">
-                            <label for="captcha" class="form-label text-white">Security Challenge</label>
-                            <div class="text-center">
-                                <img src="{{$captcha}}" alt="">
-                            </div>
-                            <div class="input-group mb-3">
-                                <!-- <span class=" rounded-0 input-group-text text-warning" id="basic-addon1"><i
-                                        class="fas fa-shield-alt"></i></i></span> -->
-                                <input class="form-control mt-3 @if($errors->has('captcha')) is-invalid @endif" type="text" name="captcha" placeholder="Enter Captcha">
-                                <div class="invalid-feedback">
-                                    Prove You are a Human
-                                </div>
-                            @if($errors->has('captcha'))
+
+                    <div class="flex flex-col pt-4">
+                        <label for="refid" class="text-lg">Referral Code</label>
+                        <input type="text" id="refid" name="refid" placeholder="Referral Code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline @if($refid !== '') readonly @endif">
+                    </div>
+
+                    <div class="flex flex-col pt-4">
+                        <label class="text-lg">Captcha</label>
+                        <img src="{{$captcha}}" alt="">
+                        <input type="text" id="captcha" name="captcha" placeholder="Captcha" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline @if($errors->has('captcha')) is-invalid @endif">
+                                @if($errors->has('captcha'))
                                 <p class="text-danger">{{$errors->first('captcha')}}</p>
-                            @endif
-                            </div>
-
-
-                        </div>
-                        <div class="col-md-6 offset-md-3">
-                            <div class="d-grid mb-2">
-                                <button class="btn btn-info text-white" type="submit">SIGN UP</button>
-                            </div>
-                            <p class="text-center"><a href="{{route('auth.signin')}}" class="text-white">LOG IN</a></p>
-                            <p class="text-center"><a href="./" class="text-muted">HOME</a></p>
-                        </div>
-
-
+                                @endif
                     </div>
+    
+                    <input type="submit" value="Register" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
                 </form>
-                <div class="login-case mb-4">
-                    <img src="{{URL::asset('/media/bottom-separator-1.png')}}" class="img-fluid" alt="">
+                <div class="text-center pt-12 pb-12">
+                    <p>Already have an account? <a href="login.html" class="underline font-semibold">Log in here.</a></p>
                 </div>
             </div>
+
+        </div>
+
+        <!-- Image Section -->
+        <div class="w-1/2 shadow-2xl">
+            <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0">
         </div>
     </div>
 
 </body>
-
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-</script>
-
-<script src="{{ URL::asset('js/rqm-scripts.js') }}"></script>
-
 </html>

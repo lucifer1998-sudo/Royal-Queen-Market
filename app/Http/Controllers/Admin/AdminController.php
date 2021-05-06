@@ -58,7 +58,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index',
+        return view('tailwind-ui.admin.index',
             [
                 'total_products' => Product::count(),
                 'total_purchases' => Purchase::count(),
@@ -82,7 +82,7 @@ class AdminController extends Controller
     {
         $this -> categoriesCheck();
 
-        return view('admin.categories',
+        return view('tailwind-ui.admin.index',
             [
                 'rootCategories' => Category::roots(),
                 'categories' => Category::nameOrdered(),
@@ -180,7 +180,7 @@ class AdminController extends Controller
     {
         $this -> messagesCheck();
 
-        return view('admin.messages');
+        return view('tailwind-ui.admin.index');
     }
 
     /**
@@ -231,7 +231,7 @@ class AdminController extends Controller
     {
         $this -> disputesCheck();
 
-        return view('admin.disputes', [
+        return view('tailwind-ui.admin.index', [
             'allDisputes' => Dispute::paginate(config('marketplace.products_per_page')),
         ]);
     }
@@ -279,7 +279,7 @@ class AdminController extends Controller
      */
     public function tickets()
     {
-        return view('admin.tickets', [
+        return view('tailwind-ui.admin.index', [
            'tickets' => Ticket::orderByDesc('created_at') -> paginate(config('marketplace.posts_per_page'))
         ]);
     }
@@ -293,7 +293,7 @@ class AdminController extends Controller
      */
     public function viewTicket(Ticket $ticket)
     {
-        return view('admin.ticket', [
+        return view('tailwind-ui.admin.index', [
             'ticket' => $ticket,
             'replies' => $ticket -> replies() -> orderByDesc('created_at') -> paginate(config('marketplace.posts_per_page')),
         ]);
@@ -323,7 +323,7 @@ class AdminController extends Controller
      */
     public function vendorPurchases()
     {
-        return view('admin.vendorpurchases', [
+        return view('tailwind-ui.admin.index', [
             'vendors' => Vendor::orderByDesc('created_at')->paginate(24),
         ]);
     }

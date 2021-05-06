@@ -40,7 +40,7 @@ class ProductController extends Controller
 
         $request->persist();
         $products = $request->getProducts();
-        return view('admin.products')->with([
+        return view('tailwind-ui.admin.index')->with([
            'products' => $products
         ]);
     }
@@ -106,25 +106,33 @@ class ProductController extends Controller
         // string to view map to retrive which view
         $sectionMap = [
             'basic' =>
-                view('admin.product.basic',
+//                view('admin.product.basic',
+                view('tailwind-ui.admin.index',
                     [
+                        'section' => $section,
                         'type' => $myProduct -> type,
                         'allCategories' => Category::nameOrdered(),
                         'basicProduct' => $myProduct,]),
             'offers' =>
-                view('admin.product.offers',
+//                view('admin.product.offers',
+                view('tailwind-ui.admin.index',
                     [
+                        'section' => $section,
                         'basicProduct' => $myProduct,
                         'productsOffers' => $myProduct -> offers() -> get()
                     ]),
             'images' =>
-                view('admin.product.images',
+//                view('admin.product.images',
+                view('tailwind-ui.admin.index',
                     [
+                        'section' => $section,
                         'basicProduct' => $myProduct,
                         'productsImages' => $myProduct -> images() -> get(),
                     ]),
             'delivery' =>
-                view('admin.product.delivery', [
+//                view('admin.product.delivery', [
+                view('tailwind-ui.admin.index', [
+                    'section' => $section,
                     'productsShipping' => $myProduct -> isPhysical() ? $myProduct -> specificProduct() -> shippings() -> get() : null,
                     'physicalProduct' => $myProduct -> specificProduct(),
                     'basicProduct' => $myProduct,
@@ -151,16 +159,16 @@ class ProductController extends Controller
      */
     public function purchases()
     {
-        return view('admin.purchases', [
+        return view('tailwind-ui.admin.index', [
             'purchases' => Purchase::orderByDesc('created_at')->paginate(config('marketplace.products_per_page')),
         ]);
     }
-    
+
     public function featuredProductsShow(){
 
         $products = Product::where('featured',1)->paginate(25);
 
-        return view('admin.featuredproducts')->with([
+        return view('tailwind-ui.admin.index')->with([
             'products' => $products
         ]);
     }
@@ -181,8 +189,8 @@ class ProductController extends Controller
         }
         return redirect()->back();
     }
-    
-    
+
+
     public function markAsFeatured(Product $product){
         $this -> checkProducts();
         $product->featured = 1;

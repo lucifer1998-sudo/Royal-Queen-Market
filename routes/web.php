@@ -57,15 +57,16 @@ Route::middleware(['auth'])->group(function () {
 	//navbar routes
 	Route::get('/featured', function () {
 		$featuredProducts = FeaturedProducts::get();
-	    return view('featured')
+	    return view('tailwind-ui.featured')
 	    	->with([
-	    		'featuredProducts' => $featuredProducts
+	    		'products' => $featuredProducts
 	    	]);
 	});
 
 	Route::get('/shop', function () {
-		$products = Product::all();
-	    return view('shop')
+//		$products = Product::all();
+		$products = Product::paginate(12);
+	    return view('tailwind-ui.shops')
 	    	->with([
 	    		'products' => $products,
 	    		'categories' => Category::roots()
@@ -73,15 +74,15 @@ Route::middleware(['auth'])->group(function () {
 	});
 
 	Route::get('/vendors', function () {
-		$vendors = Vendor::allUsers();
-	    return view('vendors')
+		$vendors = Vendor::allUsers2();
+	    return view('tailwind-ui.vendors')
 	    	->with([
 	    		'vendors' => $vendors
 	    	]);
 	});
 
 	Route::get('/faqs', function() {
-		return view('faqs');
+		return view('tailwind-ui.faqs');
 	});
 
 });

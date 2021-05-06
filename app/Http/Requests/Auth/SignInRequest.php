@@ -63,7 +63,8 @@ class SignInRequest extends FormRequest {
         session()->regenerate();
         // user does not have 2fa enabled, log him in straight away
         if ($user->login_2fa == false) {
-            return redirect()->route('profile.index');
+//            return redirect()->route('profile.index');
+            return redirect()->route('home');
         }
 
         $validationString = str_random(10);

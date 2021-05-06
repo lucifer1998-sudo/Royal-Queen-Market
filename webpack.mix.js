@@ -11,7 +11,14 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+// TODO: REMOVE ALL JS IN PUBLIC FOLDER
+// mix.js('resources/js/app.js', 'public/js') // strictly no js
+mix.postCss('resources/css/app.css', 'public/css')
+    .postCss('resources/css/nordic.css', 'public/css')
+    .postCss('resources/css/profile-bg.css', 'public/css');
+
+mix.options({
+    postCss: [
+        require("tailwindcss")
+    ]
+});

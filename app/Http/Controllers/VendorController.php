@@ -41,7 +41,7 @@ class VendorController extends Controller
      */
     public function vendor()
     {
-        return view('profile.vendor',
+        return view('tailwind-ui.profile.index',
             [
                 'myProducts' => auth() -> user() -> products() -> paginate(config('marketplace.products_per_page')),
                 'vendor' => auth()->user()->vendor
@@ -535,9 +535,9 @@ class VendorController extends Controller
             session() -> flash('success', 'You have successfully activated the product!');
             return redirect() -> route('profile.vendor');
         }
-        
 
-        
+
+
     }
 
 
@@ -623,7 +623,7 @@ class VendorController extends Controller
         // update unvisited sales
         auth() -> user() -> vendor -> sales() -> where('read', false) -> update(['read' => true]);
 
-        return view('profile.vendor.sales', [
+        return view('tailwind-ui.profile.index', [
             'sales' => $sales,
             'state' => $state
         ]);

@@ -32,10 +32,11 @@ class IndexController extends Controller
             $featuredProducts = null;
         else
             $featuredProducts = FeaturedProducts::get();
-
-        return view('welcome', [
+        $products = Product::paginate(12);
+        return view('tailwind-ui.welcome', [
             'productsView' => session() -> get('products_view'),
-            'products' => Product::frontPage(),
+//            'products' => Product::inRandomOrder()->limit(12)->get(), // this is the old; for welcome page
+            'products' => $products,
             'categories' => Category::roots(),
             'featuredProducts' => $featuredProducts
         ]);
@@ -62,7 +63,8 @@ class IndexController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function category(Category $category) {
-        return view('category', [
+//        return view('category', [
+        return view('tailwind-ui.shops', [
             'productsView' => session() -> get('products_view'),
             'category' => $category,
             'products' => $category->childProducts(),

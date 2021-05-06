@@ -17,7 +17,7 @@ class RegisterController extends Controller {
      */
     public function showSignUp($refid = '') {
 
-        return view('auth.signup')->with([
+        return view('tailwind-ui.signup')->with([
             'refid' => $refid,
             'captcha' => Captcha::Build(),
         ]);
@@ -36,6 +36,7 @@ class RegisterController extends Controller {
             return redirect()->route('auth.mnemonic');
         } catch (\Exception $e) {
             Log::error($e);
+            session() -> flash('errormessage', $e -> getMessage());
             return redirect()->back();
         }
 

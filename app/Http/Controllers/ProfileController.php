@@ -58,7 +58,7 @@ class ProfileController extends Controller
     }
 
     public function index(){
-        return view('profile.index');
+        return view('tailwind-ui.profile.index');
     }
 
     /**
@@ -85,7 +85,7 @@ class ProfileController extends Controller
      */
     public function pgp()
     {
-        return view('profile.pgp');
+        return view('tailwind-ui.profile.index');
     }
 
     /**
@@ -196,7 +196,7 @@ class ProfileController extends Controller
     public function become()
     {
         #dd( auth() -> user() -> vendorPurchases);
-        return view('profile.become',[
+        return view('tailwind-ui.profile.index',[
             'vendorFee' => config('marketplace.vendor_fee'),
             'depositAddresses' => auth() -> user() -> vendorPurchases
         ]);
@@ -289,7 +289,7 @@ class ProfileController extends Controller
      */
     public function wishlist()
     {
-        return view('profile.wishlist');
+        return view('tailwind-ui.profile.index');
     }
 
     /**
@@ -312,14 +312,14 @@ class ProfileController extends Controller
         }
 
         if ($couponCheck > 0) {
-            return view('cart.index',[
+            return view('tailwind-ui.cart',[
                 'items' => Cart::getCart() -> items(),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
                 'totalSum' => Cart::getCart() -> total($couponValue ),
             ]);
         } else {
             $deduct = 0;
-            return view('cart.index',[
+            return view('tailwind-ui.cart',[
                 'items' => Cart::getCart() -> items(),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
                 'totalSum' => Cart::getCart() -> total($deduct),
@@ -453,14 +453,14 @@ class ProfileController extends Controller
         }
 
         if ($couponCheck > 0) {
-            return view('cart.checkout', [
+            return view('tailwind-ui.checkout', [
                 'items' => Cart::getCart() -> items(),
                 'totalSum' => Cart::getCart() -> total($couponValue),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
 
             ]);
         } else {
-            return view('cart.checkout', [
+            return view('tailwind-ui.checkout', [
                 'items' => Cart::getCart() -> items(),
                 'totalSum' => Cart::getCart() -> total(0),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
@@ -501,7 +501,7 @@ class ProfileController extends Controller
         if(array_key_exists($state, Purchase::$states))
             $purchases = auth() -> user() -> purchases() -> where('state', $state) -> orderByDesc('created_at') -> paginate(20);
 
-        return view('profile.purchases.index', [
+        return view('tailwind-ui.profile.index', [
             'purchases' => $purchases,
             'state' => $state,
         ]);
@@ -728,7 +728,7 @@ class ProfileController extends Controller
         }
 
 
-        return view('profile.tickets', [
+        return view('tailwind-ui.contact-us', [
             'replies' => $replies,
             'ticket' => $ticket
         ]);

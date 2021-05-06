@@ -53,12 +53,12 @@ class MessageController extends ProfileController
             $new_conversation_other_party = $other_party_from_session;
         }
 
-        return view('profile.messages', [
+        return view('tailwind-ui.profile.index', [
             'new_conversation_other_party' => $new_conversation_other_party,
             'conversation' => $conversation,
             'usersConversations' => auth() -> user() -> conversations() -> orderByDesc('updated_at') -> take(10) -> get(), // list of users conversations
-            'conversationMessages' => $conversation != null ? 
-                                $conversation -> messages() -> orderByDesc('created_at') 
+            'conversationMessages' => $conversation != null ?
+                                $conversation -> messages() -> orderByDesc('created_at')
                                 -> paginate(config('marketplace.products_per_page')) : null, // messages of the conversation
         ]);
 
@@ -124,7 +124,7 @@ class MessageController extends ProfileController
      */
     public function decryptKeyShow(Request $request) {
 
-        return view('profile.messagekey');
+        return view('tailwind-ui.profile.index');
     }
     /**
      * Shows page that requests password to decrypt rsa key
