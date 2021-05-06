@@ -119,5 +119,37 @@
                 </form>
             </div>
         </div>
+
+            <div class="bg-rqm-lighter p-5 rounded shadow w-full mt-9">
+            @if(auth() -> user() -> addresses -> isNotEmpty())
+            <table class="table-auto w-full">
+                <thead class="border-b border-rqm-yellow-dark">
+                    <tr>
+                        <th class="px-2 text-center text-left text-rqm-yellow">Address</th>
+                        <th class="px-2 text-center text-left text-rqm-yellow">Coin</th>
+                        <th class="px-2 text-center text-left text-rqm-yellow">Added</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(auth() -> user() -> addresses as $address)
+                        <tr>
+                            <td class="border-gray-600 border-r px-2 py-2 text-gray-400 text-center">
+                                <input type="text" readonly class="bg-rqm-dark border border-rqm-yellow-darkest p-2 rounded text-rqm-yellow w-full" value="{{ $address -> address }}">
+                            </td>
+                            <td class="border-gray-600 border-r px-2 py-2 text-gray-400 text-center"><span class="text-rqm-white">{{ strtoupper($address -> coin) }}</span></td>
+                            <td class="border-gray-600 border-r px-2 py-2 text-gray-400 text-center text-rqm-white">
+                                {{ $address -> added_ago }}
+                            </td>
+                            <td class="border-gray-600 border-r px-2 py-2 text-gray-400 text-center"><a href="{{ route('profile.vendor.address.remove', $address) }}" class="text-rqm-white">Remove</a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+
+            </table>
+            @else
+                <div class="alert text-center alert-warning">You addresses list is empty!</div>
+            @endif
+            </div>
     </div>
 </div>
