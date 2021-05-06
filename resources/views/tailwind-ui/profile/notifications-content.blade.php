@@ -27,13 +27,13 @@
                 <tbody>
                 @foreach($notifications as $index => $notification)
                     <tr class="@if(!($index % 2)) bg-rqm-dark @endif">
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                             {{$notification->description}}
                         </td>
-                        <td class="border-gray-600 border-r px-2 py-2 text-gray-400 text-center">
+                        <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center">
                             {{$notification->created_at->diffForHumans()}}
                         </td>
-                        <td class="border-gray-600 px-2 py-2 text-gray-400 text-center">
+                        <td class="border-gray-600 px-2 py-2 text-rqm-white text-center">
                             @if($notification->getRoute() !== null )
                                 @php
                                     foreach ($notification->getRouteParams() as $key => $val )
