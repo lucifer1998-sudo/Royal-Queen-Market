@@ -1,5 +1,37 @@
 <div class="bg-rqm-dark content-center flex flex-wrap justify-center p-10 rounded shadow w-full h-full">
     <div class="flex items-center justify-center w-full">
+    <table class="table table-striped text-white">
+        <thead>
+            <tr>
+                <th>Coin</th>
+                <th>Address</th>
+                <th>Vendor Fee</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($depositAddresses as $depositAddress)
+            <tr>
+                <td>
+                    <span class="badge badge-info">{{ strtoupper($depositAddress -> coin) }}</span>
+                </td>
+                <td>
+                    <input type="text" readonly class="form-control" value="{{ $depositAddress -> address }}"/>
+                </td>
+                <td class="text-right">
+                    <span class="badge badge-primary">{{ $depositAddress -> target }}</span>
+                </td>
+                <td class="text-right">
+                    @if($depositAddress -> isEnough())
+                        <span class="badge badge-success">Enough funds</span>
+                    @endif
+                    <span class="badge badge-info">{{ $depositAddress -> balance }}</span>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+
+    </table>
         <form action="{{ route('profile.vendor.become') }}" class="">
             @csrf
             @if(session()->has('success'))
