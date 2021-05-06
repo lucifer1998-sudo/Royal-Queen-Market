@@ -6,7 +6,7 @@ include app_path() . '\include_exr_api.php';
 ?>
 <footer class="flex justify-center text-center py-10 px-10 bg-rqm-lighter m-10 rounded-2xl">
         <div class="m-auto">
-            <img src="{{URL::asset('/media/royal-queen-logo.png')}}" class="w-40 " alt="" style="height:auto;width:300px">
+            <img src="{{URL::asset('/media/royal-queen-logo.png')}}" class="w-40 -ml-6 " alt="" style="height:auto;width:300px">
         </div>
         <div class="vl"></div>
         <div class=" justify-center pt-2 flex-grow" >
