@@ -44,5 +44,21 @@
             </div>
         </div>
     </div>
+    <div class="bg-rqm-lighter p-5 rounded shadow w-full mt-4">
+        <h3 class="text-rqm-yellow">Add product</h3>
+        <hr class="border-rqm-yellow-darkest">
+   
+            <div class="card">
+                <div class="card-body text-center">
+                    <p class="text-rqm-white my-3">Products includes shipping options.</p>
+                    <a href="{{ route('profile.vendor.product.add') }}">
+
+                    <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-3 py-1 rounded-sm text-rqm-dark">
+                            Add New Product
+                        </button></a>
+                </div>
+            </div>
+       
+    </div>
 
 </div>
