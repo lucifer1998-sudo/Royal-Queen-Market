@@ -148,7 +148,7 @@
 
             </table>
             @else
-                <div class="text-rqm-white">You addresses list is empty!</div>
+                <div class="text-rqm-white text-center">You addresses list is empty!</div>
             @endif
             </div>
     </div>
