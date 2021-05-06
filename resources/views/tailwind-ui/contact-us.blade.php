@@ -5,7 +5,7 @@
 @section('content')
     <div class="pt-20 w-full">
         <div class="w-full flex">
-            <div class="bg-rqm-dark pb-10 pt-6 px-2 px-7 rounded shadow w-1/5">
+            <div class="bg-rqm-lighter pb-10 pt-6 px-2 px-7 rounded shadow w-1/5">
                 <div class="w-full">
                     <a href="{{ route('profile.tickets') }}">
                         <div class="@if(!$ticket) bg-rqm-yellow font-black text-rqm-dark @else bg-rqm-light text-rqm-yellow @endif px-3 py-1 rounded">
