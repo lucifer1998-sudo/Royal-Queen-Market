@@ -113,7 +113,7 @@ class VendorController extends Controller
      */
     public function addOffersShow()
     {
-
+        dd('here');
         return view('profile.vendor.addoffers',
             [
                 'productsOffers' => session('product_offers'),
