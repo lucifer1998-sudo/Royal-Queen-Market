@@ -18,7 +18,7 @@
                     </p>
                 </div>
                 <div class="form-group py-4">
-                    <textarea name="" id="" cols="70" rows="10" readonly class="form-control">{{$mnemonic}}</textarea>
+                    <textarea name="" id="" cols="70" rows="10" readonly class="form-control text-rqm-dark ">{{$mnemonic}}testsdasd</textarea>
                 </div>
 {{--                <div class="form-group text-center">--}}
 {{--                    <a href="{{route('auth.signin')}}" class="btn btn-warning bg-rqm-yellow font-black py-2 text-rqm-dark w-full">Proceed to Sign In</a>--}}
