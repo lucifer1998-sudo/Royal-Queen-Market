@@ -21,7 +21,7 @@
                 <div class="mt-9 w-full">
                     <div class="grid gap-4 grid-cols-1">
                         <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
-                            <span class="text-2xl text-gray-400 block text-rqm-yellow">Add Basic Information</span>
+                            <a href="#" class="text-2xl text-gray-400 block text-rqm-yellow">Add Basic Information</a>
                         </div>
                     </div>
 
