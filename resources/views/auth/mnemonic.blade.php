@@ -13,8 +13,8 @@
                     <p>
                         We have created your mnemonic key for your added security.
                         Please save and keep it in a safe place.
-                        You will need this to recover your account, in case you forget password.
-                        if you lose this, no one can help you recover you account and funds may be lost.
+                        You will need this to recover your account, in case you forget your password.
+                        If you lose this, no one can help you recover you account and funds may be lost.
                     </p>
                 </div>
                 <div class="form-group py-4">
@@ -24,7 +24,7 @@
 {{--                    <a href="{{route('auth.signin')}}" class="btn btn-warning bg-rqm-yellow font-black py-2 text-rqm-dark w-full">Proceed to Sign In</a>--}}
 {{--                </div>--}}
                 <div class="flex justify-center text-lg text-rqm-yellow">
-                    <a href="{{route('auth.signin')}}" value="Log In" class="bg-rqm-yellow font-bold py-2 text-rqm-dark w-full">Proceed to Sign In</a>
+                    <a href="{{route('auth.signin')}}" value="Log In" class="bg-rqm-yellow font-bold py-2 text-rqm-dark w-full">Log in to newly created Account</a>
                 </div>
             </div>
 

@@ -13,7 +13,7 @@ return [
      * Mnemonic is used for account recovery
      * Size in words
      */
-    'mnemonic_length' => 24,
+    'mnemonic_length' => 16,
 
     /**
      * Types used for differentiation products
