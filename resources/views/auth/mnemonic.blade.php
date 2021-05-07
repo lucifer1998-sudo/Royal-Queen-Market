@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <div class="flex ml-34rm py-7">
+    <div class="flex justify-center text-center py-7 ">
         <div class="text-white text-center w-3/5">
             <h4 class="text-rqm-yellow text-4xl">Mnemonic</h4>
             <div class="mt-3 text-center">
