@@ -14,8 +14,18 @@
     <div class="flex">
         @include('tailwind-ui.profile.menu')
         <div class="pl-10 w-5/6">
-            <div class="bg-rqm-lighter p-5 rounded shadow w-full text-center">
-                <span class="text-2xl text-gray-400 block text-rqm-yellow">Add Physical Product</span>
+            <div class="h-full">
+                <div class="bg-rqm-lighter p-5 rounded shadow w-full text-center">
+                    <span class="text-2xl text-gray-400 block text-rqm-yellow">Add Physical Product</span>
+                </div>
+                <div class="mt-9 w-full">
+                    <div class="grid gap-4 grid-cols-1">
+                        <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
+                            <span class="text-2xl text-gray-400 block text-rqm-yellow">Add Basic Information</span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
