@@ -42,7 +42,7 @@
 
         <div class="text-2xl text-rqm-yellow w-full pt-5">User Groups</div>
         <div class="pb-10 w-full">
-            <form action="{{route('admin.user.edit.group',$user->id)}}" method="post">
+            <form action="{{route('admin.user.edit.group',$user)}}" method="post">
                 {{csrf_field()}}
                 <div class="w-full flex">
                     <div class=" pt-2 text-rqm-yellow w-1/3">
