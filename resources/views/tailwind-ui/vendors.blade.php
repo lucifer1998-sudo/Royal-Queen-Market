@@ -94,12 +94,12 @@
         </div>
 
 
-        <div class="bg-rqm-dark w-4/5 relative">
-            <div class="gap-7 grid custom-grid-col pt-5 pb-5 px-28">
-                <div class="absolute inset-0 bg-repeat h-full opacity-10 w-full"
-                     style="background-image: url({{URL::asset('/media/bg.cleaned.png')}})">
-                    <span></span>
-                </div>
+        <div class="bg-rqm-dark w-4/5 relative left-8">
+            <div class="absolute inset-0 bg-repeat h-full opacity-10 w-full bg-rqm-lighter"
+                 style="background-image: url({{URL::asset('/media/bg.cleaned.png')}})">
+                <span></span>
+            </div>
+            <div class="gap-7 grid custom-grid-col pt-5 pb-5 px-28 mr-52">
                 @foreach ($vendors as $vendor)
 
                     <div class="border border-gray-500 flex flex-col px-9 py-5 rounded-2xl shadow-md relative">
