@@ -2,20 +2,20 @@
 
 @section('form-content')
     @if(optional($productsOffers) -> isNotEmpty())
-        <table class="table table-striped table-hover ">
-            <thead>
+        <table class="table-auto w-full my-2">
+            <thead class="border-b border-rqm-yellow-dark">
             <tr>
-                <th scope="col">Price ({{ \App\Marketplace\Utility\CurrencyConverter::getLocalSymbol() }})</th>
-                <th scope="col">Minimum quantity</th>
-                <th scope="col"></th>
+                <th scope="col" class="px-2 text-center text-left text-rqm-yellow">Price ({{ \App\Marketplace\Utility\CurrencyConverter::getLocalSymbol() }})</th>
+                <th scope="col" class="px-2 text-center text-left text-rqm-yellow">Minimum quantity</th>
+                <th scope="col" class="px-2 text-center text-left text-rqm-yellow"></th>
             </tr>
             </thead>
             <tbody>
-            @foreach($productsOffers as $offer)
-                <tr>
+            @foreach($productsOffers as $index => $offer)
+                <tr class="@if(!($index % 2)) bg-rqm-light @endif">
                     <th>{{ $offer -> local_price }}</th>
-                    <td>{{ $offer -> min_quantity }}</td>
-                    <td class="text-right">
+                    <td class="border-gray-600 border-r text-center px-2 py-2 text-rqm-white">{{ $offer -> min_quantity }}</td>
+                    <td class="border-gray-600 border-r text-center px-2 py-2 text-rqm-white">
                         <a href="{{ route('profile.vendor.product.offers.remove', [ $offer -> min_quantity, $basicProduct]) }}" class="btn btn-sm btn-outline-danger">Remove</a>
                     </td>
                 </tr>
