@@ -154,13 +154,13 @@
                 @if(request() -> is('profile/vendor/product/edit/*'))
                     <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4" type="submit"><i class="far fa-save mr-2"></i> Save</button>
                     <a href="{{ route('profile.vendor.product.edit', [$basicProduct, 'offers']) }}"
-                       class="btn btn-outline-primary"><i class="fas fa-chevron-down mr-2"></i> Next</a>
+                       class="btn btn-outline-primary">Next</a>
                 @elseif(request() -> is('admin/product/*'))
                     <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4" type="submit"><i class="far fa-save mr-2"></i> Save</button>
                     <a href="{{ route('admin.product.edit', [$basicProduct, 'offers']) }}"
-                       class="btn btn-outline-primary"><i class="fas fa-chevron-down mr-2"></i> Next</a>
+                       class="btn btn-outline-primary">Next</a>
                 @else
-                    <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4" type="submit"><i class="fas fa-chevron-down mr-2"></i> Next
+                    <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4" type="submit">Next
                     </button>
                 @endif
             </div>
