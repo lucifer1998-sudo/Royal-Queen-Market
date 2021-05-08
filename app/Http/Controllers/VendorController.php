@@ -198,7 +198,7 @@ class VendorController extends Controller
         if(!($physicalProduct instanceof  PhysicalProduct))
             $physicalProduct = new PhysicalProduct();
 
-        return view('profile.vendor.adddelivery',
+        return view('tailwind-ui.profile.vendor.adddelivery',
             [
                 'physicalProduct' => $physicalProduct ?? new PhysicalProduct,
                 'productsShipping' => session('product_shippings'),
