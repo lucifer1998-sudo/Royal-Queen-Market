@@ -19,31 +19,27 @@
         <div class="pl-10 w-5/6">
             <div class="h-full">
                 <div class="bg-rqm-lighter p-5 rounded shadow w-full text-center">
-                    <h1 class="mb-3 text-white">
-                        @yield('product-title')
-                    </h1>
-                    <span class="text-2xl text-gray-400 block text-rqm-yellow">Add Physical Product</span>
+                    <span class="text-2xl text-gray-400 block text-rqm-yellow">@yield('product-title')</span>
                 </div>
-                <div class="mt-9 w-full">
-                    <div class="grid gap-4 grid-cols-1">
-                        <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
-                                @if(request() -> is('profile/vendor/product/edit/*'))
-                                    <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.edit', $basicProduct) }}">
-                                        Add Basic Information
-                                    </a>
-                                @else
-                                    <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.add', session('product_type')) }}">
-                                        Add Basic Information
-                                    </a>
-                                @endif
-                        </div>
-                    </div>
-                </div>
-
                 <div class="mt-9 w-full">
                     <div class="grid gap-0 grid-cols-1">
                         <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
                             <form class="w-full max-w-6xl">
+                                <div class="flex flex-wrap -mx-3 mb-6">
+                                    <div class="w-full px-3">
+                                        <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
+                                            @if(request() -> is('profile/vendor/product/edit/*'))
+                                                <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.edit', $basicProduct) }}">
+                                                    Add Basic Information
+                                                </a>
+                                            @else
+                                                <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.add', session('product_type')) }}">
+                                                    Add Basic Information
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                                 @yield('product-basic-form')
                                 <div class="flex flex-wrap -mx-3 mb-6 text-center">
                                     <div class="w-full px-3">
