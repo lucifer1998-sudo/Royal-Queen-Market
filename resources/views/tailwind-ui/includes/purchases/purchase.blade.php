@@ -41,7 +41,7 @@
         @include('tailwind-ui.includes.purchases.components.offer')
         @include('tailwind-ui.includes.purchases.components.delivery')
     </div>
-    <div class="flex my-4">
+    <div class="flex my-4 flex-wrap">
         @include('tailwind-ui.includes.purchases.components.message')
         @include('tailwind-ui.includes.purchases.components.payment')
     </div>
