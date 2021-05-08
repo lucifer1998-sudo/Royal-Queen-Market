@@ -154,21 +154,60 @@
                                 <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full px-3">
                                         <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
-                                            <a href="#" class="text-2xl text-gray-400 block text-rqm-yellow">Price & Offers</a>
+                                            @if(request() -> is('profile/vendor/product/edit/*'))
+                                                <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.edit', [$basicProduct, 'offers']) }}">
+                                                    Price & Offers
+                                                </a>
+                                            @else
+                                                <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.offers') }}">
+                                                    Price & Offers
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full px-3">
                                         <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
-                                            <a href="#" class="text-2xl text-gray-400 block text-rqm-yellow">Delivery Options</a>
+                                            @if(request() -> is('profile/vendor/product/edit/*'))
+                                                <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.edit', [$basicProduct, 'delivery']) }}">
+                                                    Delivery Options
+                                                </a>
+                                            @else
+                                                <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.delivery') }}">
+                                                    Delivery Options
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full px-3">
                                         <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
-                                            <a href="#" class="text-2xl text-gray-400 block text-rqm-yellow">Images</a>
+                                            @if(request() -> is('profile/vendor/product/edit/*'))
+                                                <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.edit', [$basicProduct, 'digital']) }}">
+                                                    Digital Options
+                                                </a>
+                                            @else
+                                                <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.digital') }}">
+                                                    Digital Options
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap -mx-3 mb-6">
+                                    <div class="w-full px-3">
+                                        <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
+                                            @if(request() -> is('profile/vendor/product/edit/*'))
+                                                <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.edit', [$basicProduct, 'images']) }}">
+                                                    Images
+                                                </a>
+                                            @else
+                                                <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.images') }}">
+                                                            Images
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
