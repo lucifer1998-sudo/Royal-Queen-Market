@@ -3,6 +3,9 @@
 @section('title', 'Home')
 
 @section('content')
+    @include('includes.flash.success')
+    @include('includes.flash.error')
+    @include('includes.validation')
     <div class="flex justify-center w-full">
         <div class="pl-10 w-1/6 h-full">
             <span></span>
