@@ -5,3 +5,13 @@
 .custom-grid-col {
 	grid-template-columns: repeat(3, minmax(40%, 1fr));
 }
+.f5{
+    flex:5
+}
+.vl{
+    border-left: 1px solid white;
+
+}
+.bg-gray{
+    background:gray;
+}
