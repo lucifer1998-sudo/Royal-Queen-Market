@@ -61,7 +61,7 @@ class VendorController extends Controller
         // save type
         session() -> put('product_type', $type);
 
-        return view('tailwind-ui.add-product', [
+        return view('tailwind-ui.product.add-basic', [
             'type' => $type,
             'allCategories' => Category::nameOrdered(),
             'basicProduct' => session('product_adding'),
