@@ -6,9 +6,9 @@
 @endsection
 
 @section('form-content')
-    <form method="POST" action="{{ route('profile.vendor.product.add.post', optional($basicProduct) -> exists ? $basicProduct : null) }}">
+    <form class="bg-rqm-lighter p-4" method="POST" action="{{ route('profile.vendor.product.add.post', optional($basicProduct) -> exists ? $basicProduct : null) }}">
         {{ csrf_field() }}
-        <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="flex flex-wrap -mx-3 mb-6 mt-3 ">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-white font-bold mb-2">
                     Products Name
@@ -49,8 +49,8 @@
                 <textarea name="description" id="description"
                           class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-white w-full rounded" rows="20"
                           placeholder="Details about the product">{{ optional($basicProduct) -> description }}</textarea>
-                <p>
-                    <i class="fab fa-markdown"></i> Styling with Markdown is supported
+                <p class="text-white">
+                     Styling with Markdown is supported
                 </p>
                 @error('description', $errors)
                 <div class="invalid-feedback d-block text-center">
@@ -67,8 +67,7 @@
                 <textarea name="rules" id="rules" class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-white w-full rounded @error('rules', $errors) is-invalid @enderror"
                           rows="10"
                           placeholder="Rules of conducting business">{{ optional($basicProduct) -> rules }}</textarea>
-                <p>
-                    <i class="fab fa-markdown"></i> Styling with Markdown is supported
+                <p class="text-white"> Styling with Markdown is supported
                 </p>
                 @error('rules', $errors)
                 <div class="invalid-feedback d-block text-center">

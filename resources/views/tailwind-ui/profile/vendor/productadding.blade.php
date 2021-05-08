@@ -18,11 +18,11 @@
                 @include('includes.flash.success')
                 @include('includes.flash.error')
                 @include('includes.validation')
-                <div class="bg-rqm-lighter p-5 rounded shadow w-full text-center">
+                <div class="p-5 rounded shadow w-full text-center">
                     <span class="text-2xl text-gray-400 block text-rqm-yellow">@yield('product-title')</span>
                 </div>
                 @vendor
-                <div class="accordion mb-3" id="accordionExample">
+                <div class="accordion mb-3 mt-3" id="accordionExample">
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <div class="bg-rqm-lighter p-5 rounded shadow w-full">
