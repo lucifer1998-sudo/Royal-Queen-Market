@@ -3,7 +3,7 @@
 @if(request() -> is('profile/vendor/product/edit/*'))
     @section('product-title', 'Edit product - '. $physicalProduct -> product -> name)
 @else
-    @section('product-title', 'Add ' . session('product_type') . ' product')
+    @section('product-title', 'Add new product')
 @endif
 
 @section('product-delivery-form')
