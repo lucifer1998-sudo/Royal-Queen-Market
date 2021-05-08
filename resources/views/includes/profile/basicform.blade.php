@@ -41,7 +41,8 @@
                 </div>
                 @enderror
             </div>
-            <div class="flex flex-wrap -mx-3 mb-6">
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-white font-bold mb-2">
                         Products Description
@@ -59,61 +60,70 @@
                     @enderror
                 </div>
             </div>
-        </div>
-        <div class="form-row">
-
-        </div>
-
-        <div class="form-group">
-            <label for="rules">Payment rules:</label>
-            <textarea name="rules" id="rules" class="form-control @error('rules', $errors) is-invalid @enderror"
-                      rows="10"
-                      placeholder="Rules of conducting business">{{ optional($basicProduct) -> rules }}</textarea>
-            <p>
-                <i class="fab fa-markdown"></i> Styling with Markdown is supported
-            </p>
-            @error('rules', $errors)
-            <div class="invalid-feedback d-block text-center">
-                {{ $errors -> first('rules') }}
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3 py-5">
+                <label class="block uppercase tracking-wide text-white font-bold mb-2">
+                    Payment Rules
+                </label>
+                <textarea name="rules" id="rules" class="resize-x border rounded-md w-full h-full @error('rules', $errors) is-invalid @enderror"
+                          rows="10"
+                          placeholder="Rules of conducting business">{{ optional($basicProduct) -> rules }}</textarea>
+                <p>
+                    <i class="fab fa-markdown"></i> Styling with Markdown is supported
+                </p>
+                @error('rules', $errors)
+                <div class="invalid-feedback d-block text-center">
+                    {{ $errors -> first('rules') }}
+                </div>
+                @enderror
             </div>
-            @enderror
         </div>
-        <div class="form-group">
-            <label for="coins">Supported types:</label>
-            <select name="types[]" id="types" multiple class="form-control">
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-white font-bold mb-2">
+                    Supported types
+                </label>
+                <div class="relative">
+                    <select name="types[]" id="types" multiple multiple class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        @foreach(\App\Purchase::$types as $type => $typeLongName)
 
-                @foreach(\App\Purchase::$types as $type => $typeLongName)
+                            <option value="{{ $type }}" {{ optional($basicProduct) -> supportsType($type) ? 'selected' : '' }}>{{ $typeLongName }}</option>
 
-                        <option value="{{ $type }}" {{ optional($basicProduct) -> supportsType($type) ? 'selected' : '' }}>{{ $typeLongName }}</option>
-
-                @endforeach
-
-            </select>
-            @error('types', $errors)
-            <div class="invalid-feedback d-block text-center">
-                {{ $errors -> first('types') }}
-            </div>
-            @enderror
+                        @endforeach
+                    </select>
+                    @error('types', $errors)
+                    <div class="invalid-feedback d-block text-center">
+                        {{ $errors -> first('types') }}
+                    </div>
+                    @enderror
+                </div>
         </div>
-
-
-        <div class="form-group">
-            <label for="coins">Supported coins:</label>
-            <select name="coins[]" id="coins" multiple class="form-control">
-                @foreach(config('coins.coin_list') as $coin => $instance)
-                    <option value="{{ $coin }}" {{ optional($basicProduct) -> supportsCoin($coin) ? 'selected' : '' }}>{{ strtoupper(\App\Purchase::coinDisplayName($coin)) }}</option>
-                @endforeach
-            </select>
-            @error('coins', $errors)
-            <div class="invalid-feedback d-block text-center">
-                {{ $errors -> first('coins') }}
-            </div>
-            @enderror
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="quantity">Quantity</label>
-                <input type="number" class="form-control @error('quantity', $errors) is-invalid @enderror"
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-white font-bold mb-2">
+                    Supported coins
+                </label>
+                <div class="relative">
+                    <select name="coins[]" id="coins" multiple class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        @foreach(config('coins.coin_list') as $coin => $instance)
+                            <option value="{{ $coin }}" {{ optional($basicProduct) -> supportsCoin($coin) ? 'selected' : '' }}>{{ strtoupper(\App\Purchase::coinDisplayName($coin)) }}</option>
+                        @endforeach
+                    </select>
+                    @error('coins', $errors)
+                    <div class="invalid-feedback d-block text-center">
+                        {{ $errors -> first('coins') }}
+                    </div>
+                    @enderror
+                </div>
+        </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-white font-bold mb-2">
+                    Quantity
+                </label>
+                <input type="number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white @error('quantity', $errors) is-invalid @enderror"
                        @if(optional($basicProduct) -> isAutodelivery()) readonly @endif
                        name="quantity" id="quantity" min="1" placeholder="Number of products"
                        value="{{ optional($basicProduct) -> quantity }}">
@@ -126,9 +136,11 @@
                     <p class="text-muted">The product is marked as autodelivery, you can't change quantity manually.</p>
                 @endif
             </div>
-            <div class="form-group col-md-6">
-                <label for="mesure">Mesure</label>
-                <input type="text" maxlength="10" class="form-control @error('mesure', $errors) is-invalid @enderror"
+            <div class="w-full md:w-1/2 px-3 ">
+                <label class="block uppercase tracking-wide text-white  font-bold mb-2">
+                    Measure
+                </label>
+                <input type="text" maxlength="10" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white @error('mesure', $errors) is-invalid @enderror"
                        id="mesure" name="mesure" placeholder="Unit of mesure(item, gram)"
                        value="{{ optional($basicProduct) -> mesure }}">
                 @error('mesure', $errors)
