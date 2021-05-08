@@ -11,3 +11,13 @@
 .alert-danger{
     color: red;
 }
+.f5{
+    flex:5
+}
+.vl{
+    border-left: 1px solid white;
+
+}
+.bg-gray{
+    background:gray;
+}
