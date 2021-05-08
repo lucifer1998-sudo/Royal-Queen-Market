@@ -2,7 +2,9 @@
     <div class="h-full">
         <div class="bg-rqm-lighter p-5 rounded shadow w-full">
             @if($purchase -> isDisputed())
-                <h3 class="mb-1 text-white">Dispute</h3>
+                <label class="text-2xl text-gray-400 block text-rqm-yellow">
+                    Dispute
+                </label>
                 <hr>
                 @if(!$purchase -> dispute -> isResolved() && auth() -> user() -> isAdmin())
                     <h5 class="mb-1 text-white">Resolve dispute</h5>
@@ -10,7 +12,7 @@
                           method="POST">
                         {{ csrf_field() }}
                         <label for="winner" class="mr-2 text-white">Dispute winner:</label>
-                        <select name="winner" id="winner" class="form-control mr-2">
+                        <select name="winner" id="winner" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white ">
                             <option value="{{ $purchase -> buyer -> id }}">{{ $purchase -> buyer -> username }} -
                                 buyer
                             </option>
@@ -18,11 +20,11 @@
                                 - vendor
                             </option>
                         </select>
-                        <button type="submit" class="btn btn-outline-primary">Resolve dispute</button>
+                        <button type="submit" class="items-center justify-center px-2 py-1 text-xs font-bold text-indigo-100 bg-indigo-700 rounded">Resolve dispute</button>
                     </form>
                 @elseif($purchase -> dispute -> isResolved())
                     <h5 class="mb-1 text-white">Dispute resolved</h5>
-                    <p class="alert alert-success">Winner:
+                    <p class="bg-green-500 text-white">Winner:
                         <strong class="">{{ $purchase -> dispute -> winner -> username }}</strong></p>
                 @endif
 
@@ -44,14 +46,14 @@
                           method="POST">
                         <div class="card my-2">
                             <div class="card-header">
-                                <h5><label for="newmessage">New message:</label></h5>
+                                <h5><label for="newmessage" class="text-white">New message:</label></h5>
                             </div>
                             <div class="card-body">
-                                <textarea name="message" id="newmessage" class="form-control" id="message"
+                                <textarea name="message" id="newmessage" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white " id="message"
                                           rows="5"></textarea>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-block btn-primary">Send message</button>
+                                <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4">Send message</button>
                             </div>
                         </div>
                         {{ csrf_field() }}
