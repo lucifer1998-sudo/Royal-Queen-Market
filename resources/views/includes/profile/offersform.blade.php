@@ -23,16 +23,16 @@
     </tbody>
     </table>
 @else
-    <div class="alert alert-warning">You don't have any offer please add at least one!</div>
+    <div class="text-rqm-white text-2xl text-center py-5">You don't have any offer please add at least one!</div>
 @endif
 
-<h3 class="mt-3">Add offer</h3>
+<h3 class="text-rqm-yellow-dark text-2xl  py-5">Add offer</h3>
 <hr>
 <form method="POST" action="{{ route('profile.vendor.product.offers.add', $basicProduct) }}">
     {{ csrf_field() }}
     <div class="form-row">
         <div class="col">
-            <input type="number" step=".01" min="0.01" class="form-control @error('price', $errors) is-invalid @enderror" name="price" value="{{ old('min_quantity') }}" placeholder="Price in {{ \App\Marketplace\Utility\CurrencyConverter::getLocalSymbol() }}">
+            <input type="number" step=".01" min="0.01" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white @error('price', $errors) is-invalid @enderror" name="price" value="{{ old('min_quantity') }}" placeholder="Price in {{ \App\Marketplace\Utility\CurrencyConverter::getLocalSymbol() }}">
             @error('price', $errors)
             <div class="invalid-feedback">
                 {{ $errors -> first('price') }}
@@ -40,7 +40,7 @@
             @enderror
         </div>
         <div class="col">
-            <input type="min_quantity" step="1" min="1" class="form-control @error('min_quantity', $errors) is-invalid @enderror" value="{{ old('min_quantity') }}" name="min_quantity" placeholder="Minimum quantity for this price">
+            <input type="min_quantity" step="1" min="1" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white @error('min_quantity', $errors) is-invalid @enderror" value="{{ old('min_quantity') }}" name="min_quantity" placeholder="Minimum quantity for this price">
             @error('price', $errors)
             <div class="invalid-feedback">
                 {{ $errors -> first('price') }}
@@ -48,18 +48,18 @@
             @enderror
         </div>
         <div class="col">
-            <button class="btn btn-outline-success" type="submit"><i class="fas fa-plus mr-2"></i> Add offer</button>
+            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded text-center" type="submit"><i class="fas fa-plus mr-2"></i> Add offer</button>
         </div>
     </div>
 </form>
 
 <div class="col-md-12 text-center mt-3">
     @if(request() -> is('profile/vendor/product/edit/*'))
-        <a href="{{ route('profile.vendor.product.edit', [$basicProduct, $basicProduct -> afterOffers()]) }}" class="btn btn-outline-primary"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
+        <a href="{{ route('profile.vendor.product.edit', [$basicProduct, $basicProduct -> afterOffers()]) }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
     @elseif(request() -> is('admin/product/*'))
-        <a href="{{ route('admin.product.edit', [$basicProduct, $basicProduct -> afterOffers()]) }}" class="btn btn-outline-primary"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
+        <a href="{{ route('admin.product.edit', [$basicProduct, $basicProduct -> afterOffers()]) }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
     @else
-        <a href="{{ route('profile.vendor.product.' . ( session('product_type') == 'physical' ? 'delivery' : 'digital' ) ) }}" class="btn btn-outline-primary"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
+        <a href="{{ route('profile.vendor.product.' . ( session('product_type') == 'physical' ? 'delivery' : 'digital' ) ) }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
     @endif
 </div>
 @stop

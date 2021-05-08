@@ -61,7 +61,7 @@
                 </div>
             </div>
         <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full px-3 py-5">
+            <div class="w-full px-3 py-10">
                 <label class="block uppercase tracking-wide text-white font-bold mb-2">
                     Payment Rules
                 </label>
