@@ -48,18 +48,18 @@
             @enderror
         </div>
         <div class="col">
-            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded text-center" type="submit"><i class="fas fa-plus mr-2"></i> Add offer</button>
+            <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4" type="submit"><i class="fas fa-plus mr-2"></i> Add offer</button>
         </div>
     </div>
 </form>
 
 <div class="col-md-12 text-center mt-3">
     @if(request() -> is('profile/vendor/product/edit/*'))
-        <a href="{{ route('profile.vendor.product.edit', [$basicProduct, $basicProduct -> afterOffers()]) }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
+        <a href="{{ route('profile.vendor.product.edit', [$basicProduct, $basicProduct -> afterOffers()]) }}" class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
     @elseif(request() -> is('admin/product/*'))
-        <a href="{{ route('admin.product.edit', [$basicProduct, $basicProduct -> afterOffers()]) }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
+        <a href="{{ route('admin.product.edit', [$basicProduct, $basicProduct -> afterOffers()]) }}" class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
     @else
-        <a href="{{ route('profile.vendor.product.' . ( session('product_type') == 'physical' ? 'delivery' : 'digital' ) ) }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
+        <a href="{{ route('profile.vendor.product.' . ( session('product_type') == 'physical' ? 'delivery' : 'digital' ) ) }}" class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
     @endif
 </div>
 @stop
