@@ -131,7 +131,7 @@
                         <form method="POST" action="{{ route("profile.vendor.product.post") }}"
                               class="text-center my-2">
                             {{ csrf_field() }}
-                            <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"><i class="far fa-plus-square mr-2"></i> Add
+                            <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4"><i class="far fa-plus-square mr-2"></i> Add
                                 product
                             </button>
                         </form>

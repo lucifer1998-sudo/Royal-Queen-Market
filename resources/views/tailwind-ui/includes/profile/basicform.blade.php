@@ -153,15 +153,15 @@
         <div class="form-row justify-content-center">
             <div class="form-group col-md-3 text-center">
                 @if(request() -> is('profile/vendor/product/edit/*'))
-                    <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded" type="submit"><i class="far fa-save mr-2"></i> Save</button>
+                    <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4" type="submit"><i class="far fa-save mr-2"></i> Save</button>
                     <a href="{{ route('profile.vendor.product.edit', [$basicProduct, 'offers']) }}"
                        class="btn btn-outline-primary"><i class="fas fa-chevron-down mr-2"></i> Next</a>
                 @elseif(request() -> is('admin/product/*'))
-                    <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded" type="submit"><i class="far fa-save mr-2"></i> Save</button>
+                    <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4" type="submit"><i class="far fa-save mr-2"></i> Save</button>
                     <a href="{{ route('admin.product.edit', [$basicProduct, 'offers']) }}"
                        class="btn btn-outline-primary"><i class="fas fa-chevron-down mr-2"></i> Next</a>
                 @else
-                    <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded" type="submit"><i class="fas fa-chevron-down mr-2"></i> Next
+                    <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4" type="submit"><i class="fas fa-chevron-down mr-2"></i> Next
                     </button>
                 @endif
             </div>

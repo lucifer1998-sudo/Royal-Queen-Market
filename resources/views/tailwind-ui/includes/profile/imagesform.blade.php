@@ -16,7 +16,7 @@
             </label>
         </div>
 
-        <button type="submit" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded">Add image</button>
+        <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4">Add image</button>
     </div>
 </form>
 

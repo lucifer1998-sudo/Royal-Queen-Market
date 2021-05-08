@@ -61,7 +61,7 @@ class VendorController extends Controller
         // save type
         session() -> put('product_type', $type);
 
-        return view('tailwind-ui.product.add-basic', [
+        return view('tailwind-ui.profile.vendor.addbasic', [
             'type' => $type,
             'allCategories' => Category::nameOrdered(),
             'basicProduct' => session('product_adding'),
@@ -113,7 +113,8 @@ class VendorController extends Controller
      */
     public function addOffersShow()
     {
-        return view('tailwind-ui.product.add-offers',
+
+        return view('tailwind-ui.profile.vendor.addoffers',
             [
                 'productsOffers' => session('product_offers'),
                 'basicProduct' => null,
@@ -197,7 +198,7 @@ class VendorController extends Controller
         if(!($physicalProduct instanceof  PhysicalProduct))
             $physicalProduct = new PhysicalProduct();
 
-        return view('tailwind-ui.product.add-delivery',
+        return view('tailwind-ui.profile.vendor.adddelivery',
             [
                 'physicalProduct' => $physicalProduct ?? new PhysicalProduct,
                 'productsShipping' => session('product_shippings'),
@@ -327,7 +328,7 @@ class VendorController extends Controller
     public function addImagesShow()
     {
 
-        return view('tailwind-ui.product.add-images',
+        return view('tailwind-ui.profile.vendor.addimages',
             [
                 'basicProduct' => null,
                 'productsImages' => session('product_images'),
