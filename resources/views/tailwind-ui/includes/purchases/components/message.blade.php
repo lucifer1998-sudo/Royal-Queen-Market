@@ -3,8 +3,9 @@
         <label class="text-2xl text-gray-400 block text-rqm-yellow">
             Message for Vendor
         </label>
-        <p class="text-white text-sm">Encrypted with vendor's PGP key.</p>
-        <textarea name="description" id="description" class=" mt-3 resize-xappearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white " rows="8" placeholder="" spellcheck="false">
+        <hr>
+        <p class="text-white text-sm mt-4">Encrypted with vendor's PGP key.</p>
+        <textarea name="description" id="description" class=" mt-3 resize-xappearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white " rows="14" placeholder="" spellcheck="false">
             {{ $purchase -> message }}
         </textarea>
     </div>

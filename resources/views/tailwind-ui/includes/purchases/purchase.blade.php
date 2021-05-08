@@ -45,11 +45,11 @@
         @include('tailwind-ui.includes.purchases.components.message')
         @include('tailwind-ui.includes.purchases.components.payment')
     </div>
-    <div class="row">
+    <div class="flex">
         @include('tailwind-ui.includes.purchases.components.feedback')
     </div>
-    <div class="row">
-        @include('includes.purchases.components.dispute')
+    <div class="flex">
+        @include('tailwind-ui.includes.purchases.components.dispute')
     </div>
 
 

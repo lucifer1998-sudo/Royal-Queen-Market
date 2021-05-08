@@ -3,12 +3,13 @@
         <label class="text-2xl text-gray-400 block text-rqm-yellow">
             Payment
         </label>
-        <table class="table-auto w-full">
+        <hr>
+        <table class="table-auto w-full mt-4">
             <thead class="border-b border-rqm-yellow-dark">
             </thead>
             <tbody>
             <tr class="bg-rqm-light">
-                <td class="border-gray-600 border-r px-2 py-2 text-white">
+                <td class="border-gray-600 px-2 py-2 text-white">
                     To Pay:
                 </td>
                 <td class="px-2 py-2 text-white">
@@ -24,7 +25,7 @@
                 </td>
             </tr>
             <tr class="bg-rqm-light">
-                <td class="border-gray-600 border-r px-2 py-2 text-white">
+                <td class="border-gray-600 px-2 py-2 text-white">
                     Address Received
                 </td>
                 <td class="px-2 py-2 text-white">
@@ -45,7 +46,7 @@
                 </td>
             </tr>
             <tr class="bg-rqm-light">
-                <td class="border-gray-600 border-r px-2 py-2 text-white">
+                <td class="border-gray-600 px-2 py-2 text-white">
                     Address :
                 </td>
                 <td class="px-2 py-2 text-white">
@@ -53,7 +54,7 @@
                 </td>
             </tr>
             <tr class="bg-rqm-light">
-                <td class="border-gray-600 border-r px-2 py-2 text-white">
+                <td class="border-gray-600 px-2 py-2 text-white">
                     State :
                 </td>
                 <td class="px-2 py-2 text-white">

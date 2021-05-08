@@ -1,13 +1,14 @@
 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
     <div class="bg-rqm-lighter p-5 rounded shadow w-full">
         <h4 class="text-2xl text-gray-400 block text-rqm-yellow">Delivery</h4>
+        <hr>
         @if ( $purchase -> shipping)
-            <table class="table-auto w-full">
+            <table class="table-auto w-full mt-4">
                 <thead class="border-b border-rqm-yellow-dark">
                 </thead>
                 <tbody>
                 <tr class="bg-rqm-light">
-                    <td class="border-gray-600 border-r px-2 py-2 text-white">
+                    <td class="border-gray-600 px-2 py-2 text-white">
                         Shipping name
                     </td>
                     <td class="px-2 py-2 text-white">
@@ -15,7 +16,7 @@
                     </td>
                 </tr>
                 <tr class="bg-rqm-light">
-                    <td class="border-gray-600 border-r px-2 py-2 text-white">
+                    <td class="border-gray-600 px-2 py-2 text-white">
                         Delivery Time
                     </td>
                     <td class="px-2 py-2 text-white">
@@ -23,7 +24,7 @@
                     </td>
                 </tr>
                 <tr class="bg-rqm-light">
-                    <td class="border-gray-600 border-r px-2 py-2 text-white">
+                    <td class="border-gray-600 px-2 py-2 text-white">
                         Shipping price:
                     </td>
                     <td class="px-2 py-2 text-white">
@@ -34,10 +35,10 @@
             </table>
         @else
             @if($purchase -> isBuyer() && $purchase -> enoughBalance())
-                <p class="text-rqm-yellow-dark">Automatic delivery:</p>
+                <p class="text-rqm-yellow-dark mt-4">Automatic delivery:</p>
                 <textarea class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white  disabled" readonly rows="10">{{ $purchase -> delivered_product }}</textarea>
             @elseif($purchase -> isBuyer())
-                <div class="text-red-900">
+                <div class="text-red-900 mt-4">
                     You must pay to address and the system will deliver you content here.
                 </div>
             @endif
