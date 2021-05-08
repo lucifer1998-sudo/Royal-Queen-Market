@@ -44,7 +44,7 @@
 
                         @yield('product-basic-form')
                     </div>
-                    <div class="card">
+                    <div class="card my-2">
                         <div class="card-header">
                             <div class="bg-rqm-lighter p-5 rounded shadow w-full">
                                 @if(request() -> is('profile/vendor/product/edit/*'))
@@ -68,7 +68,7 @@
                                 $type = session('product_type');
                         @endphp
                         @if($type == 'physical')
-                            <div class="card">
+                            <div class="card my-2">
                                 <div class="card-header">
                                     <div class="bg-rqm-lighter p-5 rounded shadow w-full">
                                     @if(request() -> is('profile/vendor/product/edit/*'))
@@ -106,7 +106,7 @@
                                 @yield('product-digital-form')
                             </div>
                         @endif
-                        <div class="card">
+                        <div class="card my-2">
                             <div class="card-header">
                                 <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
                                 @if(request() -> is('profile/vendor/product/edit/*'))
@@ -131,8 +131,8 @@
                         <form method="POST" action="{{ route("profile.vendor.product.post") }}"
                               class="text-center my-2">
                             {{ csrf_field() }}
-                            <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4"><i class="far fa-plus-square mr-2"></i> Add
-                                product
+                            <button class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4">
+                                Add product
                             </button>
                         </form>
                     @endif

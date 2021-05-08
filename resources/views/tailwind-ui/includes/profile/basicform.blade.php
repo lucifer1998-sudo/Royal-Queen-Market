@@ -1,8 +1,8 @@
 @extends('includes.profile.addingform')
 
 @section('bg')
-        @include('master.navbar')
-        @include('includes.jswarning')
+    @include('master.navbar')
+    @include('includes.jswarning')
 @endsection
 
 @section('form-content')
@@ -13,8 +13,7 @@
                 <label class="block uppercase tracking-wide text-white font-bold mb-2">
                     Products Name
                 </label>
-                <input type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded
-                py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white @error('name', $errors) is-invalid @enderror" id="name"
+                <input type="text" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('name', $errors) is-invalid @enderror" id="name"
                        name="name" placeholder="Product name" value="{{ optional($basicProduct) -> name }}"
                        maxlength="100">
                 @error('name', $errors)
@@ -28,7 +27,7 @@
                     Products Category
                 </label>
                 <div class="relative" >
-                    <select name="category_id" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <select name="category_id" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white">
                         @foreach($allCategories as $category)
                             <option value="{{ $category -> id }}"
                                     @if($category -> id == optional($basicProduct) -> category_id) selected @endif>{{ $category -> name }}</option>
@@ -43,29 +42,29 @@
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
-                <div class="w-full px-3">
-                    <label class="block uppercase tracking-wide text-white font-bold mb-2">
-                        Products Description
-                    </label>
-                    <textarea name="description" id="description"
-                              class="resize-x border rounded-md w-full h-full" rows="20"
-                              placeholder="Details about the product">{{ optional($basicProduct) -> description }}</textarea>
-                    <p>
-                        <i class="fab fa-markdown"></i> Styling with Markdown is supported
-                    </p>
-                    @error('description', $errors)
-                    <div class="invalid-feedback d-block text-center">
-                        {{ $errors -> first('description') }}
-                    </div>
-                    @enderror
+            <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-white font-bold mb-2">
+                    Products Description
+                </label>
+                <textarea name="description" id="description"
+                          class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-white w-full rounded" rows="20"
+                          placeholder="Details about the product">{{ optional($basicProduct) -> description }}</textarea>
+                <p>
+                    <i class="fab fa-markdown"></i> Styling with Markdown is supported
+                </p>
+                @error('description', $errors)
+                <div class="invalid-feedback d-block text-center">
+                    {{ $errors -> first('description') }}
                 </div>
+                @enderror
             </div>
+        </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3 py-10">
                 <label class="block uppercase tracking-wide text-white font-bold mb-2">
                     Payment Rules
                 </label>
-                <textarea name="rules" id="rules" class="resize-x border rounded-md w-full h-full @error('rules', $errors) is-invalid @enderror"
+                <textarea name="rules" id="rules" class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-white w-full rounded @error('rules', $errors) is-invalid @enderror"
                           rows="10"
                           placeholder="Rules of conducting business">{{ optional($basicProduct) -> rules }}</textarea>
                 <p>
@@ -84,7 +83,7 @@
                     Supported types
                 </label>
                 <div class="relative">
-                    <select name="types[]" id="types" multiple multiple class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <select name="types[]" id="types" multiple multiple class="bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white block appearance-none w-full bg-gray-200 border py-3 px-4 pr-8 rounded leading-tight focus:outline-none ">
                         @foreach(\App\Purchase::$types as $type => $typeLongName)
 
                             <option value="{{ $type }}" {{ optional($basicProduct) -> supportsType($type) ? 'selected' : '' }}>{{ $typeLongName }}</option>
@@ -97,7 +96,7 @@
                     </div>
                     @enderror
                 </div>
-        </div>
+            </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
@@ -105,7 +104,7 @@
                     Supported coins
                 </label>
                 <div class="relative">
-                    <select name="coins[]" id="coins" multiple class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <select name="coins[]" id="coins" multiple class="bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white block appearance-none w-full bg-gray-200 border py-3 px-4 pr-8 rounded leading-tight focus:outline-none">
                         @foreach(config('coins.coin_list') as $coin => $instance)
                             <option value="{{ $coin }}" {{ optional($basicProduct) -> supportsCoin($coin) ? 'selected' : '' }}>{{ strtoupper(\App\Purchase::coinDisplayName($coin)) }}</option>
                         @endforeach
@@ -116,14 +115,14 @@
                     </div>
                     @enderror
                 </div>
-        </div>
+            </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-white font-bold mb-2">
                     Quantity
                 </label>
-                <input type="number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white @error('quantity', $errors) is-invalid @enderror"
+                <input type="number" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('quantity', $errors) is-invalid @enderror"
                        @if(optional($basicProduct) -> isAutodelivery()) readonly @endif
                        name="quantity" id="quantity" min="1" placeholder="Number of products"
                        value="{{ optional($basicProduct) -> quantity }}">
@@ -140,7 +139,7 @@
                 <label class="block uppercase tracking-wide text-white  font-bold mb-2">
                     Measure
                 </label>
-                <input type="text" maxlength="10" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white @error('mesure', $errors) is-invalid @enderror"
+                <input type="text" maxlength="10" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('mesure', $errors) is-invalid @enderror"
                        id="mesure" name="mesure" placeholder="Unit of mesure(item, gram)"
                        value="{{ optional($basicProduct) -> mesure }}">
                 @error('mesure', $errors)
