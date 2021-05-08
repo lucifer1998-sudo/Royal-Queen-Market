@@ -37,7 +37,7 @@
             </div>
         </div>
     @endif
-    <div class="flex my-4">
+    <div class="flex my-4 flex-wrap">
         @include('tailwind-ui.includes.purchases.components.offer')
         @include('tailwind-ui.includes.purchases.components.delivery')
     </div>
