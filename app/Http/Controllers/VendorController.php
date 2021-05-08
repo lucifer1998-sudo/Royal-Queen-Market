@@ -61,7 +61,7 @@ class VendorController extends Controller
         // save type
         session() -> put('product_type', $type);
 
-        return view('profile.vendor.addbasic', [
+        return view('tailwind-ui.profile.vendor.addbasic', [
             'type' => $type,
             'allCategories' => Category::nameOrdered(),
             'basicProduct' => session('product_adding'),
@@ -114,7 +114,7 @@ class VendorController extends Controller
     public function addOffersShow()
     {
 
-        return view('profile.vendor.addoffers',
+        return view('tailwind-ui.profile.vendor.addoffers',
             [
                 'productsOffers' => session('product_offers'),
                 'basicProduct' => null,
@@ -328,7 +328,7 @@ class VendorController extends Controller
     public function addImagesShow()
     {
 
-        return view('profile.vendor.addimages',
+        return view('tailwind-ui.profile.vendor.addimages',
             [
                 'basicProduct' => null,
                 'productsImages' => session('product_images'),
