@@ -64,10 +64,16 @@
                                                     Price & Offers
                                                 </a>
                                             @endif
+                                                @yield('product-offers-form')
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex flex-wrap -mx-3 mb-6">
+                                @php
+                                    if(empty($type))
+                                        $type = session('product_type');
+                                @endphp
+                                @if ($type == 'physical')
+                                    <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full px-3">
                                         <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
                                             @if(request() -> is('profile/vendor/product/edit/*'))
@@ -79,10 +85,12 @@
                                                     Delivery Options
                                                 </a>
                                             @endif
+                                                @yield('product-delivery-form')
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex flex-wrap -mx-3 mb-6">
+                                @else
+                                    <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full px-3">
                                         <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
                                             @if(request() -> is('profile/vendor/product/edit/*'))
@@ -94,9 +102,11 @@
                                                     Digital Options
                                                 </a>
                                             @endif
+                                                @yield('product-digital-form')
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                                 <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full px-3">
                                         <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
@@ -109,6 +119,7 @@
                                                             Images
                                                 </a>
                                             @endif
+                                                @yield('product-images-form')
                                         </div>
                                     </div>
                                 </div>
