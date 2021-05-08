@@ -11,10 +11,21 @@
             @include('includes.flash.success')
             @include('includes.flash.error')
             @include('includes.validation')
-            <h3 class="mb-3 text-white">@yield('purchase-title') - @include('includes.currency', ['usdValue' => $purchase -> value_sum ])</h3>
-            <p class="text-muted">Created {{ $purchase -> timeDiff() }} - {{ $purchase -> created_at }}</p>
+
         </div>
 
+    </div>
+    <div class="flex">
+        <div class="w-full">
+            <div class="h-full">
+                <div class="bg-rqm-lighter p-5 rounded shadow w-full">
+                    <span class="text-2xl text-gray-400 block text-rqm-yellow">
+                        @yield('purchase-title') -@include('tailwind-ui.includes.currency', ['usdValue' => $purchase -> value_sum ])
+                    </span>
+                    <p class="text-white text-sm">Created {{ $purchase -> timeDiff() }} - {{ $purchase -> created_at }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     @if($purchase->status_notification !== null)
