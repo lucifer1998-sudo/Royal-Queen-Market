@@ -24,7 +24,15 @@
                 <div class="mt-9 w-full">
                     <div class="grid gap-4 grid-cols-1">
                         <div class="bg-rqm-lighter p-5 rounded shadow w-full ">
-                            <a href="#" class="text-2xl text-gray-400 block text-rqm-yellow">Add Basic Information</a>
+                                @if(request() -> is('profile/vendor/product/edit/*'))
+                                    <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.edit', $basicProduct) }}">
+                                        Add Basic Information
+                                    </a>
+                                @else
+                                    <a class="text-2xl text-gray-400 block text-rqm-yellow" href="{{ route('profile.vendor.product.add', session('product_type')) }}">
+                                        Add Basic Information
+                                    </a>
+                                @endif
                         </div>
                     </div>
                 </div>
