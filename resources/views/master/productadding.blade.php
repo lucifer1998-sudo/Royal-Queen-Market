@@ -13,12 +13,11 @@
     </div>
     <div class="flex">
         @include('tailwind-ui.profile.menu')
-        @include('includes.flash.success')
-        @include('includes.flash.error')
-        @include('includes.validation')
-
         <div class="pl-10 w-5/6">
             <div class="h-full">
+                @include('includes.flash.success')
+                @include('includes.flash.error')
+                @include('includes.validation')
                 <div class="bg-rqm-lighter p-5 rounded shadow w-full text-center">
                     <span class="text-2xl text-gray-400 block text-rqm-yellow">@yield('product-title')</span>
                 </div>

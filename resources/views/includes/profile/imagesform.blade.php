@@ -1,30 +1,30 @@
 @extends('includes.profile.addingform')
 
 @section('form-content')
-<h3>Add image</h3>
+<h3 class="text-white py-5 text-2xl">Add image</h3>
 <hr>
 <form action="{{ route('profile.vendor.product.images.post', $basicProduct) }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
-    <div class="form-group">
+    <div class="form-group py-4">
         <input type="file" class="form-control border-0" name="picture" id="picture">
     </div>
     <div class="form-inline">
         <div class="form-check mx-2 mb-2 ">
             <input class="form-check-input" type="checkbox" value="1" name="first" id="defaultcheck">
-            <label class="form-check-label" for="defaultcheck">
+            <label class="form-check-label text-white text-xl" for="defaultcheck">
                 Default product image
             </label>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-2">Add image</button>
+        <button type="submit" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded">Add image</button>
     </div>
 </form>
 
 {{-- Images --}}
 
-<h3 class="mt-3">Images of the product</h3>
+<h3 class="mt-3 text-white text-2xl py-2">Images of the product</h3>
 <hr>
-<p class="text-muted">Default picture is marked with green borders.</p>
+{{--<p class="text-muted text-2xl text-red-200">Default picture is marked with green borders.</p>--}}
 @if(!empty($productsImages ?? []))
 <div class="card-columns">
     @foreach($productsImages as $image)
@@ -42,7 +42,7 @@
     @endforeach
 </div>
 @else
-    <div class="col-12 text-center alert alert-warning">
+    <div class="text-center text-white text-2xl py-3">
         You don't have any images added, it must be at least one!
     </div>
 @endif
