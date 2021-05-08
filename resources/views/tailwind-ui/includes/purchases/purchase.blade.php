@@ -37,16 +37,16 @@
             </div>
         </div>
     @endif
-    <div class="row">
-        @include('includes.purchases.components.offer')
-        @include('includes.purchases.components.delivery')
+    <div class="flex my-4">
+        @include('tailwind-ui.includes.purchases.components.offer')
+        @include('tailwind-ui.includes.purchases.components.delivery')
+    </div>
+    <div class="flex my-4">
+        @include('tailwind-ui.includes.purchases.components.message')
+        @include('tailwind-ui.includes.purchases.components.payment')
     </div>
     <div class="row">
-        @include('includes.purchases.components.message')
-        @include('includes.purchases.components.payment')
-    </div>
-    <div class="row">
-        @include('includes.purchases.components.feedback')
+        @include('tailwind-ui.includes.purchases.components.feedback')
     </div>
     <div class="row">
         @include('includes.purchases.components.dispute')
