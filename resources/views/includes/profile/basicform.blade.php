@@ -8,10 +8,13 @@
 @section('form-content')
     <form method="POST" action="{{ route('profile.vendor.product.add.post', optional($basicProduct) -> exists ? $basicProduct : null) }}">
         {{ csrf_field() }}
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="name">Product's name:</label>
-                <input type="text" class="form-control @error('name', $errors) is-invalid @enderror" id="name"
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-white font-bold mb-2">
+                    Products Name
+                </label>
+                <input type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded
+                py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white @error('name', $errors) is-invalid @enderror" id="name"
                        name="name" placeholder="Product name" value="{{ optional($basicProduct) -> name }}"
                        maxlength="100">
                 @error('name', $errors)
@@ -20,36 +23,47 @@
                 </div>
                 @enderror
             </div>
-
-            <div class="form-group col-md-6">
-                <label for="name">Product's category:</label>
-                <select class="form-control " name="category_id">
-                    @foreach($allCategories as $category)
-                        <option value="{{ $category -> id }}"
-                                @if($category -> id == optional($basicProduct) -> category_id) selected @endif>{{ $category -> name }}</option>
-                    @endforeach
-                </select>
+            <div class="w-full md:w-1/2 px-3">
+                <label class="block uppercase tracking-wide text-white font-bold mb-2">
+                    Products Category
+                </label>
+                <div class="relative" >
+                    <select name="category_id" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        @foreach($allCategories as $category)
+                            <option value="{{ $category -> id }}"
+                                    @if($category -> id == optional($basicProduct) -> category_id) selected @endif>{{ $category -> name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 @error('category_id', $errors)
                 <div class="invalid-feedback d-block text-center">
                     {{ $errors -> first('category_id') }}
                 </div>
                 @enderror
             </div>
-        </div>
-        <div class="form-group">
-            <label for="description">Product's description:</label>
-            <textarea name="description" id="description"
-                      class="form-control @error('description', $errors) is-invalid @enderror" rows="20"
-                      placeholder="Details about the product">{{ optional($basicProduct) -> description }}</textarea>
-            <p>
-                <i class="fab fa-markdown"></i> Styling with Markdown is supported
-            </p>
-            @error('description', $errors)
-            <div class="invalid-feedback d-block text-center">
-                {{ $errors -> first('description') }}
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                    <label class="block uppercase tracking-wide text-white font-bold mb-2">
+                        Products Description
+                    </label>
+                    <textarea name="description" id="description"
+                              class="resize-x border rounded-md w-full h-full" rows="20"
+                              placeholder="Details about the product">{{ optional($basicProduct) -> description }}</textarea>
+                    <p>
+                        <i class="fab fa-markdown"></i> Styling with Markdown is supported
+                    </p>
+                    @error('description', $errors)
+                    <div class="invalid-feedback d-block text-center">
+                        {{ $errors -> first('description') }}
+                    </div>
+                    @enderror
+                </div>
             </div>
-            @enderror
         </div>
+        <div class="form-row">
+
+        </div>
+
         <div class="form-group">
             <label for="rules">Payment rules:</label>
             <textarea name="rules" id="rules" class="form-control @error('rules', $errors) is-invalid @enderror"
