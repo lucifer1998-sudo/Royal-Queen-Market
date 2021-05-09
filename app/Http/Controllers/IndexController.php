@@ -79,7 +79,7 @@ class IndexController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function vendor(Vendor $user) {
-        return view('vendor.index',[
+        return view('tailwind-ui.profile.vendor.index',[
             'vendor' => $user->user
         ]);
 
