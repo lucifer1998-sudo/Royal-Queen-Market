@@ -22,6 +22,6 @@
         @include('tailwind-ui.includes.vendor.card')
     </div>
 
-    @include('includes.vendor.stats')
+    @include('tailwind-ui.includes.vendor.stats')
     @yield('vendor-content')
 @stop
