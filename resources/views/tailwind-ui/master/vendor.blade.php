@@ -19,13 +19,7 @@
         </ol>
     </nav>
     <div class="flex {{$vendor->vendor->getProfileBg()}} text-center justify-content-center">
-{{--        <div class="col-md-12 profile-bg {{$vendor->vendor->getProfileBg()}} rounded pt-5">--}}
-{{--            <div class="row justify-content-center">--}}
-{{--                <div class="col-md-8">--}}
-                    @include('tailwind-ui.includes.vendor.card')
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        @include('tailwind-ui.includes.vendor.card')
     </div>
 
     @include('includes.vendor.stats')
