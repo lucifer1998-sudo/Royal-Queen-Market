@@ -172,8 +172,8 @@
                     {{ csrf_field() }}
                     <div class="text-gray-400 w-1/3 text-rqm-white">Select Currency</div>
                     <select name="currency" id="coin" class="w-2/3 rounded">
-                        <option {{ auth() -> user() -> currency -> currency == 'usd' ? 'selected' : ''}} value="usd">USD</option>
-                        <option {{ auth() -> user() -> currency -> currency == 'eur' ? 'selected' : ''}} value="eur">EUR</option>
+                        <option {{ isset(auth() -> user() -> currency -> currency) && auth() -> user() -> currency -> currency == 'usd' ? 'selected' : ''}} value="usd">USD</option>
+                        <option {{ isset(auth() -> user() -> currency -> currency) && auth() -> user() -> currency -> currency == 'eur' ? 'selected' : ''}} value="eur">EUR</option>
                     </select>
                 </div>
                 <div class="flex py-1 justify-end">
