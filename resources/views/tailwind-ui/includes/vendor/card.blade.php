@@ -64,9 +64,5 @@
         <span class="px-2 hover:bg-gray-300 cursor-pointer rounded"><i class="fas fa-ellipsis-h pt-2 text-lg"></i></span>
     </div>
     <hr class="m-5">
-    <div class="flex">
-        <div class="w-full">
-            @include('tailwind-ui.includes.vendor.feedback')
-        </div>
-    </div>
+    @include('tailwind-ui.includes.vendor.feedback')
 </div>
