@@ -93,7 +93,7 @@
                                 </svg>
                             </summary>
                             <div class="m-2 text-justify text-sm text-white">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                Welcome and we hope you enjoy your Cannabis sourcing experience with the House of Cannabis, Royal Queen Market.
                             </div>
                         </details>
                     </div>
@@ -113,7 +113,7 @@
                                 </svg>
                             </summary>
                             <div class="m-2 text-justify text-sm text-white">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                We stand by behind the idea that our Cannabis Market will stand for Security, Fairness and Prosperity for all. With this, we would like to let you know that we are implementing the latest and safest multisig checkout process for the safety of all. We currently accept BTC and XMR for orders checkout. If you have other Crypto coins you want to use on payments, there are non KYC exchanges available for this purpose.
                             </div>
                         </details>
                     </div>
@@ -133,7 +133,12 @@
                                 </svg>
                             </summary>
                             <div class="m-2 text-justify text-sm text-white">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                Please feel free to place your orders from any our approved vendors.<br>
+                                If you are interested to become a vendor, please read our FAQ. <br><br>
+
+                                We are currently on soft launch and some details may still need to be changed and upgraded.<br><br>
+
+                                Feel free to drop us a message for any suggestions or ideas to make Royal Queen Market a better market for you and we will look into it.
                             </div>
                         </details>
                     </div>

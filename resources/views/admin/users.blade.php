@@ -109,7 +109,7 @@
                     {{$user->created_at}}
                 </td>
                 <td>
-                    <a href="{{route('admin.users.view',['user'=>$user->id])}}" class="btn btn-secondary"> <i class="fas fa-search-plus"></i> View</a>
+                    <a href="{{route('admin.users.view',['user'=>$user])}}" class="btn btn-secondary"> <i class="fas fa-search-plus"></i> View</a>
                     @if($user->getUserGroup()['name'] == 'User')
                         <a href="{{route('admin.invite.create')}}?username={{$user->username}}" class="btn btn-secondary"> <i class="fas fa-envelope"></i> Invite</a>
                     @endif
