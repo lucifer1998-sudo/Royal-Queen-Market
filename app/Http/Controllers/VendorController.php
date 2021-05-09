@@ -641,7 +641,7 @@ class VendorController extends Controller
         if(!$sale -> isAllowed())
             return abort(404);
 
-        return view('profile.vendor.sale', [
+        return view('tailwind-ui.profile.vendor.sale', [
             'purchase' => $sale,
         ]);
     }

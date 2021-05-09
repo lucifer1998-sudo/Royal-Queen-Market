@@ -1,4 +1,4 @@
-@extends('master.profile')
+@extends('tailwind-ui.master.master.profile')
 
 @section('title')
     @yield('purchase-title')
