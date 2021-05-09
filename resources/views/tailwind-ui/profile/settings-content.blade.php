@@ -166,21 +166,22 @@
             @endif
         </div>
         <div class="bg-rqm-lighter p-5 rounded shadow w-full mt-9">
-            <div class="pb-3 text-2xl text-rqm-yellow">Currency</div>
-            <div class="flex py-1">
-                <div class="text-gray-400 w-1/3 text-rqm-white">Select Currency</div>
-                <select name="coin" id="coin" class="w-2/3 rounded">
-                    <option value="usd">USD</option>
-                    <option value="eur">USD</option>
-                </select>
-            </div>
-            <div class="flex py-1 justify-end">
-                <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-3 py-1 rounded-sm text-rqm-dark">
-                    Save
-                </button>
-            </div>
+            <form action="{{ route('profile.vendor.currency') }}" method="POST" class="">
+                <div class="pb-3 text-2xl text-rqm-yellow">Currency</div>
+                <div class="flex py-1">
+                    {{ csrf_field() }}
+                    <div class="text-gray-400 w-1/3 text-rqm-white">Select Currency</div>
+                    <select name="coin" id="coin" class="w-2/3 rounded">
+                        <option value="usd">USD</option>
+                        <option value="eur">EUR</option>
+                    </select>
+                </div>
+                <div class="flex py-1 justify-end">
+                    <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-3 py-1 rounded-sm text-rqm-dark">
+                        Save
+                    </button>
+                </div>
+            </form>
         </div>
-
-
     </div>
 </div>
