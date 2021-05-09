@@ -20,8 +20,15 @@ use App\Http\Requests\Profile\NewTicketRequest;
 use App\Http\Requests\Profile\ChangePasswordRequest;
 use App\Http\Requests\PGP\NewPGPKeyRequest;
 use App\Http\Requests\PGP\StorePGPRequest;
+use App\Http\Requests\Profile\SaveCurrencyRequest;
 use App\Invite;
-use App\Http\Requests\Product\{NewBasicRequest,NewShippingRequest,NewDigitalRequest,NewImageRequest,NewOfferRequest,NewProductRequest,NewShippingOptionsRequest};
+use App\Http\Requests\Product\{NewBasicRequest,
+    NewShippingRequest,
+    NewDigitalRequest,
+    NewImageRequest,
+    NewOfferRequest,
+    NewProductRequest,
+    NewShippingOptionsRequest};
 use App\Http\Requests\Purchase\LeaveFeedbackRequest;
 use App\Http\Requests\Purchase\MakeDisputeRequest;
 use App\Http\Requests\Purchase\NewDisputeMessageRequest;
@@ -53,11 +60,12 @@ class ProfileController extends Controller
      */
     public function __construct()
     {
-        $this -> middleware('auth');
-        $this -> middleware('verify_2fa');
+        $this->middleware('auth');
+        $this->middleware('verify_2fa');
     }
 
-    public function index(){
+    public function index()
+    {
         return view('tailwind-ui.profile.index');
     }
 
@@ -68,8 +76,8 @@ class ProfileController extends Controller
      */
     public function banned()
     {
-        if(auth()->user()->isBanned())
-            $until = auth() -> user() -> bans() -> orderByDesc('until') -> first() -> until;
+        if (auth()->user()->isBanned())
+            $until = auth()->user()->bans()->orderByDesc('until')->first()->until;
         else
             return redirect()->route('profile.index');
 
@@ -96,14 +104,13 @@ class ProfileController extends Controller
      */
     public function pgpPost(NewPGPKeyRequest $request)
     {
-        try{
-            $request -> persist();
-        }
-        catch(RequestException $e){
-            session() -> flash('errormessage', $e -> getMessage());
+        try {
+            $request->persist();
+        } catch (RequestException $e) {
+            session()->flash('errormessage', $e->getMessage());
         }
 
-        return redirect() -> route('profile.pgp.confirm');
+        return redirect()->route('profile.pgp.confirm');
     }
 
     /**
@@ -125,16 +132,15 @@ class ProfileController extends Controller
      */
     public function storePGP(StorePGPRequest $request)
     {
-        try{
-            $request -> persist();
-            session() -> flash('success', 'You have successfully changed you PGP key.');
-        }
-        catch(RequestException $e){
-            session() -> flash('errormessage', $e -> getMessage());
-            return redirect() -> back();
+        try {
+            $request->persist();
+            session()->flash('success', 'You have successfully changed you PGP key.');
+        } catch (RequestException $e) {
+            session()->flash('errormessage', $e->getMessage());
+            return redirect()->back();
         }
 
-        return redirect() -> route('profile.pgp');
+        return redirect()->route('profile.pgp');
     }
 
     /**
@@ -146,9 +152,9 @@ class ProfileController extends Controller
     {
         return view('profile.oldpgp',
             [
-                'keys' => auth() -> user() -> pgpKeys() -> orderByDesc('created_at') -> get(),
+                'keys' => auth()->user()->pgpKeys()->orderByDesc('created_at')->get(),
             ]
-            );
+        );
     }
 
     /**
@@ -159,14 +165,13 @@ class ProfileController extends Controller
      */
     public function changePassword(\App\Http\Requests\Profile\ChangePasswordRequest $request)
     {
-        try{
-            $request -> persist();
-        }
-        catch (RequestException $e){
-            session() -> flash('errormessage', $e -> getMessage());
+        try {
+            $request->persist();
+        } catch (RequestException $e) {
+            session()->flash('errormessage', $e->getMessage());
         }
 
-        return redirect() -> back();
+        return redirect()->back();
     }
 
     /**
@@ -178,14 +183,13 @@ class ProfileController extends Controller
      */
     public function change2fa($turn)
     {
-        try{
-            auth() -> user() -> set2fa($turn);
-            session() -> flash('success', 'You have changed you 2FA setting.');
+        try {
+            auth()->user()->set2fa($turn);
+            session()->flash('success', 'You have changed you 2FA setting.');
+        } catch (RequestException $e) {
+            session()->flash('errormessage', $e->getMessage());
         }
-        catch (RequestException $e){
-            session() -> flash('errormessage', $e -> getMessage());
-        }
-        return redirect() -> back();
+        return redirect()->back();
     }
 
     /**
@@ -196,9 +200,9 @@ class ProfileController extends Controller
     public function become()
     {
         #dd( auth() -> user() -> vendorPurchases);
-        return view('tailwind-ui.profile.index',[
+        return view('tailwind-ui.profile.index', [
             'vendorFee' => config('marketplace.vendor_fee'),
-            'depositAddresses' => auth() -> user() -> vendorPurchases
+            'depositAddresses' => auth()->user()->vendorPurchases
         ]);
     }
 
@@ -209,18 +213,16 @@ class ProfileController extends Controller
      */
     public function becomeVendor(BecomeVendorRequest $request)
     {
-        try{
-            auth() -> user() -> becomeVendor( $request -> address);
-            return redirect() -> route('profile.vendor');
+        try {
+            auth()->user()->becomeVendor($request->address);
+            return redirect()->route('profile.vendor');
+        } catch (RedirectException $e) {
+            $e->flashError();
+            return redirect($e->getRoute());
+        } catch (RequestException $e) {
+            session()->flash('errormessage', $e->getMessage());
         }
-        catch (RedirectException $e){
-            $e -> flashError();
-            return redirect($e -> getRoute());
-        }
-        catch (RequestException $e){
-            session() -> flash('errormessage', $e -> getMessage());
-        }
-        return redirect() -> back();
+        return redirect()->back();
     }
 
     /**
@@ -231,29 +233,27 @@ class ProfileController extends Controller
      */
     public function becomeVendorFromCode(BecomeVendorRequestFromCodeRequest $request)
     {
-        try{
+        try {
             $invite = Invite::where('code', $request->code)->where('user_id', auth()->user()->id)->first();
-            if(empty($invite)) {
-                session() -> flash('errormessage', "Invalid Code");
+            if (empty($invite)) {
+                session()->flash('errormessage', "Invalid Code");
                 return redirect()->back();
             }
-            if($invite->is_claimed) {
-                session() -> flash('errormessage', "Invitation already claimed");
+            if ($invite->is_claimed) {
+                session()->flash('errormessage', "Invitation already claimed");
                 return redirect()->back();
             }
-            auth() -> user() -> becomeVendorFromCode();
+            auth()->user()->becomeVendorFromCode();
             $invite->update(['is_claimed' => true]);
-            session() -> flash('success', "You're now a vendor!");
+            session()->flash('success', "You're now a vendor!");
             return redirect()->back();
+        } catch (RedirectException $e) {
+            $e->flashError();
+            return redirect($e->getRoute());
+        } catch (RequestException $e) {
+            session()->flash('errormessage', $e->getMessage());
         }
-        catch (RedirectException $e){
-            $e -> flashError();
-            return redirect($e -> getRoute());
-        }
-        catch (RequestException $e){
-            session() -> flash('errormessage', $e -> getMessage());
-        }
-        return redirect() -> back();
+        return redirect()->back();
     }
 
     /**
@@ -265,21 +265,20 @@ class ProfileController extends Controller
     public function addRemoveWishlist(Product $product)
     {
         // Remove if it is added
-        if(Wishlist::added($product, auth() -> user())){
+        if (Wishlist::added($product, auth()->user())) {
             // removing
-            Wishlist::getWish($product) -> delete();
-        }
-        // add if it is not added
+            Wishlist::getWish($product)->delete();
+        } // add if it is not added
         else {
             $newWhish = new Wishlist([
-               'product_id' => $product -> id,
-               'user_id' => auth() -> user() -> id,
+                'product_id' => $product->id,
+                'user_id' => auth()->user()->id,
             ]);
 
-            $newWhish -> save();
+            $newWhish->save();
         }
 
-        return redirect() -> back();
+        return redirect()->back();
     }
 
     /**
@@ -301,7 +300,7 @@ class ProfileController extends Controller
     {
         $couponCheck = 0;
         $couponValue = 0;
-        foreach (Cart::getCart() -> items() as $v) {
+        foreach (Cart::getCart()->items() as $v) {
             if (isset($v->discount)) {
                 $couponCheck += 1;
                 $couponValue += $v->discount;
@@ -312,24 +311,24 @@ class ProfileController extends Controller
         }
 
         if ($couponCheck > 0) {
-            return view('tailwind-ui.cart',[
-                'items' => Cart::getCart() -> items(),
+            return view('tailwind-ui.cart', [
+                'items' => Cart::getCart()->items(),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
-                'totalSum' => Cart::getCart() -> total($couponValue ),
+                'totalSum' => Cart::getCart()->total($couponValue),
             ]);
         } else {
             $deduct = 0;
-            return view('tailwind-ui.cart',[
-                'items' => Cart::getCart() -> items(),
+            return view('tailwind-ui.cart', [
+                'items' => Cart::getCart()->items(),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
-                'totalSum' => Cart::getCart() -> total($deduct),
+                'totalSum' => Cart::getCart()->total($deduct),
             ]);
         }
     }
 
 
-
-    public function appendCoupon($key) {
+    public function appendCoupon($key)
+    {
 
     }
 
@@ -353,8 +352,8 @@ class ProfileController extends Controller
                 }
             }
 
-            if ($y > 0 ) {
-                try{
+            if ($y > 0) {
+                try {
                     $user = Auth::user();
                     // $external = 1;
                     // $test = $product->offers->map(function ($arr) use ($external) {
@@ -365,43 +364,41 @@ class ProfileController extends Controller
                     $voucher = $user->redeemCode($request->input('coupon_code'));
                     $deduct = $voucher->data->get('price');
                     $converted = floatval($deduct);
-                    $request -> couponPersist($product, $converted);
-                    session() -> flash('success', 'You have successfully redeemed a coupon!');
+                    $request->couponPersist($product, $converted);
+                    session()->flash('success', 'You have successfully redeemed a coupon!');
 
-                    return redirect() -> route('profile.cart');
+                    return redirect()->route('profile.cart');
+                } catch (VoucherAlreadyRedeemed $e) {
+                    #dd($e);
+                    $e->flashError();
+                } catch (RequestException $e) {
+                    $e->flashError();
                 }
-                catch(VoucherAlreadyRedeemed $e) {
-                        #dd($e);
-                    $e-> flashError();
-                }catch (RequestException $e){
-                    $e -> flashError();
-                }
-                return redirect() -> back();
+                return redirect()->back();
             } else {
-                try{
+                try {
                     $user = Auth::user();
                     $voucher = $user->redeemCode($request->input('coupon_code'));
-                } catch(VoucherIsInvalid $e) {
-                    $e-> flashError();
-                } catch (RequestException $e){
-                $e -> flashError();
+                } catch (VoucherIsInvalid $e) {
+                    $e->flashError();
+                } catch (RequestException $e) {
+                    $e->flashError();
                 }
 
-                return redirect() -> back();
+                return redirect()->back();
             }
 
         } else {
-            try{
-                $request -> persist($product);
-                session() -> flash('success', 'You have added/changed an item!');
+            try {
+                $request->persist($product);
+                session()->flash('success', 'You have added/changed an item!');
 
-                return redirect() -> route('profile.cart');
-            }
-            catch (RequestException $e){
-                $e -> flashError();
+                return redirect()->route('profile.cart');
+            } catch (RequestException $e) {
+                $e->flashError();
             }
 
-            return redirect() -> back();
+            return redirect()->back();
         }
 
     }
@@ -413,10 +410,10 @@ class ProfileController extends Controller
      */
     public function clearCart()
     {
-        session() -> forget(Cart::SESSION_NAME);
-        session() -> flash('success', 'You have cleared your cart!');
+        session()->forget(Cart::SESSION_NAME);
+        session()->flash('success', 'You have cleared your cart!');
 
-        return redirect() -> back();
+        return redirect()->back();
     }
 
     /**
@@ -427,10 +424,10 @@ class ProfileController extends Controller
      */
     public function removeProduct(Product $product)
     {
-        Cart::getCart() -> removeFromCart($product);
-        session() -> flash('You have removed a product.');
+        Cart::getCart()->removeFromCart($product);
+        session()->flash('You have removed a product.');
 
-        return redirect() -> back();
+        return redirect()->back();
     }
 
     /**
@@ -442,7 +439,7 @@ class ProfileController extends Controller
     {
         $couponCheck = 0;
         $couponValue = 0;
-        foreach (Cart::getCart() -> items() as $v) {
+        foreach (Cart::getCart()->items() as $v) {
             if (isset($v->discount)) {
                 $couponCheck += 1;
                 $couponValue += $v->discount;
@@ -454,15 +451,15 @@ class ProfileController extends Controller
 
         if ($couponCheck > 0) {
             return view('tailwind-ui.checkout', [
-                'items' => Cart::getCart() -> items(),
-                'totalSum' => Cart::getCart() -> total($couponValue),
+                'items' => Cart::getCart()->items(),
+                'totalSum' => Cart::getCart()->total($couponValue),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
 
             ]);
         } else {
             return view('tailwind-ui.checkout', [
-                'items' => Cart::getCart() -> items(),
-                'totalSum' => Cart::getCart() -> total(0),
+                'items' => Cart::getCart()->items(),
+                'totalSum' => Cart::getCart()->total(0),
                 'numberOfItems' => Cart::getCart()->numberOfItems(),
 
             ]);
@@ -478,15 +475,14 @@ class ProfileController extends Controller
     public function makePurchases(MakePurchasesRequest $request)
     {
         #dd($request);
-        try{
-            $request -> persist();
-        }
-        catch (RequestException $e){
-            $e -> flashError();
-            return redirect() -> back();
+        try {
+            $request->persist();
+        } catch (RequestException $e) {
+            $e->flashError();
+            return redirect()->back();
         }
 
-        return redirect() -> route('profile.purchases');
+        return redirect()->route('profile.purchases');
     }
 
     /**
@@ -496,10 +492,10 @@ class ProfileController extends Controller
      */
     public function purchases($state = '')
     {
-        $purchases = auth() -> user() -> purchases() -> orderByDesc('created_at') -> paginate(20);
+        $purchases = auth()->user()->purchases()->orderByDesc('created_at')->paginate(20);
 
-        if(array_key_exists($state, Purchase::$states))
-            $purchases = auth() -> user() -> purchases() -> where('state', $state) -> orderByDesc('created_at') -> paginate(20);
+        if (array_key_exists($state, Purchase::$states))
+            $purchases = auth()->user()->purchases()->where('state', $state)->orderByDesc('created_at')->paginate(20);
 
         return view('tailwind-ui.profile.index', [
             'purchases' => $purchases,
@@ -542,7 +538,7 @@ class ProfileController extends Controller
     public function deliveredConfirm(Purchase $purchase)
     {
         return view('profile.purchases.confirmdelivered', [
-            'backRoute' => redirect() -> back() -> getTargetUrl(),
+            'backRoute' => redirect()->back()->getTargetUrl(),
             'purchase' => $purchase,
         ]);
     }
@@ -555,20 +551,19 @@ class ProfileController extends Controller
      */
     public function markAsDelivered(Purchase $purchase)
     {
-        try{
+        try {
             if ($purchase->type == "multisig") {
                 #dd("this works");
-                $purchase -> multisigdelivered();
+                $purchase->multisigdelivered();
             } else {
 
-                $purchase -> delivered();
+                $purchase->delivered();
             }
-        }
-        catch(RequestException $e){
-            $e -> flashError();
+        } catch (RequestException $e) {
+            $e->flashError();
         }
 
-        return redirect() -> route('profile.purchases.single', $purchase);
+        return redirect()->route('profile.purchases.single', $purchase);
     }
 
     /**
@@ -580,7 +575,7 @@ class ProfileController extends Controller
     public function confirmCanceled(Purchase $purchase)
     {
         return view('profile.purchases.confirmcanceled', [
-            'backRoute' => redirect() -> back() -> getTargetUrl(),
+            'backRoute' => redirect()->back()->getTargetUrl(),
             'sale' => $purchase
         ]);
     }
@@ -593,17 +588,16 @@ class ProfileController extends Controller
      */
     public function markAsCanceled(Purchase $purchase)
     {
-        try{
-            $purchase -> cancel();
-            session() -> flash('success', 'You have successfully marked sale as canceled!');
-        }
-        catch (RequestException $e){
-            $e -> flashError();
+        try {
+            $purchase->cancel();
+            session()->flash('success', 'You have successfully marked sale as canceled!');
+        } catch (RequestException $e) {
+            $e->flashError();
         }
         // if this logged user is vendor
-        if($purchase->isVendor())
-            return redirect() -> route('profile.sales.single', $purchase);
-        return redirect() -> route('profile.purchases.single', $purchase);
+        if ($purchase->isVendor())
+            return redirect()->route('profile.sales.single', $purchase);
+        return redirect()->route('profile.purchases.single', $purchase);
     }
 
     /**
@@ -615,15 +609,14 @@ class ProfileController extends Controller
      */
     public function makeDispute(MakeDisputeRequest $request, Purchase $purchase)
     {
-        try{
-            $purchase -> makeDispute($request -> message);
-            session() -> flash('success', 'You have made a dispute for this purchase!');
-        }
-        catch (RequestException $e){
-            $e -> flashError();
+        try {
+            $purchase->makeDispute($request->message);
+            session()->flash('success', 'You have made a dispute for this purchase!');
+        } catch (RequestException $e) {
+            $e->flashError();
         }
 
-        return redirect() -> back();
+        return redirect()->back();
     }
 
     /**
@@ -635,16 +628,15 @@ class ProfileController extends Controller
      */
     public function newDisputeMessage(NewDisputeMessageRequest $request, Dispute $dispute)
     {
-        try{
-            $dispute -> newMessage($request -> message);
-            event(new ProductDisputeNewMessageSent($dispute->purchase,auth()->user()));
-            session() -> flash('success', 'You have successfully posted new message for dispute!');
-        }
-        catch (RequestException $e){
-            $e -> flashError();
+        try {
+            $dispute->newMessage($request->message);
+            event(new ProductDisputeNewMessageSent($dispute->purchase, auth()->user()));
+            session()->flash('success', 'You have successfully posted new message for dispute!');
+        } catch (RequestException $e) {
+            $e->flashError();
         }
 
-        return redirect() -> back();
+        return redirect()->back();
     }
 
 
@@ -657,15 +649,14 @@ class ProfileController extends Controller
      */
     public function leaveFeedback(LeaveFeedbackRequest $request, Purchase $purchase)
     {
-        try{
-            $request -> persist($purchase);
-            session() -> flash('success', 'You have left your feedback!');
-        }
-        catch (RequestException $e){
-            $e -> flashError();
+        try {
+            $request->persist($purchase);
+            session()->flash('success', 'You have left your feedback!');
+        } catch (RequestException $e) {
+            $e->flashError();
         }
 
-        return redirect() -> route('profile.purchases.single', $purchase);
+        return redirect()->route('profile.purchases.single', $purchase);
     }
 
     /**
@@ -676,15 +667,14 @@ class ProfileController extends Controller
      */
     public function changeAddress(ChangeAddressRequest $request)
     {
-        try{
-            auth() -> user() -> setAddress($request -> address, $request -> coin);
-            session() -> flash('success', 'You have successfully changed your address!');
-        }
-        catch (RequestException $e){
-            $e -> flashError();
+        try {
+            auth()->user()->setAddress($request->address, $request->coin);
+            session()->flash('success', 'You have successfully changed your address!');
+        } catch (RequestException $e) {
+            $e->flashError();
         }
 
-        return redirect() -> back();
+        return redirect()->back();
     }
 
     /**
@@ -695,20 +685,19 @@ class ProfileController extends Controller
      */
     public function removeAddress($id)
     {
-        try{
+        try {
 //            $address = Address::findOrFail($id);
             // Check for number of addresses for coin
 //            if(auth() -> user() -> numberOfAddresses($address -> coin) <= 1)
 //                throw new RequestException('You must have at least one address for each coin!');
 //
-            auth() -> user() -> addresses() -> where('id', $id) -> delete();
-            session() -> flash('success', 'You have successfully removed your address!');
-        }
-        catch (RequestException $e){
-            $e -> flashError();
+            auth()->user()->addresses()->where('id', $id)->delete();
+            session()->flash('success', 'You have successfully removed your address!');
+        } catch (RequestException $e) {
+            $e->flashError();
         }
 
-        return redirect() -> back();
+        return redirect()->back();
     }
 
     /**
@@ -720,10 +709,9 @@ class ProfileController extends Controller
     public function tickets(Ticket $ticket = null)
     {
         // Tickets
-        if(!is_null($ticket)){
-            $replies = $ticket -> replies() -> orderByDesc('created_at') -> paginate( config('marketplace.products_per_page'));
-        }
-        else {
+        if (!is_null($ticket)) {
+            $replies = $ticket->replies()->orderByDesc('created_at')->paginate(config('marketplace.products_per_page'));
+        } else {
             $replies = collect(); // empty collection
         }
 
@@ -742,28 +730,37 @@ class ProfileController extends Controller
     public function newTicket(NewTicketRequest $request)
     {
         try {
-            $newTicket = Ticket::openTicket($request -> title);
-            TicketReply::postReply($newTicket, $request -> message);
+            $newTicket = Ticket::openTicket($request->title);
+            TicketReply::postReply($newTicket, $request->message);
 
-            return redirect() -> route('profile.tickets', $newTicket);
-        }
-        catch(RequestException $e){
-            Log::error($e -> getMessage());
-            session() -> flash('errormessage', $e -> getMessage());
+            return redirect()->route('profile.tickets', $newTicket);
+        } catch (RequestException $e) {
+            Log::error($e->getMessage());
+            session()->flash('errormessage', $e->getMessage());
         }
     }
 
     public function newTicketMessage(Ticket $ticket, NewTicketMessageRequest $request)
     {
-        try{
-            TicketReply::postReply($ticket, $request -> message);
-        }
-        catch (RequestException $e){
+        try {
+            TicketReply::postReply($ticket, $request->message);
+        } catch (RequestException $e) {
             Log::error($e);
-            session() -> flash('errormessage', $e -> getMessage());
+            session()->flash('errormessage', $e->getMessage());
+        }
+        return redirect()->back();
+    }
+
+    public function saveCurrency( Request $request)
+    {
+//        dd($request -> all());
+        try{
+            auth()->user()->saveCurrency($request -> currency);
+            session()->flash('success', 'You have successfully changed your address!');
+        } catch(RequestException $e){
+            $e -> flashError();
         }
         return redirect() -> back();
     }
-
 
 }

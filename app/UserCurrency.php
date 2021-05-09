@@ -10,4 +10,5 @@ class UserCurrency extends Model
 {
     use HasFactory,Uuids;
      protected $table = 'users_currency';
+     protected $guarded = [];
 }
