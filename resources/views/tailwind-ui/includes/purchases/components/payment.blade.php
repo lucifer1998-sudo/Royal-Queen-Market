@@ -59,17 +59,17 @@
                 </td>
                 <td class="px-2 py-2 text-white">
                     <span class="rounded disabled:opacity-50
-                        @if($purchase -> isPurchased()) bg-blue-500
+                        @if($purchase -> isPurchased()) bg-blue-500 p-1
                         @else btn-outline-secondary
                         @endif">
-                        Purchased
+                        Paid
                     </span>
                     @if($purchase->type=='normal')
-                        <span class="pl-1 rounded disabled:opacity-50 @if($purchase -> isSent()) btn-primary @else btn-outline-secondary @endif">Sent</span>
+                        <span class="pl-1 rounded disabled:opacity-50 @if($purchase -> isSent()) bg-blue-500 p-1 @else btn-outline-secondary @endif">Completed</span>
                     @endif
-                    <span class="pl-1 rounded disabled:opacity-50 @if($purchase -> isDelivered()) btn-primary @else btn-outline-secondary @endif">Delivered</span>
-                    <span class="pl-1 rounded disabled:opacity-50 @if($purchase -> isDisputed()) btn-danger @else btn-outline-secondary @endif">Disputed</span>
-                    <span class="pl-1 rounded disabled:opacity-50 @if($purchase -> isCanceled()) btn-danger @else btn-outline-secondary @endif">Canceled</span>                </td>
+                    <span class="pl-1 rounded disabled:opacity-50 @if($purchase -> isDelivered()) bg-blue-500 p-1 @else btn-outline-secondary @endif">Shipped</span>
+                    <span class="pl-1 rounded disabled:opacity-50 @if($purchase -> isDisputed()) bg-red-500 p-1 @else btn-outline-secondary @endif">Accepted</span>
+                    <span class="pl-1 rounded disabled:opacity-50 @if($purchase -> isCanceled()) bg-red-500 p-1 @else btn-outline-secondary @endif">Canceled</span>                </td>
             </tr>
             </tbody>
         </table>
