@@ -15,7 +15,7 @@
         </div>
         <div class="bg-gray-500 bg-opacity-25 flex items-center justify-center py-3">
             <p class="font-black pt-1 text-2xl text-rqm-yellow-dark uppercase">
-                {{ $product -> type }}
+                {{ $product -> category -> name }} -  {{ $product -> type }}
             </p>
         </div>
         <div class="flex items-center justify-center pb-14 pt-3 px-6">
