@@ -1,12 +1,12 @@
 <div class="w-full">
     <div class="h-full">
         <div class="bg-rqm-lighter p-5 rounded shadow w-full">
-            @if($purchase -> isDelivered() && $purchase -> isBuyer() && !$purchase -> hasFeedback())
+{{--            @if($purchase -> isDelivered() && $purchase -> isBuyer() && !$purchase -> hasFeedback())--}}
                 <label class="text-2xl text-gray-400 block text-rqm-yellow">
                     Leave Feedback
                 </label>
                 <hr>
-                <form action="{{ route('profile.purchases.feedback.new', $purchase) }}" method="POST">
+{{--                <form action="{{ route('profile.purchases.feedback.new', $purchase) }}" method="POST">--}}
                     {{ csrf_field() }}
                     <div class="flex">
                         <div class="w-full  m-2">
@@ -14,11 +14,11 @@
                                 <label class="block uppercase tracking-wide text-white font-bold mb-2">Quality:</label>
                                 <select name="quality_rate" id="quality_rate"
                                         class=" appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white ">
-                                    @for($i=1; $i<=5; $i++)
-                                        <option value="{{ $i }}">
-                                            {{ $i }} {{ str_plural('star', $i) }}
-                                        </option>
-                                    @endfor
+{{--                                    @for($i=1; $i<=5; $i++)--}}
+{{--                                        <option value="{{ $i }}">--}}
+{{--                                            {{ $i }} {{ str_plural('star', $i) }}--}}
+{{--                                        </option>--}}
+{{--                                    @endfor--}}
                                 </select>
                             </div>
                         </div>
@@ -28,11 +28,11 @@
                                     class="block uppercase tracking-wide text-white font-bold mb-2">Communication:</label>
                                 <select name="communication_rate" id="communication_rate"
                                         class="form-control appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white ">
-                                    @for($i=1; $i<=5; $i++)
-                                        <option value="{{ $i }}">
-                                            {{ $i }} {{ str_plural('star', $i) }}
-                                        </option>
-                                    @endfor
+{{--                                    @for($i=1; $i<=5; $i++)--}}
+{{--                                        <option value="{{ $i }}">--}}
+{{--                                            {{ $i }} {{ str_plural('star', $i) }}--}}
+{{--                                        </option>--}}
+{{--                                    @endfor--}}
                                 </select>
                             </div>
                         </div>
@@ -41,11 +41,11 @@
                                 <label class="block uppercase tracking-wide text-white font-bold mb-2">Shipping:</label>
                                 <select name="shipping_rate" id="shipping_rate"
                                         class="form-control appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white ">
-                                    @for($i=1; $i<=5; $i++)
-                                        <option value="{{ $i }}">
-                                            {{ $i }} {{ str_plural('star', $i) }}
-                                        </option>
-                                    @endfor
+{{--                                    @for($i=1; $i<=5; $i++)--}}
+{{--                                        <option value="{{ $i }}">--}}
+{{--                                            {{ $i }} {{ str_plural('star', $i) }}--}}
+{{--                                        </option>--}}
+{{--                                    @endfor--}}
                                 </select>
                             </div>
                         </div>
@@ -76,9 +76,9 @@
                             </div>
                         </div>
                     </div>
-                </form>
+{{--                </form>--}}
 
-            @elseif($purchase -> isDelivered() && $purchase -> hasFeedback())
+{{--            @elseif($purchase -> isDelivered() && $purchase -> hasFeedback())--}}
 
                 <label class="text-2xl text-gray-400 block text-rqm-yellow">
                     <h4>Feedback by buyer</h4>
@@ -86,22 +86,22 @@
                 <ul class="list-disc">
                     <li class="text-white">
                         Qualtiy:
-                        @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> quality_rate])
+{{--                        @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> quality_rate])--}}
                     </li>
                     <li class="text-white">
                         Shipping:
-                        @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> shipping_rate])
+{{--                        @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> shipping_rate])--}}
                     </li>
                     <li class="text-white">
                         Communication:
-                        @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> communication_rate])
+{{--                        @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> communication_rate])--}}
                     </li>
                     <li class="text-white">
                         Type:
-                        {{ $purchase->feedback->getType() }}
+{{--                        {{ $purchase->feedback->getType() }}--}}
                     </li>
                     <li class="text-white text-center">
-                        {{ $purchase -> feedback -> comment }}
+{{--                        {{ $purchase -> feedback -> comment }}--}}
                     </li>
                 </ul>
             @endif
