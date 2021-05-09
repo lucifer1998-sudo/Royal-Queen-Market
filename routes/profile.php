@@ -5,7 +5,7 @@
  * Grouped under the prefix "profile" and under auth middleware
  */
 Route::prefix('profile')->group(function(){
-
+    Route::post('vendor/currency','ProfileController@saveCurrency')->name('profile.vendor.currency');
     Route::get('index','ProfileController@index')->name('profile.index');
     Route::post('changepassword', 'ProfileController@changePassword')-> name('profile.password.change'); // change password route
     Route::get('2fa/{turn}', 'ProfileController@change2fa') -> name('profile.2fa.change'); // change 2fa
@@ -143,3 +143,4 @@ Route::prefix('profile')->group(function(){
     Route::post('product/clone/{product}','ProductController@cloneProductPost')->name('profile.vendor.product.clone.post');
 
 });
+

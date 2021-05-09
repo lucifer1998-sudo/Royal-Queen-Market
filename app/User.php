@@ -586,4 +586,23 @@ class User extends Authenticatable
         return $this->id;
     }
 
+    /**
+     * @param $currency
+     */
+    public function saveCurrency( $currency ){
+//dd($currency);
+        UserCurrency ::updateOrCreate(
+            [
+                'user_id' => $this -> id,
+            ],
+            [
+                'user_id' => $this -> id,
+                'currency' => $currency
+            ]
+        );
+    }
+    public function currency(){
+        return $this -> hasOne('\App\UserCurrency','user_id','id');
+    }
+
 }
