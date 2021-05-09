@@ -31,9 +31,10 @@
                         <label class="text-rqm-yellow" for="profilebg">Profile background</label>
                     </div>
                     <select name="profilebg" id="profilebg" class="bg-rqm-dark border border-rqm-yellow-darkest px-3 text-rqm-white w-full rounded h-7">
-                        @foreach(config('vendor.profile_bgs') as $key => $class)
-                            <option value="{{$key}}" @if($vendor->getProfileBg() == $class) selected @endif><p>{{ucfirst($key)}}</p></option>
-                        @endforeach
+{{--                        @foreach(config('vendor.profile_bgs') as $key => $class)--}}
+                            <option value="0">default</option>
+{{--                            <option value="{{$key}}" @if($vendor->getProfileBg() == $class) selected @endif><p>{{ucfirst($key)}}</p></option>--}}
+{{--                        @endforeach--}}
                     </select>
                     <div class="flex py-1 justify-end">
                         <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-3 py-1 rounded-sm text-rqm-dark">
@@ -47,7 +48,7 @@
     <div class="bg-rqm-lighter p-5 rounded shadow w-full mt-4">
         <h3 class="text-rqm-yellow">Add product</h3>
         <hr class="border-rqm-yellow-darkest">
-   
+
             <div class="card">
                 <div class="card-body text-center">
                     <p class="text-rqm-white my-3">Products includes shipping options.</p>
@@ -58,7 +59,7 @@
                         </button></a>
                 </div>
             </div>
-       
+
     </div>
 
     <div class="bg-rqm-lighter p-5 rounded shadow w-full mt-4">
@@ -74,7 +75,7 @@
                         <th class="px-2 text-center text-left text-rqm-yellow">Quantity</th>
                         <th class="px-2 text-center text-left text-rqm-yellow">Price from</th>
                         <th class="px-2 text-center text-left text-rqm-yellow">Category</th>
-                  
+
                         <th></th>
                     </tr>
                 </thead>
@@ -85,7 +86,7 @@
                             <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center">{{ $product -> quantity }}</td>
                             <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center">@include('includes.currency', ['usdValue' => $product -> price_from ])</td>
                             <td class="border-gray-600 border-r px-2 py-2 text-rqm-white text-center"><a href="{{ route('category.show', $product -> category) }}">{{ $product -> category -> name }}</a></td>
-                    
+
                             <td class="border-gray-600 border-r px-2 py-2 text-rqm-white">
                                 <a href="{{ route('profile.vendor.product.clone.show', $product ) }}" class="btn btn-sm btn-info">
                                     Clone
@@ -118,7 +119,7 @@
             <div class="alert alert-warning text-center">
                 You don't have any products!
             </div>
-        @endif   
+        @endif
     </div>
 
 </div>

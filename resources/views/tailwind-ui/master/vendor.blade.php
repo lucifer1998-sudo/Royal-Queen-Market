@@ -18,7 +18,7 @@
             <li class="px-2">{{ $vendor -> username }}</li>
         </ol>
     </nav>
-    <div class="flex my-5 {{$vendor->vendor->getProfileBg()}} text-center justify-content-center">
+    <div class="flex my-5 text-center justify-content-center" style="background: url({{URL::asset('/media/bg.cleaned.png')}})">
         @include('tailwind-ui.includes.vendor.card')
     </div>
     @include('tailwind-ui.includes.vendor.stats')
