@@ -83,27 +83,47 @@
                 <label class="text-2xl text-gray-400 block text-rqm-yellow">
                     <h4>Feedback by buyer</h4>
                 </label>
-                <ul class="list-disc">
-                    <li class="text-white">
-                        Qualtiy:
-                        @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> quality_rate])
-                    </li>
-                    <li class="text-white">
-                        Shipping:
-                        @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> shipping_rate])
-                    </li>
-                    <li class="text-white">
-                        Communication:
-                        @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> communication_rate])
-                    </li>
-                    <li class="text-white">
-                        Type:
-                        {{ $purchase->feedback->getType() }}
-                    </li>
-                    <li class="text-white text-center">
-                        {{ $purchase -> feedback -> comment }}
-                    </li>
-                </ul>
+                <hr>
+                <table class="table-auto w-full mt-4">
+                    <tbody>
+                    <tr class="bg-rqm-light">
+                        <td class="border-gray-600 px-2 py-2 text-white">
+                            Quality:
+                        </td>
+                        <td class="px-2 py-2 text-white">
+                            @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> quality_rate])
+                        </td>
+                    </tr>
+                    <tr class="bg-rqm-light">
+                        <td class="border-gray-600 px-2 py-2 text-white">
+                            Shipping:
+                        </td>
+                        <td class="px-2 py-2 text-white">
+                            @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> shipping_rate])
+                        </td>
+                    </tr>
+                    <tr class="bg-rqm-light">
+                        <td class="border-gray-600 px-2 py-2 text-white">
+                            Communication:
+                        </td>
+                        <td class="px-2 py-2 text-white">
+                            @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> communication_rate])                        </td>
+                    </tr>
+                    <tr class="bg-rqm-light">
+                        <td class="border-gray-600 px-2 py-2 text-white">
+                            Type:
+                        </td>
+                        <td class="px-2 py-2 text-white">
+                            {{ $purchase->feedback->getType() }}
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            <div class="text-center text-white mt-5">
+                {{ $purchase -> feedback -> comment }}
+            </div>
+
             @endif
 
         </div>
