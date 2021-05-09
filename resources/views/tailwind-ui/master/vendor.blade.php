@@ -21,7 +21,6 @@
     <div class="flex my-5 {{$vendor->vendor->getProfileBg()}} text-center justify-content-center">
         @include('tailwind-ui.includes.vendor.card')
     </div>
-
     @include('tailwind-ui.includes.vendor.stats')
     @yield('vendor-content')
 @stop

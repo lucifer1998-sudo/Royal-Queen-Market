@@ -2,7 +2,7 @@
 
 @section('vendor-content')
 
-    @include('includes.vendor.products')
+    @include('tailwind-ui.includes.vendor.products')
 
 
 @endsection
