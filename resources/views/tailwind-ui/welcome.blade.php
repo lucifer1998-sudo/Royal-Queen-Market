@@ -73,7 +73,7 @@
                     </div>
                 </form>
             </div>
-            
+
         </div>
         <div class="bg-rqm-dark w-4/5 relative">
             <div class="absolute inset-0 bg-repeat h-full opacity-10 w-full" style="background-image: url({{URL::asset('/media/bg.cleaned.png')}})">
@@ -82,7 +82,7 @@
             <div class="bg-rqm-dark my-5 opacity-95 shadow">
                 <div class="w-full px-4 py-2">
                     <div class="bg-rqm-dark p-2">
-                        <details class="mb-4" open>
+                        <details class="mb-4">
                             <summary class="flex items-center justify-between text-rqm-yellow text-sm">
                                     <span class="mr-5">
                                         Welcome to Royal Queen Cannabis Market
