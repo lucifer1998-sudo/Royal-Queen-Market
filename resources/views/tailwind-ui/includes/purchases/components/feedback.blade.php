@@ -81,13 +81,13 @@
             @elseif($purchase -> isDelivered() && $purchase -> hasFeedback())
 
                 <label class="text-2xl text-gray-400 block text-rqm-yellow">
-                    <h4>Feedback by buyer</h4>
+                    <h4>Feedback by Buyer's</h4>
                 </label>
                 <hr>
                 <table class="table-auto w-full mt-4">
                     <tbody>
                     <tr class="bg-rqm-light">
-                        <td class="border-gray-600 px-2 py-2 text-white">
+                        <td class="border-gray-600 px-2 py-2 text-white text-center">
                             Quality:
                         </td>
                         <td class="px-2 py-2 text-white">
@@ -95,7 +95,7 @@
                         </td>
                     </tr>
                     <tr class="bg-rqm-light">
-                        <td class="border-gray-600 px-2 py-2 text-white">
+                        <td class="border-gray-600 px-2 py-2 text-white text-center">
                             Shipping:
                         </td>
                         <td class="px-2 py-2 text-white">
@@ -103,14 +103,14 @@
                         </td>
                     </tr>
                     <tr class="bg-rqm-light">
-                        <td class="border-gray-600 px-2 py-2 text-white">
+                        <td class="border-gray-600 px-2 py-2 text-white text-center">
                             Communication:
                         </td>
                         <td class="px-2 py-2 text-white">
                             @include('tailwind-ui.includes.purchases.stars', ['stars' => $purchase -> feedback -> communication_rate])                        </td>
                     </tr>
                     <tr class="bg-rqm-light">
-                        <td class="border-gray-600 px-2 py-2 text-white">
+                        <td class="border-gray-600 px-2 py-2 text-white text-center">
                             Type:
                         </td>
                         <td class="px-2 py-2 text-white">
