@@ -7,6 +7,9 @@
         </div>
     </div>
     <a href="{{ route('product.show', $product) }}">
+        <div class="w-full px-7">
+            <img class="rounded-2xl hover:grow hover:shadow-lg w-full" src="{{ asset('storage/'  . $product -> frontImage() -> image) }}" alt="{{$product->name}}">
+        </div>
         <div class="flex items-center justify-center py-3">
             <p class="font-black pt-1 text-2xl text-white">
                 From:
@@ -15,7 +18,7 @@
         </div>
         <div class="bg-gray-500 bg-opacity-25 flex items-center justify-center py-3">
             <p class="font-black pt-1 text-2xl text-rqm-yellow-dark uppercase">
-                {{ $product -> category -> name }} -  {{ $product -> type }}
+                {{ $product -> name }}
             </p>
         </div>
         <div class="flex items-center justify-center pb-14 pt-3 px-6">
