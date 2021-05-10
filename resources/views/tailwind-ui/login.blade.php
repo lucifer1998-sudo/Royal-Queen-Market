@@ -20,8 +20,10 @@
                             @include('tailwind-ui.includes.success', ['strongMessage' => 'Success', 'message' => session()->get('success')])
                         @elseif(session()->has('error'))
                             @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => session()->get('error')])
-                        @elseif(session()->has('errormessage'))
-                            @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => session()->get('errormessage')])
+                        @elseif($errors -> any())
+                            @foreach ($errors -> all() as $error)
+                                @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => $error])
+                            @endforeach
                         @endif
                         <div class="flex justify-center py-1">
                             <div class="flex justify-center">
