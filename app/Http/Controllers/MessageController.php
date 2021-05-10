@@ -140,6 +140,14 @@ class MessageController extends ProfileController
 
     }
     public function markAsRead( Request $request){
-        dd($request -> all());
+//        dd($request -> all());
+        foreach ( $request -> conversation_id as $key => $id ){
+            if (isset ( $request -> read ) ) {
+                Conversation ::find($id) -> markMessagesAsRead();
+            } else if ( isset ($request -> delete) ){
+                Conversation ::find($id) -> delete();
+            }
+        }
+        return redirect() -> back();
     }
 }
