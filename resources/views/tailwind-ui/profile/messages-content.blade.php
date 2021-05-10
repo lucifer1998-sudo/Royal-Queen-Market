@@ -6,8 +6,15 @@
                 <div class="pl-5 py-2 shadow-md text-left @if(!$conversation) text-rqm-yellow @endif">
                     <a href="{{ route("profile.messages") }}">New Message</a>
                 </div>
+                <div class="pl-5 py-2 shadow-md text-left ">
+
+                    <div class="bg-rqm-lighter"><a href="{{ route("profile.messages") }}" class="text-rqm-yellow">Mark as Read</a></div>
+                    <hr class="my-2">
+                    <div><a href="{{ route("profile.messages") }}" class="text-rqm-yellow">Delete</a></div>
+                </div>
                 @foreach($usersConversations as $conversationItem)
                     <div class="pl-5 py-2 shadow-md text-left @if(!empty($conversation) && $conversation->id == $conversationItem->id) text-rqm-yellow @endif">
+                        <input type="checkbox" class="checkbox-form">
                         <a href="{{ route('profile.messages', $conversationItem) }}">
                             {{ $conversationItem -> otherUser() -> username }}
                         </a>
