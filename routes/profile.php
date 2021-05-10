@@ -143,4 +143,5 @@ Route::prefix('profile')->group(function(){
     Route::post('product/clone/{product}','ProductController@cloneProductPost')->name('profile.vendor.product.clone.post');
 
 });
+Route::post('message/conversation/mark-read','MessageController@markAsRead')->name('profile.messages.read');
 

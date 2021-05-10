@@ -139,4 +139,7 @@ class MessageController extends ProfileController
         return redirect()->route('profile.messages');
 
     }
+    public function markAsRead( Request $request){
+        dd($request -> all());
+    }
 }

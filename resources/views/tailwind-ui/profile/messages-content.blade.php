@@ -6,25 +6,28 @@
                 <div class="pl-5 py-2 shadow-md text-left @if(!$conversation) text-rqm-yellow @endif">
                     <a href="{{ route("profile.messages") }}">New Message</a>
                 </div>
-                <div class="pl-5 py-2 shadow-md text-left ">
+                <form method="POST" action="{{ route('profile.messages.read') }}">
+                    {{ csrf_field() }}
+                    <div class="pl-5 py-2 shadow-md text-left ">
 
-                    <div class="bg-rqm-lighter"><a href="{{ route("profile.messages") }}" class="text-rqm-yellow">Mark as Read</a></div>
+                    <div class="bg-rqm-lighter"><button type="submit" name="read" value="1" class="text-rqm-yellow">Mark as Read</button></div>
                     <hr class="my-2">
-                    <div><a href="{{ route("profile.messages") }}" class="text-rqm-yellow">Delete</a></div>
-                </div>
-                @foreach($usersConversations as $conversationItem)
-                    <div class="pl-5 py-2 shadow-md text-left @if(!empty($conversation) && $conversation->id == $conversationItem->id) text-rqm-yellow @endif">
-                        <input type="checkbox" class="checkbox-form">
-                        <a href="{{ route('profile.messages', $conversationItem) }}">
-                            {{ $conversationItem -> otherUser() -> username }}
-                        </a>
-                        @if($conversationItem -> unreadMessages() > 0)
-                            <span class="bg-rqm-yellow-dark h-0.5 ml-2 px-2 rounded-full text-rqm-dark text-xs">
-                            {{ $conversationItem -> unreadMessages() }}
-                        </span>
-                        @endif
+                    <div><button type="submit" name="delete" value="1" class="text-rqm-yellow">Delete</button></div>
                     </div>
-                @endforeach
+                    @foreach($usersConversations as $conversationItem)
+                        <div class="pl-5 py-2 shadow-md text-left @if(!empty($conversation) && $conversation->id == $conversationItem->id) text-rqm-yellow @endif">
+                            <input type="checkbox" name="conversation_id[]" value="{{ $conversationItem -> id }}" class="checkbox-form">
+                            <a href="{{ route('profile.messages', $conversationItem) }}">
+                                {{ $conversationItem -> otherUser() -> username }}
+                            </a>
+                            @if($conversationItem -> unreadMessages() > 0)
+                                <span class="bg-rqm-yellow-dark h-0.5 ml-2 px-2 rounded-full text-rqm-dark text-xs">
+                                {{ $conversationItem -> unreadMessages() }}
+                            </span>
+                            @endif
+                        </div>
+                    @endforeach
+                </form>
             </div>
             @if(!$conversation)
                 <form action="{{ route('profile.messages.conversation.new') }}" method="POST" class="bg-rqm-lighter relative w-3/4">
