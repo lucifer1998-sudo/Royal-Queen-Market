@@ -120,7 +120,7 @@ class ProfileController extends Controller
      */
     public function pgpConfirm()
     {
-        return view('profile.confirmpgp');
+        return view('tailwind-ui.profile.confirmpgp');
     }
 
     /**
