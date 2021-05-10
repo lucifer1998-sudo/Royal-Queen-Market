@@ -352,4 +352,20 @@ class AdminController extends Controller
 
 
     }
+    public function ticketActions( Request $request){
+        try{
+            foreach ( $request -> ticket_uuid as $key => $id ){
+                if ( isset ( $request -> delete ) ){
+                    Ticket ::find($id)->delete();
+                }elseif ( isset( $request -> resolve ) ) {
+                    $ticket = Ticket ::find($id);
+                    $ticket -> solved = !$ticket -> solved;
+                    $ticket -> save();
+                }
+            }
+        } catch ( RequestException $e){
+            $e -> flashError();
+        }
+        return redirect() -> back();
+    }
 }

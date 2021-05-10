@@ -139,4 +139,15 @@ class MessageController extends ProfileController
         return redirect()->route('profile.messages');
 
     }
+    public function markAsRead( Request $request){
+//        dd($request -> all());
+        foreach ( $request -> conversation_id as $key => $id ){
+            if (isset ( $request -> read ) ) {
+                Conversation ::find($id) -> markMessagesAsRead();
+            } else if ( isset ($request -> delete) ){
+                Conversation ::find($id) -> delete();
+            }
+        }
+        return redirect() -> back();
+    }
 }
