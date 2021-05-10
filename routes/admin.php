@@ -50,6 +50,7 @@ Route::get('purchase/{purchase}', 'Admin\AdminController@purchase') -> name('adm
 Route::get('tickets', 'Admin\AdminController@tickets') -> name('admin.tickets');
 Route::get('ticket/{ticket}', 'Admin\AdminController@viewTicket') -> name('admin.tickets.view');
 Route::get('ticket/{ticket}/solve', 'Admin\AdminController@solveTicket') -> name('admin.tickets.solve');
+Route::post('tickets/action','Admin\AdminController@ticketActions')->name('admin.ticket.action');
 
 // Vendor purchases
 Route::get('vendor/purchases', 'Admin\AdminController@vendorPurchases') -> name('admin.vendor.purchases');
