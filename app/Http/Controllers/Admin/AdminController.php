@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Ban;
 use App\Category;
 use App\Dispute;
 use App\Events\Support\TicketClosed;
@@ -68,7 +69,9 @@ class AdminController extends Controller
                 'avg_product_price' => Offer::averagePrice(),
                 'total_spent' => Purchase::totalSpent(),
                 'total_earnings_coin' => Purchase::totalEarningPerCoin(),
-                'online_users'  => Active::users()->count()
+                'online_users'  => Active::users()->count(),
+                'banned_users' => Ban::count(),
+                'inactive_vendors' => User::inactiveUsers()
             ]
             );
     }

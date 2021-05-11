@@ -590,7 +590,6 @@ class User extends Authenticatable
      * @param $currency
      */
     public function saveCurrency( $currency ){
-//dd($currency);
         UserCurrency ::updateOrCreate(
             [
                 'user_id' => $this -> id,
@@ -601,8 +600,19 @@ class User extends Authenticatable
             ]
         );
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function currency(){
         return $this -> hasOne('\App\UserCurrency','user_id','id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function inactiveUsers(){
+        return self ::select('last_seen')->whereDate('last_seen','<', Carbon::now()->subDays(30) )->count();
     }
 
 }
