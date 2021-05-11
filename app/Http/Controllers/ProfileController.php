@@ -81,7 +81,7 @@ class ProfileController extends Controller
         else
             return redirect()->route('profile.index');
 
-        return view('profile.banned', [
+        return view('tailwind-ui.profile.banned', [
             'until' => $until
         ]);
     }

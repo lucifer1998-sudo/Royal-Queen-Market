@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
         include 'profile.php';
     });
 
-    Route::get('/', 'IndexController@home')->name('home');
+    Route::get('/', 'IndexController@home')->name('home')->middleware('is_banned');
 	Route::get('/category/{category}', 'IndexController@category') -> name('category.show');
 
 	// Product routes
