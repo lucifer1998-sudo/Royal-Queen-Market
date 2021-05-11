@@ -89,6 +89,7 @@ class UserController extends Controller
      */
     public function banUser(User $user, BanUserRequest $request)
     {
+//        dd('asda');
         $this->checkGate();
 
         try{

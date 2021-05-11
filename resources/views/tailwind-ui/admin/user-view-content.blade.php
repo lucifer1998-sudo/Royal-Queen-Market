@@ -113,17 +113,22 @@
                 </div>
 
             </form>
-        </div>
-
-    </div>
-    <div class="w-full">
-        <form class="form-inline" method="POST" action="{{ route('admin.user.ban', $user) }}">
-            <label class="text-2xl text-rqm-yellow w-full pt-5 ">Ban user for number of days from now:</label>
-            <input type="number" name="days" id="days" class=" my-2 bg-rqm-dark border border-rqm-yellow-darkest p-2 rounded text-rqm-yellow w-full" placeholder="Days">
-            @csrf
-            <div class="flex justify-end pt-2 w-full">
-                <input type="submit" class="bg-rqm-yellow-dark font-extrabold p-2 rounded-sm text-rqm-dark text-base my-3" value="Ban">
+            <div class="w-full">
+                <form class="form-inline" method="POST" action="{{ route('admin.user.ban', $user) }}">
+                    @csrf
+                    <label class="text-2xl text-rqm-yellow w-full pt-5 ">Ban user for number of days from now:</label>
+                    {{--                    <div class="flex">--}}
+                    <input type="number" name="days" id="days"
+                           class=" my-2 bg-rqm-dark border border-rqm-yellow-darkest p-2 rounded text-rqm-yellow w-full"
+                           placeholder="Days">
+                    <div class="flex justify-end pt-2 w-full">
+                        <button type="submit"
+                                class="bg-rqm-yellow-dark font-extrabold p-2 rounded-sm text-rqm-dark text-base">
+                            Save changes
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </div>
