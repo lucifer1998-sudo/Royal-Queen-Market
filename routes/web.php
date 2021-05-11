@@ -93,5 +93,10 @@ Route::get('/login', 'IndexController@login')->name('login');
 Route::get('/confirmation', 'IndexController@confirmation')->name('confirmation');
 
 Route::get('setview/{list}', 'IndexController@setView') -> name('setview');
+Route::get('/forgot','Auth\ForgotPasswordController@showForget')->name('a.forgot');
+Route::post('/check-mnemonic','Auth\ForgotPasswordController@checkMnemonic')->name('a.mnemonic');
+Route::get('reset-password','Auth\ForgotPasswordController@showResetForm')->name('a.reset');
+Route::post('change-password','Auth\ForgotPasswordController@changePassword')->name('a.change-password');
+
 
 
