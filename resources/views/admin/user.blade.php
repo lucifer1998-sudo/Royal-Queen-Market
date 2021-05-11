@@ -8,7 +8,7 @@
 @section('admin-content')
     <div class="row">
         <div class="col">
-            <h4 class="text-white"> 
+            <h4 class="text-white">
                 Displaying details for user {{$user->username}}
             </h4>
             <hr>
