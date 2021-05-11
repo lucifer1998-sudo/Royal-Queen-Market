@@ -2,7 +2,7 @@
     <div class="absolute inset-0 bg-repeat h-full opacity-10 w-full" style="background-image: url({{URL::asset('/media/bg.cleaned.png')}})">
         <span></span>
     </div>
-    <div class="z-20 gap-4 grid grid-cols-3 grid-flow-col grid-rows-3 p-10 w-full">
+    <div class="z-20 gap-4 grid grid-cols-3 p-10 w-full">
         <div class="bg-rqm-light hover:bg-rqm-dark hover:grow rounded-2xl shadow-2xl">
             <div class="flex font-bold h-1/3 justify-center py-10 text-2xl text-center text-white">Total Products in the Market</div>
             <div class="flex font-bold h-2/3 items-center justify-center text-5xl text-center text-rqm-yellow-dark">{{ $total_products }}</div>
@@ -51,5 +51,20 @@
                 </table>
             </div>
         </div>
+        <div class="bg-rqm-light hover:bg-rqm-dark hover:grow rounded-2xl shadow-2xl">
+            <div class="flex font-bold h-1/3 justify-center py-10 text-2xl text-center text-white">Banned Users : </div>
+            <div class="flex font-bold h-2/3 items-center justify-center text-5xl text-center text-rqm-yellow-dark">
+                {{ $banned_users }}
+            </div>
+        </div>
+        <div class="bg-rqm-light hover:bg-rqm-dark hover:grow rounded-2xl shadow-2xl">
+            <div class="flex font-bold h-1/3 justify-center py-10 text-2xl text-center text-white">Inactive Vendors </div>
+            <div class="flex font-bold h-2/3 items-center justify-center text-5xl text-center text-rqm-yellow-dark">
+                {{ $inactive_vendors }}
+            </div>
+        </div>
     </div>
+{{--    <div class="z-20 gap-4 grid grid-cols-3 grid-flow-col grid-rows-3 p-10 w-full">--}}
+{{--        asdasjdjlsljdl--}}
+{{--    </div>--}}
 </div>
