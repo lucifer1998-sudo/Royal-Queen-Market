@@ -49,7 +49,7 @@ class IndexController extends Controller
      */
     public function login() {
 
-        return redirect()->route('auth.signin');
+        return redirect()->route('auth.logins');
     }
 
     public function confirmation(Request $request) {

@@ -1,4 +1,4 @@
-<div class="rounded overflow-hidden border w-full lg:w-6/12 md:w-6/12 bg-rqm-lighter ml-96 my-20 py-5 px-5">
+<div class="rounded overflow-hidden border w-full bg-rqm-lighter mt-32">
     <div class="w-full flex justify-between m-5">
         <div class="w-full md:w-1/2 block uppercase tracking-wide font-bold text-left p-2">
             <a class="text-2xl text-white" href="{{ route('vendor.show', $vendor) }}">{{ $vendor -> username }}</a>

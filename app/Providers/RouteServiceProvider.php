@@ -77,7 +77,18 @@ class RouteServiceProvider extends ServiceProvider
             return hex2bin($value);
         });
 
+        Route::bind('sales', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
+
         Route::bind('sale', function($value, $route)
+        {
+            return hex2bin($value);
+        });
+
+        Route::bind('profile/sale', function($value, $route)
         {
             return hex2bin($value);
         });
@@ -234,8 +245,17 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+       # $this->mapAuthRoutes();
+
         //
     }
+
+    // protected function mapAuthRoutes()
+    // {
+    //     Route::middleware('auth')
+    //         ->namespace($this->namespace)
+    //         ->group(base_path('routes/auth.php'));
+    // }
 
     /**
      * Define the "web" routes for the application.

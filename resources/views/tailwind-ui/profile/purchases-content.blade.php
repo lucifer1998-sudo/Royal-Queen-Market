@@ -107,7 +107,7 @@
                         </td>
                         <td class="border-gray-600 px-2 py-2 text-rqm-white">
                             <div>
-                                <a href="{{ route('profile.sales.single', $purchase) }}" class="underline">
+                                <a href="{{ route('profile.purchases.single', $purchase) }}" class="underline">
                                     @if($purchase->isCanceled()) <em>Canceled</em> @else {{ $purchase -> short_id }} @endif
                                 </a>
                             </div>

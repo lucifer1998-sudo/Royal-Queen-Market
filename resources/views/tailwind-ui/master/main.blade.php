@@ -17,17 +17,23 @@
     <link href="{{ asset('css/nordic.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile-bg.css') }}" rel="stylesheet">
 
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+
 </head>
 <body class="bg-rqm-dark text-gray-600 work-sans leading-normal text-base tracking-normal">
-@if(\Route::currentRouteName() != 'auth.signin' &&  \Route::currentRouteName() != 'auth.signup' &&  \Route::currentRouteName() != 'a.forgot' &&  \Route::currentRouteName() != 'a.mnemonic')
+@if(\Route::currentRouteName() != 'auth.logins' &&  \Route::currentRouteName() != 'auth.signup' &&  \Route::currentRouteName() != 'a.forgot' &&  \Route::currentRouteName() != 'a.mnemonic')
     @include('tailwind-ui.master.navbar')
+
 @endif
+@include('includes.jswarning')
+
 <section>
     <div class="container px-6 mx-auto">
         @yield('content')
     </div>
 </section>
-@if(\Route::currentRouteName() != 'auth.signin' &&  \Route::currentRouteName() != 'auth.signup'  &&  \Route::currentRouteName() != 'a.forgot' &&  \Route::currentRouteName() != 'a.mnemonic')
+@if(\Route::currentRouteName() != 'auth.logins' &&  \Route::currentRouteName() != 'auth.signup'  &&  \Route::currentRouteName() != 'a.forgot' &&  \Route::currentRouteName() != 'a.mnemonic')
 
 
     <div class="bg-rqm-lighter container inset-0.5 px-6 mx-auto mb-10 mt-10">

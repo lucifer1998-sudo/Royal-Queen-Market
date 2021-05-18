@@ -84,7 +84,9 @@
                 <div class="relative">
                     <select name="types[]" id="types" multiple multiple class="bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white block appearance-none w-full bg-gray-200 border py-3 px-4 pr-8 rounded leading-tight focus:outline-none ">
                         @foreach(\App\Purchase::$types as $type => $typeLongName)
-
+                            @if($typeLongName == "Finalize Early" && $can_fe == false)
+                                @continue
+                            @endif
                             <option value="{{ $type }}" {{ optional($basicProduct) -> supportsType($type) ? 'selected' : '' }}>{{ $typeLongName }}</option>
 
                         @endforeach

@@ -28,7 +28,7 @@
                     </div>
                     <textarea name="description" id="" cols="30" rows="6" class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-white w-full rounded" placeholder="Type here..">{{$vendor->about}}</textarea>
                     <div class="mt-3">
-                        <label class="text-rqm-yellow" for="profilebg">Profile background</label>
+                        <label class="text-rqm-yellow" for="profilebg">Profile Background</label>
                     </div>
                     <select name="profilebg" id="profilebg" class="bg-rqm-dark border border-rqm-yellow-darkest px-3 text-rqm-white w-full rounded h-7">
 {{--                        @foreach(config('vendor.profile_bgs') as $key => $class)--}}
@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="bg-rqm-lighter p-5 rounded shadow w-full mt-4">
-        <h3 class="text-rqm-yellow">Add product</h3>
+        <h3 class="text-rqm-yellow">Product</h3>
         <hr class="border-rqm-yellow-darkest">
 
             <div class="card">

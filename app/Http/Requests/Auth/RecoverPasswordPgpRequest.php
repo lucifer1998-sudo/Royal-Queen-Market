@@ -53,7 +53,7 @@ class RecoverPasswordPgpRequest extends FormRequest
         }
 
         $validationNumber = rand(100000000000, 999999999999); // Radnom number to confirm
-        $decryptedMessage = "You have successfully decrypted this message.\nTo validate this key please copy validation number to the field on the site\nValidation number:". $validationNumber;
+        $decryptedMessage = "SECRET CODE:". $validationNumber;
         // Encrypt throws \Exception
         try{
             $encryptedMessage = PGP::EncryptMessage($decryptedMessage, $user->pgp_key);

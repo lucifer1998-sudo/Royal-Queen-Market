@@ -46,9 +46,15 @@
     <hr>
     <form method="POST" action="{{ route('profile.vendor.product.delivery.new', $physicalProduct -> product) }}">
         {{ csrf_field() }}
-        <div class="form-row">
+        <div class="form-row mt-4">
             <div class="col-md-4 my-2">
-                <input type="text" maxlength="10" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-whiteappearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('name', $errors) is-invalid @enderror" value="{{ old('name') }}" name="name" placeholder="Name">
+                <label class="text-rqm-white py-2">Name</label>
+                <input type="text" maxlength="10"
+                       class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-whiteappearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white
+                        @error('name', $errors) is-invalid @enderror"
+                       value="{{ $default_delivery ? $default_delivery -> name : old('name') }}"
+                       name="name" placeholder="Name"
+                >
                 @error('name', $errors)
                 <div class="invalid-feedback">
                     {{ $errors -> first('name') }}
@@ -56,7 +62,10 @@
                 @enderror
             </div>
             <div class="col-md-4 my-2">
-                <input type="number" step=".01" min="0.01" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('price', $errors) is-invalid @enderror" value="{{ old('price') }}" name="price" placeholder="Price in {{ \App\Marketplace\Utility\CurrencyConverter::getLocalSymbol() }}(Ex. 15.99)">
+                <label class="text-rqm-white py-2">Price</label>
+                <input type="number" step=".01" min="0.01"
+                       class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('price', $errors) is-invalid @enderror"
+                       value="{{ $default_delivery ? $default_delivery -> price : old('price') }}" name="price" placeholder="Price in {{ \App\Marketplace\Utility\CurrencyConverter::getLocalSymbol() }}(Ex. 15.99)">
                 @error('price', $errors)
                 <div class="invalid-feedback">
                     {{ $errors -> first('price') }}
@@ -64,7 +73,10 @@
                 @enderror
             </div>
             <div class="col-md-4 my-2">
-                <input type="text" maxlength="30" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('duration', $errors) is-invalid @enderror" name="duration" value="{{ old('duration') }}" placeholder="Duration(Ex. 1-2 weeks)">
+                <label class="text-rqm-white py-2">Duration</label>
+                <input type="text" maxlength="30"
+                       class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('duration', $errors) is-invalid @enderror"
+                       name="duration" value="{{ $default_delivery ? $default_delivery -> duration : old('duration') }}" placeholder="Duration(Ex. 1-2 weeks)">
                 @error('duration', $errors)
                 <div class="invalid-feedback">
                     {{ $errors -> first('duration') }}
@@ -72,7 +84,10 @@
                 @enderror
             </div>
             <div class="col-md-4 my-2">
-                <input type="number" step="1" min="1" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('from_quantity', $errors) is-invalid @enderror" name="from_quantity" value="{{ old('from_quantity') }}" placeholder="Minimum quantity for this delivery">
+                <label class="text-rqm-white py-2">Min Quantity</label>
+                <input type="number" step="1" min="1"
+                       class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('from_quantity', $errors) is-invalid @enderror"
+                       name="from_quantity" value="{{ $default_delivery ? $default_delivery -> min_quantity : old('from_quantity') }}" placeholder="Minimum quantity for this delivery">
                 @error('from_quantity', $errors)
                 <div class="invalid-feedback">
                     {{ $errors -> first('from_quantity') }}
@@ -80,7 +95,10 @@
                 @enderror
             </div>
             <div class="col-md-4 my-2">
-                <input type="number" step="1" min="1" class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('to_quantity', $errors) is-invalid @enderror" name="to_quantity" value="{{ old('to_quantity') }}" placeholder="Maximum quantity for this delivery">
+                <label class="text-rqm-white py-2">Max Quantity</label>
+                <input type="number" step="1" min="1"
+                       class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white @error('to_quantity', $errors) is-invalid @enderror"
+                       name="to_quantity" value="{{ $default_delivery ? $default_delivery -> max_quantity : old('to_quantity') }}" placeholder="Maximum quantity for this delivery">
                 @error('to_quantity', $errors)
                 <div class="invalid-feedback">
                     {{ $errors -> first('to_quantity') }}

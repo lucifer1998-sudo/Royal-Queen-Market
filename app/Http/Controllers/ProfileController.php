@@ -22,13 +22,15 @@ use App\Http\Requests\PGP\NewPGPKeyRequest;
 use App\Http\Requests\PGP\StorePGPRequest;
 use App\Http\Requests\Profile\SaveCurrencyRequest;
 use App\Invite;
+use App\UserDeliveryOptionSettings;
 use App\Http\Requests\Product\{NewBasicRequest,
     NewShippingRequest,
     NewDigitalRequest,
     NewImageRequest,
     NewOfferRequest,
     NewProductRequest,
-    NewShippingOptionsRequest};
+    NewShippingOptionsRequest
+};
 use App\Http\Requests\Purchase\LeaveFeedbackRequest;
 use App\Http\Requests\Purchase\MakeDisputeRequest;
 use App\Http\Requests\Purchase\NewDisputeMessageRequest;
@@ -66,7 +68,8 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return view('tailwind-ui.profile.index');
+        $delivery_settings = UserDeliveryOptionSettings ::where('user_id',auth()->id() )->first();
+        return view('tailwind-ui.profile.index') -> with (['delivery_settings' => $delivery_settings]);
     }
 
     /**
@@ -524,8 +527,8 @@ class ProfileController extends Controller
      */
     public function purchase(Purchase $purchase)
     {
-        return view('profile.purchases.purchase', [
-            'purchase' => $purchase
+        return view('tailwind-ui.profile.vendor.sale', [
+            'purchase' => $purchase,
         ]);
     }
 
@@ -751,15 +754,42 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function saveCurrency( Request $request)
+    public function saveCurrency(Request $request)
     {
 //        dd($request -> all());
-        try{
-            auth()->user()->saveCurrency($request -> currency);
+        try {
+            auth()->user()->saveCurrency($request->currency);
             session()->flash('success', 'You have successfully changed your address!');
-        } catch(RequestException $e){
-            $e -> flashError();
+        } catch (RequestException $e) {
+            $e->flashError();
         }
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function saveDeliverySetting(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            "name" => "required",
+            "price" => "required",
+            "duration" => "required",
+            "min_quantity" => "required",
+            "max_quantity" => "required"
+        ]);
+        if ($validator->fails()) return redirect()->back();
+        UserDeliveryOptionSettings::updateOrCreate([
+            'user_id' => auth()->id()
+        ],
+            [
+                "name" => $request->name,
+                "price" => $request->price,
+                "duration" => $request->duration,
+                "min_quantity" => $request->min_quantity,
+                "max_quantity" => $request->max_quantity,
+                "user_id" => auth()->id(),
+            ]);
         return redirect() -> back();
     }
 

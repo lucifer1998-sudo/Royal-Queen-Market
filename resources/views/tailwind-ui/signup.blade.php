@@ -60,7 +60,7 @@
                         </div>
                         <div class="flex justify-center">
                             <div class="flex pb-4 w-64">
-                                <span class="opacity-70 text-justify text-sm text-rqm-yellow">Your private key for decrypting messages will be protected with your password. Please make sure that you choose a strong one. </span>
+                                <span class="opacity-70 text-justify text-sm text-rqm-yellow">This PASSWORD will also be used to open your inbox messages. Please choose good combination and save it. </span>
                             </div>
                         </div>
                         <div class="flex justify-center py-1">
@@ -99,7 +99,7 @@
                                     <button type="submit" value="Log In" class="bg-rqm-yellow font-black py-2 text-rqm-dark w-full">Sign Up</button>
                                 </div>
                                 <div class="flex justify-center text-lg text-rqm-yellow w-64">
-                                    <a href="{{route('auth.signin')}}" class="w-full">
+                                    <a href="{{route('auth.logins')}}" class="w-full">
                                         <button type="button" value="Log In" class="w-full">Log In</button>
                                     </a>
                                 </div>

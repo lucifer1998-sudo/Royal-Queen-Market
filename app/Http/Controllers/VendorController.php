@@ -19,8 +19,11 @@ use App\Image;
 use App\PhysicalProduct;
 use App\Product;
 use App\Purchase;
+use App\UserDeliveryOptionSettings;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use App\Vendor;
+use Auth;
 
 class VendorController extends Controller
 {
@@ -61,10 +64,15 @@ class VendorController extends Controller
         // save type
         session() -> put('product_type', $type);
 
+        $vendor = Auth::user();
+        $can_fe = Vendor::findOrFail($vendor->id);
+
+
         return view('tailwind-ui.profile.vendor.addbasic', [
             'type' => $type,
             'allCategories' => Category::nameOrdered(),
             'basicProduct' => session('product_adding'),
+            'can_fe'    => $can_fe->can_use_fe,
         ]);
     }
 
@@ -198,10 +206,14 @@ class VendorController extends Controller
         if(!($physicalProduct instanceof  PhysicalProduct))
             $physicalProduct = new PhysicalProduct();
 
+        //default delivery settings
+        $default_delivery = UserDeliveryOptionSettings ::where('user_id',auth()->id()) -> first();
+
         return view('tailwind-ui.profile.vendor.adddelivery',
             [
                 'physicalProduct' => $physicalProduct ?? new PhysicalProduct,
                 'productsShipping' => session('product_shippings'),
+                'default_delivery' => $default_delivery
             ]
         );
     }

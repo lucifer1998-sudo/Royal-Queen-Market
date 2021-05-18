@@ -10,7 +10,7 @@
             <tbody>
             <tr class="bg-rqm-light">
                 <td class="border-gray-600 px-2 py-2 text-white">
-                    To Pay:
+                    Amount to Pay:
                 </td>
                 <td class="px-2 py-2 text-white">
                     @if($purchase -> isDelivered())
@@ -26,7 +26,7 @@
             </tr>
             <tr class="bg-rqm-light">
                 <td class="border-gray-600 px-2 py-2 text-white">
-                    Address Received
+                    Amount Received
                 </td>
                 <td class="px-2 py-2 text-white">
                     @if($purchase -> isDelivered())
@@ -55,7 +55,7 @@
             </tr>
             <tr class="bg-rqm-light">
                 <td class="border-gray-600 px-2 py-2 text-white">
-                    State :
+                    Order Status :
                 </td>
                 <td class="px-2 py-2 text-white">
                     <span class="rounded disabled:opacity-50

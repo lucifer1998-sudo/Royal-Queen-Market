@@ -41,7 +41,7 @@ class UpdateVendorProfileRequest extends FormRequest
         if ($bg == null){
             $bg = array_random($pofile_bgs);
         } else {
-            $bg = $pofile_bgs[$bg];
+           // $bg = $pofile_bgs[$bg];
         }
         $vendor =  $this->user()->vendor;
         $vendor->about = $this->description;

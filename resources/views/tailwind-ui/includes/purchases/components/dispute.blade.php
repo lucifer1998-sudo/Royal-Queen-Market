@@ -62,16 +62,16 @@
 
             @else
                 <label class="text-2xl text-gray-400 block text-rqm-yellow">
-                    Initiate Dispute
+                    Problem with your Order?
                 </label>
                 <hr>
-                <p class="text-white mt-2">If the described item does not match received item you can initiate dispute against seller. Once dispute is started, it can be resolved in favor of both buyer and vendor</p>
+                <p class="text-white mt-2">If you there something wrong with your order, such as you did not get what you paid for.. You can raise a dispute and Royal Queen Market Moderator will help you solve it</p>
                 <form method="POST" action="{{ route('profile.purchases.dispute', $purchase) }}">
                     {{ csrf_field() }}
-                    <label class="block uppercase tracking-wide text-white font-bold mt-2">Dispute message:</label>
+                    <label class="block uppercase tracking-wide text-white font-bold mt-2">What is your concern about your order?</label>
                     <textarea name="message" id="message" class=" mt-3 resize-xappearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight bg-rqm-dark border-rqm-yellow-darkest p-3 text-rqm-white " rows="5"
-                              placeholder="Type the message for the dispute"></textarea>
-                    <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4">Submit dispute</button>
+                              placeholder="Please explain your concern here"></textarea>
+                    <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-5 py-1 rounded-3xl text-rqm-dark text-center mb-4">Raise Dispute for this Order</button>
                 </form>
             @endif
         </div>

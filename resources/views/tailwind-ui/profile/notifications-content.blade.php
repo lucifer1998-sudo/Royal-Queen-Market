@@ -12,7 +12,7 @@
                 {{csrf_field()}}
                 <div>
                     <button type="submit" class="bg-rqm-yellow-dark font-extrabold px-3 py-1 rounded-sm text-rqm-dark">
-                        Delete Notifications
+                        Delete All Notifications
                     </button>
                 </div>
             </form>

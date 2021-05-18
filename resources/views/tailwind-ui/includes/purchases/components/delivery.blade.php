@@ -1,6 +1,6 @@
 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
     <div class="bg-rqm-lighter p-5 rounded shadow w-full">
-        <h4 class="text-2xl text-gray-400 block text-rqm-yellow">Delivery</h4>
+        <h4 class="text-2xl text-gray-400 block text-rqm-yellow">Shipping Method</h4>
         <hr>
         @if ( $purchase -> shipping)
             <table class="table-auto w-full mt-4">
@@ -9,7 +9,7 @@
                 <tbody>
                 <tr class="bg-rqm-light">
                     <td class="border-gray-600 px-2 py-2 text-white">
-                        Shipping name
+                        Shipping Method Type
                     </td>
                     <td class="px-2 py-2 text-white">
                         {{ $purchase -> shipping -> name }}
@@ -17,7 +17,7 @@
                 </tr>
                 <tr class="bg-rqm-light">
                     <td class="border-gray-600 px-2 py-2 text-white">
-                        Delivery Time
+                        Estimated Time
                     </td>
                     <td class="px-2 py-2 text-white">
                         {{ $purchase -> shipping -> duration }}
@@ -25,7 +25,7 @@
                 </tr>
                 <tr class="bg-rqm-light">
                     <td class="border-gray-600 px-2 py-2 text-white">
-                        Shipping price:
+                        Shipping Fee
                     </td>
                     <td class="px-2 py-2 text-white">
                         <strong>@include('includes.currency', ['usdValue' => $purchase -> shipping -> price])</strong>

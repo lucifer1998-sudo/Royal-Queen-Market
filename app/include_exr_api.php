@@ -6,22 +6,22 @@
 	        $cmc = new cmc('92eb96b2-3a19-4518-a3be-59e11a290a42');
 	        $responseBtc = $cmc->tools()->priceConversion(['amount' => 1, 'symbol' => 'BTC', 'convert' => 'USD,EUR,GBP,JPY']);
 	        $responseXmr = $cmc->tools()->priceConversion(['amount' => 1, 'symbol' => 'XMR', 'convert' => 'USD,EUR,GBP,JPY']);
-	        $responseEth = $cmc->tools()->priceConversion(['amount' => 1, 'symbol' => 'ETH', 'convert' => 'USD,EUR,GBP,JPY']);
+	
 
-	        Cache::put('btcRates', $responseBtc, 120);
-	        Cache::put('xmrRates', $responseXmr, 120);
-	        Cache::put('ethRates', $responseEth, 120);
+	        Cache::put('btcRates', $responseBtc, 300);
+	        Cache::put('xmrRates', $responseXmr, 300);
+	     
 		}
 
-		if (Cache::has('btcRates') && Cache::has('xmrRates') && Cache::has('ethRates')) {
+		if (Cache::has('btcRates') && Cache::has('xmrRates')) {
 			$responseBtc = Cache::get('btcRates');
 			$responseXmr = Cache::get('xmrRates');
-			$responseEth = Cache::get('ethRates');
+			
 		} else {
 			getExchangeRates();
 			$responseBtc = Cache::get('btcRates');
 			$responseXmr = Cache::get('xmrRates');
-			$responseEth = Cache::get('ethRates');
+			
 		}
 
 

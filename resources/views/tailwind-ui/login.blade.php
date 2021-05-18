@@ -6,7 +6,7 @@
     <div class="pt-20 w-full">
         <div class="w-full">
             <div class="flex justify-center px-96">
-                <div class="bg-rqm-lighter shadow w-2/3">
+                <div class="bg-rqm-lighter shadow">
                     <div>
                         <img src="{{URL::asset('/media/login-case.png')}}" class="w-full" alt="">
                     </div>
@@ -16,7 +16,7 @@
                             expires every 90 minutes
                         </div>
                     </div>
-                    <form action="{{ route('auth.signin.post') }}" method="POST">
+                    <form action="{{ route('auth.logins.post') }}" method="POST">
                         @csrf
                         @if(session()->has('success'))
                             @include('tailwind-ui.includes.success', ['strongMessage' => 'Success', 'message' => session()->get('success')])

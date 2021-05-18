@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="text-2xl w-full">{{ $product -> name }}</div>
                                 <small class="flex items-center w-full">
-                                    <div class="text-rqm-white">Quality</div>
+                                    <div class="text-rqm-white">Rating</div>
                                     @php
                                         $stars = (int) $product->avgRate('quality_rate');
                                     @endphp
@@ -83,13 +83,13 @@
                             
                                 <small class="flex items-center w-full text-rqm-white">
                                     @if($product->user->vendor->experience < 0)
-                                        Vendor has Negative experience, trade with caution !
+                                        This Vendor has currently been rated Negatively by its Buyers.. Please deal with this vendor with Caution!
                                     @elseif($product->user->vendor->experience == 0)
-                                        Vendor has no experience, trade with caution !
+                                        This Vendor has no "Completed" orders yet. 
                                     @endif
                                 </small>
                                 <div class="py-2">
-                                    <div class="text-rqm-yellow">Offers</div>
+                                    <div class="text-rqm-yellow">Listing Prices</div>
                                     <div>
                                         <ul class="px-2 text-rqm-white">
                                             @foreach($product -> offers as $offer)
@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
                                 <div class="py-2">
-                                    <div>Coins</div>
+                                    <div>Crypto Accepted</div>
                                     <div class="px-2 text-rqm-white">
                                         @foreach($product -> getCoins() as $coin)
                                             <span class="">{{ strtoupper(\App\Purchase::coinDisplayName($coin)) }}</span>
@@ -110,19 +110,19 @@
                                     </div>
                                 </div>
                                 <div class="py-2">
-                                    <div>Available</div>
+                                    <div>Units Available</div>
                                     <div class="px-2 text-rqm-white">
                                         {{ $product -> quantity }} {{ str_plural($product -> mesure, $product -> quantity) }}
                                     </div>
                                 </div>
                                 <div class="py-2">
-                                    <div>Sold</div>
+                                    <div>Completed Orders</div>
                                     <div class="px-2 text-rqm-white">
                                         {{ $product -> numberOfPurchases() }} {{ str_plural($product -> mesure, $product -> orders) }}
                                     </div>
                                 </div>
                                 <div class="py-2">
-                                    <div>Delivery Method</div>
+                                    <div>Shipping Options</div>
                                     <div class="px-2 text-rqm-white">
                                         <select name="delivery" id="delivery"
                                                 class="bg-rqm-dark py-1 rounded w-full">
@@ -163,7 +163,7 @@
                                     </div>
                                 </div>
                                 <div class="py-2 ">
-                                    <div>Quantity ({{ str_plural($product -> mesure) }})</div>
+                                    <div>Quantity</div>
                                     <div class="px-2 text-rqm-white">
                                         <input type="number" min="1" name="amount" id="amount"
                                                value="1"
@@ -195,19 +195,8 @@
                             </div>
                         </div>
                         <div class="w-1/2">
-                            <div>
-                                <div class="flex text-rqm-yellow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                    </svg>
-                                    <span class="mx-2">Shop with confidence</span>
-                                </div>
-                                <div>
-                                    <span class="text-rqm-white">You are Escrow protected for each product in the market!</span>
-                                </div>
-                            </div>
                             <div class="py-2">
-                                <span>Seller information</span>
+                                <span>Vendor Information</span>
                                 <div class="px-4 text-rqm-white">
                                     <a href="{{ route('vendor.show', $product -> user) }}" class="flex">
                                         {{ $product -> user -> username }} lvl. {{$product->user->vendor->getLevel()}}
@@ -221,13 +210,13 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                             </svg>
-                                            <a href="{{ route('profile.messages').'?otherParty='.$product -> user ->username}}" class="px-2 text-sm text-rqm-yellow-darkest">Send message</a>
+                                            <a href="{{ route('profile.messages').'?otherParty='.$product -> user ->username}}" class="px-2 text-sm text-rqm-yellow-darkest">Message Vendor</a>
                                         </div>
                                         <div class="flex items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                             </svg>
-                                            <a href="{{route('search',['user'=>$product->user->username])}}" class="px-2 text-sm text-rqm-yellow-darkest">Seller's products ({{$product -> user ->products()->count()}})</a>
+                                            <a href="{{route('search',['user'=>$product->user->username])}}" class="px-2 text-sm text-rqm-yellow-darkest">View Store ({{$product -> user ->products()->count()}})</a>
                                         </div>
                                     </div>
                                 </div>

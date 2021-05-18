@@ -13,7 +13,7 @@
                 <tr>
                     <th class="px-2 text-center text-left text-rqm-yellow">Product</th>
                     <th class="px-2 text-center text-left text-rqm-yellow">Price</th>
-                    <th class="px-2 text-center text-left text-rqm-yellow">Posted by</th>
+                    <th class="px-2 text-center text-left text-rqm-yellow">Vendor</th>
                     <th class="px-2 text-center text-left text-rqm-yellow">Remaining</th>
                 </tr>
                 </thead>

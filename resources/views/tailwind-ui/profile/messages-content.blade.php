@@ -40,7 +40,7 @@
                     @if(!$conversation)
                     <div class="flex items-center pl-5 py-2 text-rqm-yellow">
                         <div class="pr-10 py-2 shadow-md text-left w-2/3">
-                            <input class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full rounded" type="text" id="username" name="username" placeholder="Username of the receiver..." value="{{$new_conversation_other_party}}">
+                            <input class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full rounded" type="text" id="username" name="username" placeholder="Username" value="{{$new_conversation_other_party}}">
                         </div>
                     </div>
                     @endif

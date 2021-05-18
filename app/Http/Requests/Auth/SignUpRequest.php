@@ -42,13 +42,13 @@ class SignUpRequest extends FormRequest {
      */
     public function messages() {
         return [
-            'captcha.required' => 'Captcha is required',
-            'username.required' => 'Username is required',
+            'captcha.required' => 'Captcha Required',
+            'username.required' => 'Username Required',
             'username.min' => 'Username must have at least 4 characters',
             'username.unique' => 'Account with that username already exists',
             'username.max' => 'Username cannot be longer than 12 characters',
             'username.alpha_num' => 'You can only use alpha-numeric characters for username',
-            'password.required' => 'Password is required',
+            'password.required' => 'Password Required',
             'password.min' => 'Password must have at least 8 characters',
             'password.confirmed' => 'Password must be confirmed',
             'password.different' => 'Password can\'t be same as username',

@@ -5,9 +5,9 @@
  * Grouped under the prefix "profile" and under auth middleware
  */
 Route::prefix('profile')->group(function(){
-    Route::post('vendor/currency','ProfileController@saveCurrency')->name('profile.vendor.currency');
+    Route::post('vendor/fiat','ProfileController@saveCurrency')->name('profile.vendor.currency');
     Route::get('index','ProfileController@index')->name('profile.index');
-    Route::post('changepassword', 'ProfileController@changePassword')-> name('profile.password.change'); // change password route
+    Route::post('updatepass', 'ProfileController@changePassword')-> name('profile.password.change'); // change password route
     Route::get('2fa/{turn}', 'ProfileController@change2fa') -> name('profile.2fa.change'); // change 2fa
 
     // add or remove to whishlist
@@ -17,61 +17,62 @@ Route::prefix('profile')->group(function(){
     // PGP routes
     Route::get('pgp', 'ProfileController@pgp') -> name('profile.pgp');
     Route::post('pgp', 'ProfileController@pgpPost') -> name('profile.pgp.post');
-    Route::get('pgp/confirm', 'ProfileController@pgpConfirm') -> name('profile.pgp.confirm');
-    Route::post('pgp/confirm', 'ProfileController@storePGP') -> name('profile.pgp.store');
-    Route::get('pgp/old', 'ProfileController@oldpgp') -> name('profile.pgp.old');
+    Route::get('pgp/auth', 'ProfileController@pgpConfirm') -> name('profile.pgp.confirm');
+    Route::post('pgp/auth', 'ProfileController@storePGP') -> name('profile.pgp.store');
+    Route::get('pgp/change', 'ProfileController@oldpgp') -> name('profile.pgp.old');
 
-    Route::get('become/vendor', 'ProfileController@becomeVendor') -> name('profile.vendor.become');
-    Route::get('become', 'ProfileController@become') -> name('profile.become');
-    Route::post('become/fromcode', 'ProfileController@becomeVendorFromCode') -> name('profile.become.fromcode');
+    Route::get('application/vendor', 'ProfileController@becomeVendor') -> name('profile.vendor.become');
+    Route::get('application', 'ProfileController@become') -> name('profile.become');
+    Route::post('application/fromcode', 'ProfileController@becomeVendorFromCode') -> name('profile.become.fromcode');
 
-    Route::post('vendor/address', 'ProfileController@changeAddress') -> name('profile.vendor.address'); // add address to account
-    Route::get('vendor/address/remove/{id}', 'ProfileController@removeAddress') -> name('profile.vendor.address.remove'); // add address to account
+    Route::post('vendor/wallet', 'ProfileController@changeAddress') -> name('profile.vendor.address'); // add address to account
+    Route::get('vendor/wallet/remove/{id}', 'ProfileController@removeAddress') -> name('profile.vendor.address.remove'); // add address to account
 
     // Vendor routes
     Route::get('vendor', 'VendorController@vendor') -> name('profile.vendor');
     Route::post('vendor/update/profile','VendorController@updateVendorProfilePost')-> name('profile.vendor.update.post');
     // Product add basic info
-    Route::get('vendor/product/add/{type?}', 'VendorController@addBasicShow') -> name('profile.vendor.product.add');
-    Route::post('vendor/product/adding/{product?}', 'VendorController@addShow') -> name('profile.vendor.product.add.post');
+    Route::get('vendor/product/create/{type?}', 'VendorController@addBasicShow') -> name('profile.vendor.product.add');
+    Route::post('vendor/product/creating/{product?}', 'VendorController@addShow') -> name('profile.vendor.product.add.post');
     // Add remove offers
-    Route::get('vendor/product/offers/add', 'VendorController@addOffersShow') -> name('profile.vendor.product.offers');
-    Route::post('vendor/product/offers/new/{product?}', 'VendorController@addOffer') -> name('profile.vendor.product.offers.add'); // add offer
-    Route::get('vendor/product/offers/remove/{quantity}/{product?}', 'VendorController@removeOffer') -> name('profile.vendor.product.offers.remove'); // add offer
+    Route::get('vendor/product/pricing/update', 'VendorController@addOffersShow') -> name('profile.vendor.product.offers');
+    Route::post('vendor/product/pricing/create/{product?}', 'VendorController@addOffer') -> name('profile.vendor.product.offers.add'); // add offer
+    Route::get('vendor/product/pricing/remove/{quantity}/{product?}', 'VendorController@removeOffer') -> name('profile.vendor.product.offers.remove'); // add offer
     // Delivery
-    Route::get('vendor/product/delivery/add', 'VendorController@addDeliveryShow') -> name('profile.vendor.product.delivery');
-    Route::post('vendor/product/delivery/add/{product?}', 'VendorController@newShipping') -> name('profile.vendor.product.delivery.new');
-    Route::post('vendor/product/delivery/options/{product?}', 'VendorController@newShippingOption') -> name('profile.vendor.product.delivery.options');
-    Route::get('vendor/product/delivery/remove/{index}/{product?}', 'VendorController@removeShipping') -> name('profile.vendor.product.delivery.remove');
+    Route::get('vendor/product/shipping/update', 'VendorController@addDeliveryShow') -> name('profile.vendor.product.delivery');
+    Route::post('vendor/product/shipping/update/{product?}', 'VendorController@newShipping') -> name('profile.vendor.product.delivery.new');
+    Route::post('vendor/product/shipping/other/{product?}', 'VendorController@newShippingOption') -> name('profile.vendor.product.delivery.options');
+    Route::get('vendor/product/shipping/remove/{index}/{product?}', 'VendorController@removeShipping') -> name('profile.vendor.product.delivery.remove');
     // digital section
     Route::get('vendor/product/digital/add', 'VendorController@addDigitalShow') -> name('profile.vendor.product.digital');
     Route::post('vendor/product/digital/add/{product?}', 'VendorController@addDigital') -> name('profile.vendor.product.digital.post');
 
     // Images section
-    Route::get('vendor/product/images/add', 'VendorController@addImagesShow') -> name('profile.vendor.product.images');
-    Route::get('vendor/product/images/remove/{id}/{product?}', 'VendorController@removeImage') -> name('profile.vendor.product.images.remove');
-    Route::get('vendor/product/images/default/{id}/{product?}', 'VendorController@defaultImage') -> name('profile.vendor.product.images.default');
-    Route::post('vendor/product/images/add/{product?}', 'VendorController@addImage') -> name('profile.vendor.product.images.post'); // new image
+    Route::get('vendor/product/assets/update', 'VendorController@addImagesShow') -> name('profile.vendor.product.images');
+    Route::get('vendor/product/assets/remove/{id}/{product?}', 'VendorController@removeImage') -> name('profile.vendor.product.images.remove');
+    Route::get('vendor/product/assets/primary/{id}/{product?}', 'VendorController@defaultImage') -> name('profile.vendor.product.images.default');
+    Route::post('vendor/product/assets/update/{product?}', 'VendorController@addImage') -> name('profile.vendor.product.images.post'); // new image
 
     // New product
     Route::post('vendor/product/post', 'VendorController@newProduct') -> name('profile.vendor.product.post');
     // Delete product
-    Route::get('vendor/product/{product}/delete/confirmation', 'VendorController@confirmProductRemove') -> name('profile.vendor.product.remove.confirm');
-    Route::get('vendor/product/{id}/delete', 'VendorController@removeProduct') -> name('profile.vendor.product.remove');
+    Route::get('vendor/product/{product}/remove/confirm', 'VendorController@confirmProductRemove') -> name('profile.vendor.product.remove.confirm');
+    Route::get('vendor/product/{id}/remove', 'VendorController@removeProduct') -> name('profile.vendor.product.remove');
     // Toggle product visibility
-    Route::get('vendor/product/{product}/toggle/confirmation', 'VendorController@confirmToggleProduct') -> name('profile.vendor.product.toggle.confirm');
-    Route::get('vendor/product/{product}/toggle', 'VendorController@toggleProduct') -> name('profile.vendor.product.toggle');
+    Route::get('vendor/product/{product}/change/confirm', 'VendorController@confirmToggleProduct') -> name('profile.vendor.product.toggle.confirm');
+    Route::get('vendor/product/{product}/change', 'VendorController@toggleProduct') -> name('profile.vendor.product.toggle');
 
 
 
     // Edit Product
-    Route::get('vendor/product/edit/{product}/section/{section?}', 'VendorController@editProduct') -> name('profile.vendor.product.edit');
+    Route::get('vendor/product/update/{product}/part/{section?}', 'VendorController@editProduct') -> name('profile.vendor.product.edit');
 
     // Sales routes
     Route::get('sales/{state?}', 'VendorController@sales') -> name('profile.sales');
     Route::get('sale/{sale}', 'VendorController@sale') -> name('profile.sales.single');
     Route::get('sales/{sale}/sent/confirm', 'VendorController@confirmSent') -> name('profile.sales.sent.confirm');
     Route::get('sale/{sale}/sent', 'VendorController@markAsSent') -> name('profile.sales.sent');
+
 
     // Cart routes
     Route::get('cart', 'ProfileController@cart') -> name('profile.cart');
@@ -83,42 +84,42 @@ Route::prefix('profile')->group(function(){
 
     // Purchases routes
     Route::get('purchases/{state?}', 'ProfileController@purchases') -> name('profile.purchases');
-    Route::get('purchases/{purchase}/message', 'ProfileController@purchaseMessage') -> name('profile.purchases.message');
+    Route::get('purchases/{purchase}/post', 'ProfileController@purchaseMessage') -> name('profile.purchases.message');
     Route::get('purchase/{purchase}', 'ProfileController@purchase') -> name('profile.purchases.single');
-    Route::get('purchase/{purchase}/delivered/confirm', 'ProfileController@deliveredConfirm') -> name('profile.purchases.delivered.confirm');
-    Route::get('purchase/{purchase}/delivered', 'ProfileController@markAsDelivered') -> name('profile.purchases.delivered');
+    Route::get('purchase/{purchase}/completed/release', 'ProfileController@deliveredConfirm') -> name('profile.purchases.delivered.confirm');
+    Route::get('purchase/{purchase}/completed', 'ProfileController@markAsDelivered') -> name('profile.purchases.delivered');
 
     // canceled for both Vendor and Buyer
-    Route::get('purchase/{purchase}/canceled/confirm', 'ProfileController@confirmCanceled') -> name('profile.purchases.canceled.confirm');
-    Route::get('purchase/{purchase}/canceled', 'ProfileController@markAsCanceled') -> name('profile.purchases.canceled');
+    Route::get('purchase/{purchase}/cancelled/confirm', 'ProfileController@confirmCanceled') -> name('profile.purchases.canceled.confirm');
+    Route::get('purchase/{purchase}/cancelled', 'ProfileController@markAsCanceled') -> name('profile.purchases.canceled');
 
     // Purchase - Disputes
     Route::post('purchase/{purchase}/dispute', 'ProfileController@makeDispute') -> name('profile.purchases.dispute');
-    Route::post('purchase/dispute/{dispute}/new/message', 'ProfileController@newDisputeMessage') -> name('profile.purchases.disputes.message');
+    Route::post('purchase/start-dispute/{dispute}/raise/message', 'ProfileController@newDisputeMessage') -> name('profile.purchases.disputes.message');
     Route::post('purchase/{purchase}/dispute/resolve', 'Admin\AdminController@resolveDispute') -> name('profile.purchases.disputes.resolve');
 
     // Purchase - Feedbacks
-    Route::post('purchase/{purchase}/feedback/new', 'ProfileController@leaveFeedback') -> name('profile.purchases.feedback.new');
+    Route::post('purchase/{purchase}/comment/create', 'ProfileController@leaveFeedback') -> name('profile.purchases.feedback.new');
 
     /**
      * Messages
      */
     Route::middleware(['can_read_messages'])->group(function () {
-        Route::get('messages/{conversation?}', 'MessageController@messages') -> name('profile.messages');
-        Route::post('messages/conversation/new', 'MessageController@startConversation') -> name('profile.messages.conversation.new');
-        Route::get('messages/conversations/list', 'MessageController@listConversations') -> name('profile.messages.conversations.list');
-        Route::post('messages/{conversation}/message/new', 'MessageController@newMessage') -> name('profile.messages.message.new');
-        Route::get('messages/{conversation}/sendmessage', 'MessageController@newMessage') -> name('profile.messages.send.message'); // get request for redirecting from new conversation
+        Route::get('communicatons/{conversation?}', 'MessageController@messages') -> name('profile.messages');
+        Route::post('communicatons/chat/create', 'MessageController@startConversation') -> name('profile.messages.conversation.new');
+        Route::get('communicatons/chats/show', 'MessageController@listConversations') -> name('profile.messages.conversations.list');
+        Route::post('communicatons/{conversation}/post/create', 'MessageController@newMessage') -> name('profile.messages.message.new');
+        Route::get('communicatons/{conversation}/postage', 'MessageController@newMessage') -> name('profile.messages.send.message'); // get request for redirecting from new conversation
     });
-    Route::get('messages/decrypt/key','MessageController@decryptKeyShow')->name('profile.messages.decrypt.show');
-    Route::post('messages/decrypt/key','MessageController@decryptKeyPost')->name('profile.messages.decrypt.post');
+    Route::get('communicatons/inbox/auth','MessageController@decryptKeyShow')->name('profile.messages.decrypt.show');
+    Route::post('communicatons/inbox/auth','MessageController@decryptKeyPost')->name('profile.messages.decrypt.post');
 
     /**
      * Notifications
      */
 
-    Route::get('notifications','NotificationController@viewNotifications')->name('profile.notifications');
-    Route::post('notifications/delete','NotificationController@deleteNotifications')->name('profile.notifications.delete');
+    Route::get('alerts','NotificationController@viewNotifications')->name('profile.notifications');
+    Route::post('alerts/remove','NotificationController@deleteNotifications')->name('profile.notifications.delete');
 
     /**
      * Bitmessage
@@ -132,10 +133,10 @@ Route::prefix('profile')->group(function(){
      * Tickets
      */
     Route::get('tickets/{ticket?}', 'ProfileController@tickets') -> name('profile.tickets');
-    Route::post('tickets/new', 'ProfileController@newTicket') -> name('profile.tickets.new');
-    Route::post('tickets/{ticket}/newmessage', 'ProfileController@newTicketMessage') -> name('profile.tickets.message.new');
+    Route::post('tickets/create', 'ProfileController@newTicket') -> name('profile.tickets.new');
+    Route::post('tickets/{ticket}/raisechat', 'ProfileController@newTicketMessage') -> name('profile.tickets.message.new');
 
-
+    Route::post('delivery/options','ProfileController@saveDeliverySetting')->name('profile.delivery.setting');
     /**
      * Product clone
      */
@@ -143,5 +144,6 @@ Route::prefix('profile')->group(function(){
     Route::post('product/clone/{product}','ProductController@cloneProductPost')->name('profile.vendor.product.clone.post');
 
 });
-Route::post('message/conversation/mark-read','MessageController@markAsRead')->name('profile.messages.read');
+Route::post('message/conversation/update-read','MessageController@markAsRead')->name('profile.messages.read');
+
 

@@ -48,14 +48,6 @@
                         </select>
                     </div>
                     <div>
-                        <label for="product_type" class="text-rqm-yellow-darkest block">Type</label>
-                        <select id="product_type" name="product_type" class="bg-rqm-light border py-0.5 rounded text-rqm-yellow-dark w-full">
-                            <option selected value="all">All</option>
-                            <!-- <option value="digital" @if(app('request')->input('type') == 'digital') selected @endif>Digital</option> -->
-                            <option value="physical" @if(app('request')->input('type') == 'physical') selected @endif>Physical</option>
-                        </select>
-                    </div>
-                    <div>
                         <label class="text-rqm-yellow-darkest block">Price Range</label>
                         <input type="number" name="minimum_price" id="" value="{{app('request')->input('price_min')}}" step="0.01" placeholder="Minimum price USD" class="px-2 text-rqm-yellow bg-rqm-lighter border rounded w-full">
                         <input type="number" name="maximum_price" id="" value="{{app('request')->input('price_max')}}" step="0.01" placeholder="Maximum price USD" class="px-2 text-rqm-yellow mt-0.5 bg-rqm-lighter border rounded w-full">
