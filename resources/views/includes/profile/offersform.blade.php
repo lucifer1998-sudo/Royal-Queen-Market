@@ -54,7 +54,7 @@
 </form>
 
 <div class="col-md-12 text-center mt-3">
-    @if(request() -> is('profile/vendor/product/edit/*'))
+    @if(request() -> is('profile/vendor/product/update/*'))
         <a href="{{ route('profile.vendor.product.edit', [$basicProduct, $basicProduct -> afterOffers()]) }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"><i class="fas fa-chevron-down mr-2"></i>  Next</a>
     @elseif(request() -> is('admin/product/*'))
         <a href="{{ route('admin.product.edit', [$basicProduct, $basicProduct -> afterOffers()]) }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"><i class="fas fa-chevron-down mr-2"></i>  Next</a>

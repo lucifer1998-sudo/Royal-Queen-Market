@@ -32,7 +32,7 @@
 
         <div class="form-row justify-content-center">
             <div class="form-group col-md-3 text-center">
-                @if(request() -> is('profile/vendor/product/edit/*'))
+                @if(request() -> is('profile/vendor/product/update/*'))
                     <button class="btn btn-outline-success" type="submit"><i class="far fa-save mr-2"></i> Save</button>
                     <a href="{{ route('profile.vendor.product.edit', [$basicProduct, 'images']) }}"
                        class="btn btn-outline-primary"><i class="fas fa-chevron-down mr-2"></i> Next</a>

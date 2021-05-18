@@ -1,5 +1,5 @@
 @extends('master.productadding')
-
+{{--@dd('das')--}}
 @if(request() -> is('profile/vendor/product/edit/*'))
     @section('product-title', 'Edit product - '. $basicProduct -> name)
 @else
