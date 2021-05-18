@@ -17,7 +17,7 @@
         @endif
 
         @if(!Session::has('outside_vendor') && !Session::has('code'))
-        <form action="{{ route('admin.invite.store') }}" method="POST" class="mb-7">
+        <form action="{{ route('admin.invite.outside.store') }}" method="POST" class="mb-7">
             {{ csrf_field() }}
             <div class="grid grid-flow-col grid-cols-2 grid-rows-1 gap-4 w-full">
                 <div>
