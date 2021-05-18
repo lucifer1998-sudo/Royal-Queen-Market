@@ -3,7 +3,6 @@
         <span></span>
     </div>
     <div class="z-20 p-10 w-full">
-
         @if(Session::has('code'))
             @include('tailwind-ui.includes.success', ['message' => Session::get('code'), 'strongMessage' => 'Generated Code is'])
         @endif
@@ -44,7 +43,7 @@
         @endif
 
         @if(Session::has('outside_vendor'))
-            <form action="{{ route('admin.messages.usersend') }}" method="POST" class="w-full mb-7">
+            <form action="{{ route('admin.invite.outside.store') }}" method="POST" class="w-full mb-7">
                 {{ csrf_field() }}
                 <input type="hidden" name="vendor_username" value="{{Session::get('outside_vendor')}}" />
                 <textarea name="newpgp" id="newpgp" rows="10" class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full" placeholder="Paste PGP key for {{Session::get('outside_vendor')}} here..."></textarea>
