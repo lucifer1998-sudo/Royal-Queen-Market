@@ -11,7 +11,7 @@ class InviteOutsideController extends Controller
     public function store(InviteOutsidePostRequest $request)
     {
         $newInvite = $request->persist();
-        $outSideCodeLink = env('APP_URL', '') . '/registration/' . $newInvite->code;
+        $outSideCodeLink = env('APP_URL', '') . 'registration/' . $newInvite->code;
         return redirect()->back()->with(['outside_code' => $outSideCodeLink]);
     }
 }

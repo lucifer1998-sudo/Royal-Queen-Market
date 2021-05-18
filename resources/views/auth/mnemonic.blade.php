@@ -21,10 +21,10 @@
                     <textarea name="" id="" cols="70" rows="10" readonly class="form-control text-rqm-dark ">{{$mnemonic}}</textarea>
                 </div>
 {{--                <div class="form-group text-center">--}}
-{{--                    <a href="{{route('auth.logins')}}" class="btn btn-warning bg-rqm-yellow font-black py-2 text-rqm-dark w-full">Proceed to Sign In</a>--}}
+{{--                    <a href="{{route('auth.signin')}}" class="btn btn-warning bg-rqm-yellow font-black py-2 text-rqm-dark w-full">Proceed to Sign In</a>--}}
 {{--                </div>--}}
                 <div class="flex justify-center text-lg text-rqm-yellow">
-                    <a href="{{route('auth.logins')}}" value="Log In" class="bg-rqm-yellow font-bold py-2 text-rqm-dark w-full">Log in to newly created Account</a>
+                    <a href="{{route('auth.signin')}}" value="Log In" class="bg-rqm-yellow font-bold py-2 text-rqm-dark w-full">Log in to newly created Account</a>
                 </div>
             </div>
 

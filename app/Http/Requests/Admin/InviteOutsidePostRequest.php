@@ -39,7 +39,7 @@ class InviteOutsidePostRequest extends FormRequest
 
         $newUsersPGP = $this -> newpgp;
         $validationNumber = rand(100000000000, 999999999999); // Radnom number to confirm
-        $decryptedMessage = "SECRET CODE:". $validationNumber;
+        $decryptedMessage = "You have successfully decrypted this message.\nTo validate this key please copy validation number to the field on the site\nValidation number:". $validationNumber;
 
         try{
             $encryptedMessage = PGP::EncryptMessage($decryptedMessage, $newUsersPGP);

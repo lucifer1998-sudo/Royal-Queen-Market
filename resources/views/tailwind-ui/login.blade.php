@@ -6,7 +6,7 @@
     <div class="pt-20 w-full">
         <div class="w-full">
             <div class="flex justify-center px-96">
-                <div class="bg-rqm-lighter shadow">
+                <div class="bg-rqm-lighter shadow w-2/3">
                     <div>
                         <img src="{{URL::asset('/media/login-case.png')}}" class="w-full" alt="">
                     </div>

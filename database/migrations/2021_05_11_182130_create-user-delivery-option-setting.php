@@ -20,9 +20,9 @@ class CreateUserDeliveryOptionSetting extends Migration
             $table ->integer('duration');
             $table->integer('min_quantity');
             $table->integer('max_quantity');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
+            $table->integer('user_id');
             $table -> foreign('user_id') -> references('id')->on('users');
+            $table->timestamps();
         });
     }
 
