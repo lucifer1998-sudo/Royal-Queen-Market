@@ -17,7 +17,7 @@
         @endif
 
         @if(!Session::has('outside_vendor') && !Session::has('code'))
-        <form action="{{ route('admin.invite.outside.store') }}" method="POST" class="mb-7">
+        <form action="{{ route('admin.invite.store') }}" method="POST" class="mb-7">
             {{ csrf_field() }}
             <div class="grid grid-flow-col grid-cols-2 grid-rows-1 gap-4 w-full">
                 <div>
@@ -44,7 +44,7 @@
         @endif
 
         @if(Session::has('outside_vendor'))
-            <form action="{{ route('admin.messages.usersend') }}" method="POST" class="w-full mb-7">
+            <form action="{{ route('admin.invite.outside.store') }}" method="POST" class="w-full mb-7">
                 {{ csrf_field() }}
                 <input type="hidden" name="vendor_username" value="{{Session::get('outside_vendor')}}" />
                 <textarea name="newpgp" id="newpgp" rows="10" class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full" placeholder="Paste PGP key for {{Session::get('outside_vendor')}} here..."></textarea>
