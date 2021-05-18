@@ -79,7 +79,7 @@
                         </div>
                         <div class="flex justify-center">
                             <div class="flex pb-4 w-64">
-                                <span class="opacity-70 text-justify text-sm text-rqm-yellow">Your private key for decrypting messages will be protected with your password. Please make sure that you choose a strong one. </span>
+                                <span class="opacity-70 text-justify text-sm text-rqm-yellow">This PASSWORD will also be used to open your inbox messages. Please choose good combination and save it.</span>
                             </div>
                         </div>
                         <div class="flex justify-center py-1">
@@ -102,7 +102,7 @@
                         <div class="flex justify-center">
                             <div class="flex pb-4 w-64">
                                 <span class="opacity-70 text-justify text-sm text-rqm-yellow">
-                                     Copy Encrypted Message and decrypt it to get validation number
+                                     Copy Encrypted Message and decrypt it to get SECRET Code
                                 </span>
                             </div>
                         </div>
@@ -111,8 +111,7 @@
                                 <div class="bg-rqm-light px-2 py-1">
                                     <textarea rows="7" type="text" id="refid" name="notes"
                                               placeholder="Referral Code"
-                                              class=" py-1 rounded relative w-full pl-10 placeholder-rqm-dark">
-{{$notes}}
+                                              class=" py-1 rounded relative w-full pl-10 placeholder-rqm-dark">{{$notes}}
                                     </textarea>
                                 </div>
                             </div>
@@ -147,7 +146,7 @@
                                     </button>
                                 </div>
                                 <div class="flex justify-center text-lg text-rqm-yellow w-64">
-                                    <a href="{{route('auth.signin')}}" class="w-full">
+                                    <a href="{{route('auth.logins')}}" class="w-full">
                                         <button type="button" value="Log In" class="w-full">Log In</button>
                                     </a>
                                 </div>

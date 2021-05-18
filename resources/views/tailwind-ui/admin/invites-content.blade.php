@@ -1,5 +1,6 @@
 <div class="relative bg-rqm-dark flex flex-wrap justify-center rounded shadow w-full h-full">
-    <div class="absolute inset-0 bg-repeat h-full opacity-10 w-full" style="background-image: url({{URL::asset('/media/bg.cleaned.png')}})">
+    <div class="absolute inset-0 bg-repeat h-full opacity-10 w-full"
+         style="background-image: url({{URL::asset('/media/bg.cleaned.png')}})">
         <span></span>
     </div>
     <div class="z-20 p-10 w-full">
@@ -15,40 +16,54 @@
         @if(Session::has('outside_vendor'))
             @include('tailwind-ui.includes.warning', ['message' => 'is a vendor outside the platform. Please add PGP key to continue..', 'strongMessage' => Session::get('outside_vendor')])
         @endif
+        @if($errors -> any())
+            @foreach ($errors -> all() as $error)
+                @include('tailwind-ui.includes.warning', ['strongMessage' => 'Warning', 'message' => $error])
+            @endforeach
+        @endif
 
         @if(!Session::has('outside_vendor') && !Session::has('code'))
-        <form action="{{ route('admin.invite.store') }}" method="POST" class="mb-7">
-            {{ csrf_field() }}
-            <div class="grid grid-flow-col grid-cols-2 grid-rows-1 gap-4 w-full">
-                <div>
-                    <input value="{{$username}}" type="text" name="vendor_username" class="bg-rqm-dark border border-rqm-yellow-darkest p-2 rounded text-rqm-yellow w-full" placeholder="Vendor Username">
+            <form action="{{ route('admin.invite.store') }}" method="POST" class="mb-7">
+                {{ csrf_field() }}
+                <div class="grid grid-flow-col grid-cols-2 grid-rows-1 gap-4 w-full">
+                    <div>
+                        <input value="{{$username}}" type="text" name="vendor_username"
+                               class="bg-rqm-dark border border-rqm-yellow-darkest p-2 rounded text-rqm-yellow w-full"
+                               placeholder="Vendor Username">
+                    </div>
+                    <div>
+                        <button type="submit"
+                                class="bg-rqm-yellow-dark font-extrabold p-2 rounded-sm text-rqm-dark text-base w-full">
+                            Generate Code
+                        </button>
+                    </div>
                 </div>
-                <div>
-                    <button type="submit" class="bg-rqm-yellow-dark font-extrabold p-2 rounded-sm text-rqm-dark text-base w-full">
-                        Generate Code
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
         @endif
 
         @if(Session::has('code'))
-        <form action="{{ route('admin.messages.usersend') }}" method="POST" class="w-full mb-7">
-            {{ csrf_field() }}
-            <input type="hidden" name="user_id" value="{{Session::get('user')->id}}" />
-            <textarea name="message" id="message" rows="10" class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full" placeholder="Message for {{Session::get('user')->username}}..."></textarea>
-            <button type="submit" class="bg-rqm-yellow-dark font-extrabold p-2 rounded-sm text-rqm-dark text-base w-full">
-                Send message
-            </button>
-        </form>
+            <form action="{{ route('admin.messages.usersend') }}" method="POST" class="w-full mb-7">
+                {{ csrf_field() }}
+                <input type="hidden" name="user_id" value="{{Session::get('user')->id}}"/>
+                <textarea name="message" id="message" rows="10"
+                          class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full"
+                          placeholder="Message for {{Session::get('user')->username}}..."></textarea>
+                <button type="submit"
+                        class="bg-rqm-yellow-dark font-extrabold p-2 rounded-sm text-rqm-dark text-base w-full">
+                    Send message
+                </button>
+            </form>
         @endif
 
         @if(Session::has('outside_vendor'))
-            <form action="{{ route('admin.invite.outside.store') }}" method="POST" class="w-full mb-7">
+            <form action="{{ route('admin.messages.usersend') }}" method="POST" class="w-full mb-7">
                 {{ csrf_field() }}
-                <input type="hidden" name="vendor_username" value="{{Session::get('outside_vendor')}}" />
-                <textarea name="newpgp" id="newpgp" rows="10" class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full" placeholder="Paste PGP key for {{Session::get('outside_vendor')}} here..."></textarea>
-                <button type="submit" class="bg-rqm-yellow-dark font-extrabold p-2 rounded-sm text-rqm-dark text-base w-full">
+                <input type="hidden" name="vendor_username" value="{{Session::get('outside_vendor')}}"/>
+                <textarea name="newpgp" id="newpgp" rows="10"
+                          class="bg-rqm-dark border border-rqm-yellow-darkest p-3 text-rqm-yellow w-full"
+                          placeholder="Paste PGP key for {{Session::get('outside_vendor')}} here..."></textarea>
+                <button type="submit"
+                        class="bg-rqm-yellow-dark font-extrabold p-2 rounded-sm text-rqm-dark text-base w-full">
                     Generate Invite Now
                 </button>
             </form>

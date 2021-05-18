@@ -24,7 +24,7 @@ class InvitePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'vendor_username' => 'required',
+            'vendor_username' => 'required|max:12',
         ];
     }
 }
